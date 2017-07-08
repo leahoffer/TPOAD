@@ -41,4 +41,6 @@ public interface TDANegocioPublicado extends Remote{
 	public void confirmarPedido(int numero)throws RemoteException;
 	
 	public void pruebaParaSofi();
+	
+	public void otraPRuebaSkype();
 }
