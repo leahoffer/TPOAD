@@ -1,4 +1,4 @@
-package enummeration;
+package enumeration;
 
 public enum Area {
 	

@@ -68,6 +68,14 @@ public class PedidoInsumo {
 	public void setLotes(List<LoteInsumo> lotes) {
 		this.lotes = lotes;
 	}
+
+	public List<ItemPedidoI> getItems() {
+		return items;
+	}
+
+	public void setItems(List<ItemPedidoI> items) {
+		this.items = items;
+	}
 	
 	
 }
