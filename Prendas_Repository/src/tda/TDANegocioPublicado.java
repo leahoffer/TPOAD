@@ -43,4 +43,6 @@ public interface TDANegocioPublicado extends Remote{
 	public void pruebaParaSofi();
 	
 	public void otraPRuebaSkype();
+	
+	public void PRUEBACONJUNTASOFIA();
 }
