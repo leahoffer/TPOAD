@@ -32,6 +32,7 @@ public class HibernateUtil
              config.addAnnotatedClass(UbicacionPrendaEntity.class);
              config.addAnnotatedClass(AreaProduccionEntity.class);
              sessionFactory = config.buildSessionFactory();
+             //Hola hoffer comentario salvaje//
         }
         catch (Throwable ex)
         {
