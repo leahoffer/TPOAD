@@ -1,6 +1,6 @@
 package negocio;
 
-import enummeration.Area;
+import enumeration.Area;
 
 public class DetalleArea {
 
