@@ -39,4 +39,6 @@ public interface TDANegocioPublicado extends Remote{
 	public void confirmarPedido(int numero)throws RemoteException;
 	
 	public void unEjemplo() throws RemoteException;
+	
+	public void otroEjemplo() throws RemoteException;
 }
