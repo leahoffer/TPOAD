@@ -40,4 +40,5 @@ public interface TDANegocioPublicado extends Remote{
 	
 	public void pruebaDeBranch() throws RemoteException;
 	
+	public void otraPruebadeBranch();
 }
