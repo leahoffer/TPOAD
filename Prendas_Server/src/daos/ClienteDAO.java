@@ -5,6 +5,7 @@ import org.hibernate.classic.Session;
 
 import entities.ClienteEntity;
 import hibernate.HibernateUtil;
+import vos.ClienteVO;
 
 public class ClienteDAO {
 	
@@ -32,14 +33,14 @@ public class ClienteDAO {
 		}
 	}
 	
-	public ClienteEntity buscarCliente(ClienteEntity ce){
+	public ClienteEntity buscarCliente(int legajo){
 		try
 		{
 			SessionFactory sf = HibernateUtil.getSessionFactory();
 			Session s = sf.openSession();
-			ClienteEntity res = new ClienteEntity();
-			res = (ClienteEntity) s.get(ClienteEntity.class, ce.getLegajo());
-			s.close();
+			s.beginTransaction();
+			ClienteEntity res = (ClienteEntity) s.get(ClienteEntity.class, legajo);
+			s.getTransaction().commit();
 			return res;
 		}
 		catch (Exception e)
@@ -49,12 +50,13 @@ public class ClienteDAO {
 		return null;
 	}
 
-	public void eliminarCliente(ClienteEntity ce) {
+	public void eliminarCliente(ClienteVO cvo) {
 		try
 		{
 			SessionFactory sf = HibernateUtil.getSessionFactory();
 			Session s = sf.openSession();
-			s.delete(ce);
+			ClienteEntity c= (ClienteEntity) s.get(ClienteEntity.class, cvo.getLegajo());
+			s.delete(c);
 			s.beginTransaction().commit();
 		}
 		catch (Exception e)

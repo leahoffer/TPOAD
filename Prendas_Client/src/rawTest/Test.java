@@ -13,14 +13,16 @@ public class Test {
 
 			ClienteVO c= new ClienteVO();
 			c.setLegajo(5000);
-			c.setNombreComercio("Zara");
-			c.setDireccion("Entre Rios 450");
+			c.setNombreComercio("47 street");
+			c.setDireccion("Independencia 450");
 			c.setCuit("A6000");
 			c.setTelefono("4555-5555");
 			c.setConsignacion(0);
 			c.setLimite(15000);
-			BusinessDelegate.getInstancia().nuevoCliente(c);
-			System.out.println("Cliente creado.");
+			ClienteVO resultado=BusinessDelegate.getInstancia().buscarClienteVO(c.getLegajo());
+			System.out.println(resultado.getNombreComercio());
+			System.out.println(resultado.getDireccion());
+			System.out.println(resultado.getTelefono());
 			
 		} catch (RemoteException e) {
 			// TODO Auto-generated catch block

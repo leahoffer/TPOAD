@@ -57,18 +57,14 @@ public class Controlador {
 	}
 	
 	public ClienteVO buscarClienteVO(int legajo){
-		ClienteEntity ce = new ClienteEntity();
-		ce.setLegajo(legajo);
-		ClienteEntity aux = ClienteDAO.getInstancia().buscarCliente(ce);
-		Cliente c = aux.toNegocio();
+		ClienteEntity ce= ClienteDAO.getInstancia().buscarCliente(legajo);
+		Cliente c = ce.toNegocio();
 		ClienteVO cvo = c.toVO();
 		return cvo;
 	}
 	public void eliminarCliente(ClienteVO cvo) {
-		ClienteEntity ce = new ClienteEntity();
-		ce.setLegajo(cvo.getLegajo());
-		ClienteEntity aux = ClienteDAO.getInstancia().buscarCliente(ce);
-		ClienteDAO.getInstancia().eliminarCliente(aux);
+		
+		ClienteDAO.getInstancia().eliminarCliente(cvo);
 		
 	}
 	
