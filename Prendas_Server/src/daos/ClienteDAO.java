@@ -18,12 +18,18 @@ public class ClienteDAO {
 	}
 
 	public void guardarCliente(ClienteEntity cEntity) {
-		// TODO Auto-generated method stub
-		SessionFactory sf=HibernateUtil.getSessionFactory();
-		Session s= sf.getCurrentSession();
-		s.beginTransaction();
-		s.save(cEntity);
-		s.getTransaction().commit();
+		try
+		{
+			SessionFactory sf=HibernateUtil.getSessionFactory();
+			Session s= sf.getCurrentSession();
+			s.beginTransaction();
+			s.save(cEntity);
+			s.getTransaction().commit();
+		}
+		catch (Exception e)
+		{
+			e.printStackTrace();
+		}
 		
 	}
 
