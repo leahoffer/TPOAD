@@ -19,8 +19,20 @@ public class RemoteObject extends UnicastRemoteObject implements TDANegocioPubli
 
 	@Override
 	public void nuevoCliente(ClienteVO c) throws RemoteException {
-		// TODO Auto-generated method stub
 		controlador.nuevoCliente(c);
+	}
+
+	@Override
+	public ClienteVO buscarClienteVO(int legajo) throws RemoteException {
+		ClienteVO cvo = controlador.buscarClienteVO(legajo);
+		return cvo;
+		
+	}
+
+	@Override
+	public void eliminarCliente(int legajo) throws RemoteException {
+		controlador.eliminarCliente(legajo);
+		
 	}
 	
 }

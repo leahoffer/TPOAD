@@ -3,6 +3,8 @@ package controlador;
 import java.util.ArrayList;
 import java.util.List;
 
+import daos.ClienteDAO;
+import entities.ClienteEntity;
 import negocio.*;
 import vos.ClienteVO;
 
@@ -52,9 +54,22 @@ public class Controlador {
 		
 		clientes.add(cliente);
 		cliente.saveMe();
-		
 	}
 	
+	public ClienteVO buscarClienteVO(int legajo){
+		ClienteEntity ce = new ClienteEntity();
+		ce.setLegajo(legajo);
+		ClienteEntity aux = ClienteDAO.getInstancia().buscarCliente(ce);
+		Cliente c = aux.toNegocio();
+		ClienteVO cvo = c.toVO();
+		return cvo;
+	}
+	public void eliminarCliente(int legajo) {
+		ClienteEntity ce = new ClienteEntity();
+		ce.setLegajo(legajo);
+		ClienteDAO.getInstancia().eliminarCliente(ce);
+		
+	}
 	
 	
 	

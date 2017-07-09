@@ -36,9 +36,24 @@ public class BusinessDelegate implements TDANegocioPublicado {
 
 	@Override
 	public void nuevoCliente(ClienteVO c) throws RemoteException {
-		// TODO Auto-generated method stub
 		remoteObject.nuevoCliente(c);
 	}
+
+
+	@Override
+	public ClienteVO buscarClienteVO(int legajo) throws RemoteException {
+		ClienteVO cvo = remoteObject.buscarClienteVO(legajo);
+		return cvo;
+	}
+
+
+	@Override
+	public void eliminarCliente(int legajo) throws RemoteException {
+		remoteObject.eliminarCliente(legajo);
+		
+	}
+	
+	
 	
 	
 }

@@ -7,6 +7,7 @@ import daos.ClienteDAO;
 import entities.ClienteEntity;
 import entities.CuentaCorrienteEntity;
 import entities.MovimientoCCEntity;
+import vos.ClienteVO;
 
 public class Cliente {
 
@@ -87,6 +88,18 @@ public class Cliente {
 		clienteEntity.setCc(ccEntity);
 		return clienteEntity;
 		}
+
+	public ClienteVO toVO() {
+		ClienteVO cvo = new ClienteVO();
+		cvo.setConsignacion(this.getCuenta().getConsignacion());
+		cvo.setCuit(this.cuit);
+		cvo.setDireccion(this.direccion);
+		cvo.setLegajo(this.legajo);
+		cvo.setLimite(this.getCuenta().getLimiteCredito());
+		cvo.setNombreComercio(this.nombreComercio);
+		cvo.setTelefono(this.telefono);
+		return cvo;
+	}
 		
 		
 	

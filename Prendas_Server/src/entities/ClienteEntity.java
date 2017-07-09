@@ -4,6 +4,8 @@ import java.io.Serializable;
 
 import javax.persistence.*;
 
+import negocio.Cliente;
+
 @Entity
 @Table(name="Clientes")
 public class ClienteEntity implements Serializable{
@@ -15,7 +17,7 @@ public class ClienteEntity implements Serializable{
 	private String direccion;
 	private String telefono;
 	private String cuit;
-	@OneToOne(cascade=CascadeType.ALL)
+	@OneToOne(cascade=CascadeType.ALL, fetch=FetchType.EAGER)
 	private CuentaCorrienteEntity cc;
 	public ClienteEntity() {
 		// TODO Auto-generated constructor stub
@@ -55,6 +57,16 @@ public class ClienteEntity implements Serializable{
 	}
 	public void setCc(CuentaCorrienteEntity cc) {
 		this.cc = cc;
+	}
+	public Cliente toNegocio() {
+		Cliente res = new Cliente();
+		res.setLegajo(this.getLegajo());
+		res.setNombreComercio(this.getNombreComercio());
+		res.setCuit(this.getCuit());
+		res.setDireccion(this.getDireccion());
+		res.setTelefono(this.getTelefono());
+		res.setCuenta(this.getCc().toNegocio());
+		return res;
 	}
 	
 	

@@ -4,6 +4,8 @@ import java.io.Serializable;
 import java.util.Date;
 import javax.persistence.*;
 
+import negocio.MovimientoCC;
+
 @Entity
 @Table(name="Movimientos_CC")
 public class MovimientoCCEntity implements Serializable{
@@ -41,6 +43,13 @@ public class MovimientoCCEntity implements Serializable{
 	}
 	public void setPositivo(boolean positivo) {
 		this.positivo = positivo;
+	}
+	public MovimientoCC toNegocio() {
+		MovimientoCC mcc = new MovimientoCC();
+		mcc.setFecha(this.getFecha());
+		mcc.setMonto(this.getMonto());
+		mcc.setPositivo(this.isPositivo());
+		return mcc;
 	}
 	
 	

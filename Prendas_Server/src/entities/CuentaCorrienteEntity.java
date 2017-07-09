@@ -1,9 +1,11 @@
 package entities;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.*;
 
+import negocio.CuentaCorriente;
 import negocio.MovimientoCC;
 
 @Entity
@@ -17,7 +19,7 @@ public class CuentaCorrienteEntity implements Serializable{
 	private float limiteCredito;
 	private float consignacion;
 	private float saldo;
-	@OneToMany(cascade=CascadeType.ALL)
+	@OneToMany(cascade=CascadeType.ALL, fetch=FetchType.EAGER)
 	private List<MovimientoCCEntity> movimientos;
 	public CuentaCorrienteEntity() {
 		// TODO Auto-generated constructor stub
@@ -51,6 +53,17 @@ public class CuentaCorrienteEntity implements Serializable{
 	}
 	public void setMovimientos(List<MovimientoCCEntity> movimientos) {
 		this.movimientos = movimientos;
+	}
+	public CuentaCorriente toNegocio() {
+		CuentaCorriente cc = new CuentaCorriente();
+		cc.setConsignacion(this.getConsignacion());
+		cc.setLimiteCredito(this.getLimiteCredito());
+		cc.setSaldo(this.getSaldo());
+		List<MovimientoCC> movsnegocio = new ArrayList<MovimientoCC>();
+		for (MovimientoCCEntity mcce : this.getMovimientos())
+			movsnegocio.add(mcce.toNegocio());
+		cc.setMovimientos(movsnegocio);
+		return cc;
 	}
 	
 

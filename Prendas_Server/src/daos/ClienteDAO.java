@@ -30,6 +30,37 @@ public class ClienteDAO {
 		{
 			e.printStackTrace();
 		}
+	}
+	
+	public ClienteEntity buscarCliente(ClienteEntity ce){
+		try
+		{
+			SessionFactory sf = HibernateUtil.getSessionFactory();
+			Session s = sf.openSession();
+			ClienteEntity res = new ClienteEntity();
+			res = (ClienteEntity) s.get(ClienteEntity.class, ce.getLegajo());
+			s.close();
+			return res;
+		}
+		catch (Exception e)
+		{
+			e.printStackTrace();
+		}
+		return null;
+	}
+
+	public void eliminarCliente(ClienteEntity ce) {
+		try
+		{
+			SessionFactory sf = HibernateUtil.getSessionFactory();
+			Session s = sf.openSession();
+			s.delete(ce);
+			s.beginTransaction().commit();
+		}
+		catch (Exception e)
+		{
+			e.printStackTrace();
+		}
 		
 	}
 
