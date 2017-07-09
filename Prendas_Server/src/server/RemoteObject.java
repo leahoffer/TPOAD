@@ -6,6 +6,7 @@ import java.rmi.server.UnicastRemoteObject;
 import controlador.Controlador;
 import tda.TDANegocioPublicado;
 import vos.ClienteVO;
+import vos.PrendaVO;
 
 public class RemoteObject extends UnicastRemoteObject implements TDANegocioPublicado {
 
@@ -33,6 +34,12 @@ public class RemoteObject extends UnicastRemoteObject implements TDANegocioPubli
 	public void eliminarCliente(ClienteVO cvo) throws RemoteException {
 		controlador.eliminarCliente(cvo);
 		
+	}
+
+	@Override
+	public void nuevaPrenda(PrendaVO p) throws RemoteException {
+		// TODO Auto-generated method stub
+		controlador.nuevaPrenda(p);
 	}
 	
 }

@@ -1,5 +1,7 @@
 package negocio;
 
+import entities.TalleEntity;
+
 public class Talle {
 
 	private String talle;
@@ -14,6 +16,18 @@ public class Talle {
 
 	public Talle() {
 		// TODO Auto-generated constructor stub
+	}
+
+	public Talle(String tvo) {
+		// TODO Auto-generated constructor stub
+		talle= tvo;
+	}
+
+	public TalleEntity toEntity() {
+		// TODO Auto-generated method stub
+		TalleEntity res= new TalleEntity();
+		res.setTalle(this.getTalle());
+		return res;
 	}
 	
 	

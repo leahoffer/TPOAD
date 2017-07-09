@@ -1,12 +1,10 @@
 package negocio;
 
-import java.util.ArrayList;
-import java.util.List;
+
 
 import daos.ClienteDAO;
 import entities.ClienteEntity;
 import entities.CuentaCorrienteEntity;
-import entities.MovimientoCCEntity;
 import vos.ClienteVO;
 
 public class Cliente {

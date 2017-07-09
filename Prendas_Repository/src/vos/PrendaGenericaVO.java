@@ -1,28 +1,17 @@
-package entities;
+package vos;
 
 import java.io.Serializable;
 import java.util.List;
-import javax.persistence.*;
 
-@Entity
-@Table(name="Prendas_Genericas")
-public class PrendaGenericaEntity implements Serializable {
-
-	private static final long serialVersionUID = 1L;
+public class PrendaGenericaVO implements Serializable{
 	
-	@Id
 	private String codigo;
 	private String descripcion;
 	private int cantTalle;
 	private int cantColor;
-	
-	@OneToMany(cascade=CascadeType.ALL)
-	private List<ColorEntity> colores;
-	
-	@OneToMany(cascade=CascadeType.ALL)
-	private List<TalleEntity> talles;
-	
-	public PrendaGenericaEntity() {
+	private List<String> colores;
+	private List<String> talles;
+	public PrendaGenericaVO() {
 		// TODO Auto-generated constructor stub
 	}
 	public String getCodigo() {
@@ -49,21 +38,19 @@ public class PrendaGenericaEntity implements Serializable {
 	public void setCantColor(int cantColor) {
 		this.cantColor = cantColor;
 	}
-	public List<ColorEntity> getColores() {
+	public List<String> getColores() {
 		return colores;
 	}
-	public void setColores(List<ColorEntity> colores) {
+	public void setColores(List<String> colores) {
 		this.colores = colores;
 	}
-	public List<TalleEntity> getTalles() {
+	public List<String> getTalles() {
 		return talles;
 	}
-	public void setTalles(List<TalleEntity> talles) {
+	public void setTalles(List<String> talles) {
 		this.talles = talles;
 	}
 	
 	
-	
-	
-	
+
 }

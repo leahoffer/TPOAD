@@ -3,6 +3,12 @@ package negocio;
 import java.util.ArrayList;
 import java.util.List;
 
+import daos.PrendaDAO;
+import entities.DetalleAreaEntity;
+import entities.ItemRecetaEntity;
+import entities.MovStockEntity;
+import entities.PrendaEntity;
+
 public class Prenda {
 	
 	private PrendaGenerica prenda;
@@ -96,6 +102,44 @@ public class Prenda {
 
 	public void setItemsReceta(List<ItemReceta> itemsReceta) {
 		this.itemsReceta = itemsReceta;
+	}
+
+	public void saveMe() {
+		// TODO Auto-generated method stub
+		PrendaDAO.getInstancia().guardarPrenda(this.toEntity());
+	}
+
+	private PrendaEntity toEntity() {
+		// TODO Auto-generated method stub
+		PrendaEntity p= new PrendaEntity();
+		p.setCosto(this.getCosto());
+		p.setEnProduccion(this.isEnProduccion());
+		p.setPrecio(this.getPrecio());
+		p.setPrenda(this.getPrenda().toEntity());
+		p.setColor(this.getColor().toEntity());
+		p.setTalle(this.getTalle().toEntity());
+		
+		List<MovStockEntity> movsE= new ArrayList<MovStockEntity>();
+		List<DetalleAreaEntity> detsE= new ArrayList<DetalleAreaEntity>();
+		List<ItemRecetaEntity> itemsE= new ArrayList<ItemRecetaEntity>();
+		
+		for (MovStock m: this.getMovStocks())
+		{
+			movsE.add(m.toEntity());
+		}
+		
+		for (DetalleArea d: this.getDetAreas())
+		{
+			detsE.add(d.toEntity());
+		}
+		
+		for (ItemReceta i: this.getItemsReceta())
+		{
+			itemsE.add(i.toEntity());
+		}
+		
+		return p;
+		
 	}
 	
 	

@@ -1,5 +1,6 @@
 package negocio;
 
+import entities.DetalleAreaEntity;
 import enumerations.Area;
 
 public class DetalleArea {
@@ -21,6 +22,13 @@ public class DetalleArea {
 	}
 	public void setArea(Area area) {
 		this.area = area;
+	}
+	public DetalleAreaEntity toEntity() {
+		// TODO Auto-generated method stub
+		DetalleAreaEntity res= new DetalleAreaEntity();
+		res.setDuracion(this.getDuracion());
+		res.setArea(this.getArea().toString());
+		return res;
 	}
 	
 	

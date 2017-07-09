@@ -5,6 +5,7 @@ import java.rmi.RemoteException;
 
 import tda.TDANegocioPublicado;
 import vos.ClienteVO;
+import vos.PrendaVO;
 
 public class BusinessDelegate implements TDANegocioPublicado {
 
@@ -51,6 +52,13 @@ public class BusinessDelegate implements TDANegocioPublicado {
 	public void eliminarCliente(ClienteVO cvo) throws RemoteException {
 		remoteObject.eliminarCliente(cvo);
 		
+	}
+
+
+	@Override
+	public void nuevaPrenda(PrendaVO p) throws RemoteException {
+		// TODO Auto-generated method stub
+		remoteObject.nuevaPrenda(p);
 	}
 	
 	

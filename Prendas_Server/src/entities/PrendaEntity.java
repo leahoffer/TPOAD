@@ -3,29 +3,37 @@ package entities;
 import java.io.Serializable;
 import java.util.List;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Entity;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
-@Table(name="Predas")
+@Table(name="Prendas")
 public class PrendaEntity implements Serializable {
 
 	private static final long serialVersionUID = 1L;
+	@Id
+	@GeneratedValue
+	private int id;
 	
 	@ManyToOne(cascade=CascadeType.ALL)
 	private PrendaGenericaEntity prenda;
 	
-	private String color;
-	private String talle;
+	@OneToOne(cascade=CascadeType.ALL)
+	private ColorEntity color;
+	@OneToOne(cascade=CascadeType.ALL)
+	private TalleEntity talle;
+	
 	private boolean enProduccion;
 	private float precio;
 	private float costo;
 	
 	@OneToMany(cascade=CascadeType.ALL)
 	private List<MovStockEntity> movStocks;
+	
+	@OneToMany(cascade=CascadeType.ALL)
+	private List<DetalleAreaEntity> detAreas;
+	
+	@OneToMany(cascade=CascadeType.ALL)
+	private List<ItemRecetaEntity> itemsReceta;
 
 	public PrendaEntity(){
 	}
@@ -38,19 +46,19 @@ public class PrendaEntity implements Serializable {
 		this.prenda = prenda;
 	}
 
-	public String getColor() {
+	public ColorEntity getColor() {
 		return color;
 	}
 
-	public void setColor(String color) {
+	public void setColor(ColorEntity color) {
 		this.color = color;
 	}
 
-	public String getTalle() {
+	public TalleEntity getTalle() {
 		return talle;
 	}
 
-	public void setTalle(String talle) {
+	public void setTalle(TalleEntity talle) {
 		this.talle = talle;
 	}
 
@@ -84,6 +92,22 @@ public class PrendaEntity implements Serializable {
 
 	public void setMovStocks(List<MovStockEntity> movStocks) {
 		this.movStocks = movStocks;
+	}
+
+	public List<DetalleAreaEntity> getDetAreas() {
+		return detAreas;
+	}
+
+	public void setDetAreas(List<DetalleAreaEntity> detAreas) {
+		this.detAreas = detAreas;
+	}
+
+	public List<ItemRecetaEntity> getItemsReceta() {
+		return itemsReceta;
+	}
+
+	public void setItemsReceta(List<ItemRecetaEntity> itemsReceta) {
+		this.itemsReceta = itemsReceta;
 	}
 	
 	

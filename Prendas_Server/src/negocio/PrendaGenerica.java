@@ -3,6 +3,10 @@ package negocio;
 import java.util.ArrayList;
 import java.util.List;
 
+import entities.ColorEntity;
+import entities.PrendaGenericaEntity;
+import entities.TalleEntity;
+
 public class PrendaGenerica {
 
 	private String codigo;
@@ -64,6 +68,30 @@ public class PrendaGenerica {
 
 	public void setTalles(List<Talle> talles) {
 		this.talles = talles;
+	}
+
+	public PrendaGenericaEntity toEntity() {
+		// TODO Auto-generated method stub
+		PrendaGenericaEntity res= new PrendaGenericaEntity();
+		res.setCodigo(this.getCodigo());
+		res.setDescripcion(this.getDescripcion());
+		res.setCantColor(this.getCantColor());
+		res.setCantTalle(this.getCantTalle());
+		List<ColorEntity> colores= new ArrayList<ColorEntity>();
+		List<TalleEntity> talles= new ArrayList<TalleEntity>();
+		
+		for (Color c: this.getColores())
+		{
+			colores.add(c.toEntity());
+		}
+		
+		for (Talle t: this.getTalles())
+		{
+			talles.add(t.toEntity());
+		}
+		
+		return res;
+		
 	}
 	
 	

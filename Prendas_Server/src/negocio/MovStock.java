@@ -2,6 +2,8 @@ package negocio;
 
 import java.util.Date;
 
+import entities.MovStockEntity;
+
 public class MovStock {
 
 	private Date fecha;
@@ -27,6 +29,14 @@ public class MovStock {
 	}
 	public void setPositivo(boolean positivo) {
 		this.positivo = positivo;
+	}
+	public MovStockEntity toEntity() {
+		// TODO Auto-generated method stub
+		MovStockEntity res= new MovStockEntity();
+		res.setFecha((java.sql.Date) this.getFecha());
+		res.setMonto(this.getMonto());
+		res.setPositivo(this.isPositivo());
+		return res;
 	}
 	
 	

@@ -4,6 +4,10 @@ import java.io.Serializable;
 
 public class ClienteVO implements Serializable{
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -6014740936217409937L;
 	private int legajo;
 	private String nombreComercio;
 	private String direccion;

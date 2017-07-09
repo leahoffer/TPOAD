@@ -7,6 +7,7 @@ import daos.ClienteDAO;
 import entities.ClienteEntity;
 import negocio.*;
 import vos.ClienteVO;
+import vos.PrendaVO;
 
 public class Controlador {
 
@@ -66,6 +67,30 @@ public class Controlador {
 		
 		ClienteDAO.getInstancia().eliminarCliente(cvo);
 		
+	}
+	public void nuevaPrenda(PrendaVO pvo) {
+		// TODO Auto-generated method stub
+		PrendaGenerica pg= new PrendaGenerica();
+		pg.setCodigo(pvo.getPrenda().getCodigo());
+		pg.setDescripcion(pvo.getPrenda().getDescripcion());
+		pg.setCantColor(pvo.getPrenda().getCantColor());
+		pg.setCantTalle(pvo.getPrenda().getCantTalle());
+		for (String cvo: pvo.getPrenda().getColores())
+		{
+			pg.getColores().add(new Color(cvo));
+		}
+		for (String tvo: pvo.getPrenda().getTalles())
+		{
+			pg.getTalles().add(new Talle(tvo));
+		}
+		Prenda p= new Prenda();
+		p.setPrenda(pg);
+		p.setColor(new Color(pvo.getColor()));
+		p.setTalle(new Talle(pvo.getTalle()));
+		p.setCosto(pvo.getCosto());
+		p.setEnProduccion(pvo.isEnProduccion());
+		p.setPrecio(pvo.getPrecio());
+		p.saveMe();
 	}
 	
 	

@@ -4,8 +4,16 @@ import org.hibernate.SessionFactory;
 import org.hibernate.cfg.AnnotationConfiguration;
 
 import entities.ClienteEntity;
+import entities.ColorEntity;
 import entities.CuentaCorrienteEntity;
+import entities.DetalleAreaEntity;
+import entities.InsumoEntity;
+import entities.ItemRecetaEntity;
+import entities.MovStockEntity;
 import entities.MovimientoCCEntity;
+import entities.PrendaEntity;
+import entities.PrendaGenericaEntity;
+import entities.TalleEntity;
 
  
 public class HibernateUtil
@@ -20,6 +28,15 @@ public class HibernateUtil
         	 config.addAnnotatedClass(ClienteEntity.class);
         	 config.addAnnotatedClass(CuentaCorrienteEntity.class);
         	 config.addAnnotatedClass(MovimientoCCEntity.class);
+        	 config.addAnnotatedClass(ColorEntity.class);
+        	 config.addAnnotatedClass(TalleEntity.class);
+        	 
+        	 config.addAnnotatedClass(PrendaEntity.class);
+        	 config.addAnnotatedClass(PrendaGenericaEntity.class);
+        	 config.addAnnotatedClass(MovStockEntity.class);
+        	 config.addAnnotatedClass(DetalleAreaEntity.class);
+        	 config.addAnnotatedClass(ItemRecetaEntity.class);
+        	 config.addAnnotatedClass(InsumoEntity.class);
              sessionFactory = config.buildSessionFactory();
              
         }

@@ -1,5 +1,7 @@
 package negocio;
 
+import entities.ItemRecetaEntity;
+
 public class ItemReceta {
 	
 	private float cantidad;
@@ -27,6 +29,14 @@ public class ItemReceta {
 	}
 	public void setInsumo(Insumo insumo) {
 		this.insumo = insumo;
+	}
+	public ItemRecetaEntity toEntity() {
+		// TODO Auto-generated method stub
+		ItemRecetaEntity res= new ItemRecetaEntity();
+		res.setCantidad(this.getCantidad());
+		res.setDesperdicio(this.getDesperdicio());
+		res.setInsumo(this.getInsumo().toEntity());
+		return res;
 	}
 	
 	

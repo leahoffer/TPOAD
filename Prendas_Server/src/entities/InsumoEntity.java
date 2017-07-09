@@ -1,15 +1,19 @@
-package negocio;
+package entities;
+import java.io.Serializable;
 
-import entities.InsumoEntity;
+import javax.persistence.*;
 
-public class Insumo {
-	
+@Entity
+@Table(name="Insumos")
+public class InsumoEntity implements Serializable{
+
+	@Id
 	private String codigo;
 	private String nombre;
 	private float ptoPedido;
 	private float cantAComprar;
 	private float precioComprado;
-	public Insumo() {
+	public InsumoEntity() {
 		// TODO Auto-generated constructor stub
 	}
 	public String getCodigo() {
@@ -42,17 +46,6 @@ public class Insumo {
 	public void setPrecioComprado(float precioComprado) {
 		this.precioComprado = precioComprado;
 	}
-	public InsumoEntity toEntity() {
-		// TODO Auto-generated method stub
-		InsumoEntity res= new InsumoEntity();
-		res.setCantAComprar(this.getCantAComprar());
-		res.setCodigo(this.getCodigo());
-		res.setNombre(this.getNombre());
-		res.setPrecioComprado(this.getPrecioComprado());
-		res.setPtoPedido(this.getPtoPedido());
-		return res;
-	}
 	
 	
-
 }

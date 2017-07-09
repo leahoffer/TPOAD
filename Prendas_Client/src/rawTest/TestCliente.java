@@ -5,7 +5,7 @@ import java.rmi.RemoteException;
 import businessdelegate.BusinessDelegate;
 import vos.ClienteVO;
 
-public class Test {
+public class TestCliente {
 	
 	public static void main(String[] args) {
 		
