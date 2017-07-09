@@ -104,7 +104,7 @@ public class EliminarCliente {
 			public void actionPerformed(ActionEvent e) {
 				try
 				{
-					BusinessDelegate.getInstancia().eliminarCliente(cvo.getLegajo());
+					BusinessDelegate.getInstancia().eliminarCliente(cvo);
 					JOptionPane.showMessageDialog(null, "El cliente fue eliminado", "Cliente eliminado", JOptionPane.INFORMATION_MESSAGE);
 					frame.dispose();
 				}

@@ -64,10 +64,11 @@ public class Controlador {
 		ClienteVO cvo = c.toVO();
 		return cvo;
 	}
-	public void eliminarCliente(int legajo) {
+	public void eliminarCliente(ClienteVO cvo) {
 		ClienteEntity ce = new ClienteEntity();
-		ce.setLegajo(legajo);
-		ClienteDAO.getInstancia().eliminarCliente(ce);
+		ce.setLegajo(cvo.getLegajo());
+		ClienteEntity aux = ClienteDAO.getInstancia().buscarCliente(ce);
+		ClienteDAO.getInstancia().eliminarCliente(aux);
 		
 	}
 	

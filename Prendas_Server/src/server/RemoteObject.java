@@ -30,8 +30,8 @@ public class RemoteObject extends UnicastRemoteObject implements TDANegocioPubli
 	}
 
 	@Override
-	public void eliminarCliente(int legajo) throws RemoteException {
-		controlador.eliminarCliente(legajo);
+	public void eliminarCliente(ClienteVO cvo) throws RemoteException {
+		controlador.eliminarCliente(cvo);
 		
 	}
 	

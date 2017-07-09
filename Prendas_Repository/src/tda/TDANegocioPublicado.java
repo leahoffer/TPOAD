@@ -11,7 +11,7 @@ public interface TDANegocioPublicado extends Remote {
 	
 	public ClienteVO buscarClienteVO(int legajo) throws RemoteException;
 	
-	public void eliminarCliente(int legajo) throws RemoteException;
+	public void eliminarCliente(ClienteVO cvo) throws RemoteException;
 	
 
 }

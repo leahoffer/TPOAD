@@ -48,8 +48,8 @@ public class BusinessDelegate implements TDANegocioPublicado {
 
 
 	@Override
-	public void eliminarCliente(int legajo) throws RemoteException {
-		remoteObject.eliminarCliente(legajo);
+	public void eliminarCliente(ClienteVO cvo) throws RemoteException {
+		remoteObject.eliminarCliente(cvo);
 		
 	}
 	
