@@ -3,6 +3,10 @@ package hibernate;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.AnnotationConfiguration;
 
+import entities.ClienteEntity;
+import entities.CuentaCorrienteEntity;
+import entities.MovimientoCCEntity;
+
  
 public class HibernateUtil
 {
@@ -13,6 +17,9 @@ public class HibernateUtil
         try
         {
         	 AnnotationConfiguration config = new AnnotationConfiguration();
+        	 config.addAnnotatedClass(ClienteEntity.class);
+        	 config.addAnnotatedClass(CuentaCorrienteEntity.class);
+        	 config.addAnnotatedClass(MovimientoCCEntity.class);
              sessionFactory = config.buildSessionFactory();
              
         }

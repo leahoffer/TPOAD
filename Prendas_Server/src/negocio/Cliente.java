@@ -1,5 +1,13 @@
 package negocio;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import dao.ClienteDAO;
+import entities.ClienteEntity;
+import entities.CuentaCorrienteEntity;
+import entities.MovimientoCCEntity;
+
 public class Cliente {
 
 	private int legajo;
@@ -61,6 +69,40 @@ public class Cliente {
 	public void setCuenta(CuentaCorriente cuenta) {
 		this.cuenta = cuenta;
 	}
+
+	public void saveMe() {
+		// TODO Auto-generated method stub
+		ClienteDAO.getInstancia().guardarCliente(this.toEntity());
+	}
+
+	private ClienteEntity toEntity() {
+		// TODO Auto-generated method stub
+		ClienteEntity clienteEntity= new ClienteEntity();
+		clienteEntity.setLegajo(this.getLegajo());
+		clienteEntity.setNombreComercio(this.getNombreComercio());
+		clienteEntity.setDireccion(this.getDireccion());
+		clienteEntity.setCuit(this.getCuit());
+		clienteEntity.setTelefono(this.getTelefono());
+		CuentaCorrienteEntity ccEntity= new CuentaCorrienteEntity();
+		List<MovimientoCCEntity> movsEntity= new ArrayList<MovimientoCCEntity>();
+		for (MovimientoCC mov: this.getCuenta().getMovimientos())
+		{
+			MovimientoCCEntity movEntity= new MovimientoCCEntity();
+			movEntity.setFecha(mov.getFecha());
+			movEntity.setMonto(mov.getMonto());
+			movEntity.setPositivo(mov.isPositivo());
+			movsEntity.add(movEntity);
+		}
+		ccEntity.setConsignacion(this.getCuenta().getConsignacion());
+		ccEntity.setLimiteCredito(this.getCuenta().getLimiteCredito());
+		ccEntity.setSaldo(this.getCuenta().getSaldo());
+		ccEntity.setMovimientos(movsEntity);
+		clienteEntity.setCc(ccEntity);
+		return clienteEntity;
+		}
+		
+		
+	
 	
 	
 	

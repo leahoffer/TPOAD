@@ -7,6 +7,7 @@ import java.rmi.registry.LocateRegistry;
 
 import com.sun.org.apache.xerces.internal.util.URI.MalformedURIException;
 
+import hibernate.HibernateUtil;
 import tda.TDANegocioPublicado;
 
 public class Server {
@@ -29,6 +30,7 @@ public class Server {
 			LocateRegistry.createRegistry(1099);
 			remote = new RemoteObject();
 			Naming.rebind("//localhost/negocioRemoto", remote);
+			HibernateUtil.getSessionFactory().openSession();
 			System.out.println("RemoteObject successfully published");
 		}
 		catch (RemoteException e)

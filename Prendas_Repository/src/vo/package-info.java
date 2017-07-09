@@ -5,4 +5,4 @@
  * @author Leandro
  *
  */
-package entity;
+package vo;

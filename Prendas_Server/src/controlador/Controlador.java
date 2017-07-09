@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import negocio.*;
+import vo.ClienteVO;
 
 public class Controlador {
 
@@ -31,6 +32,23 @@ public class Controlador {
 		this.prendas = new ArrayList<Prenda>();
 		this.proveedores = new ArrayList<Proveedor>();
 		this.prendasGenericas = new ArrayList<PrendaGenerica>();
+	}
+	public void nuevoCliente(ClienteVO c) {
+		// TODO Auto-generated method stub
+		Cliente cliente= new Cliente();
+		cliente.setLegajo(c.getLegajo());
+		cliente.setDireccion(c.getDireccion());
+		cliente.setNombreComercio(c.getNombreComercio());
+		cliente.setTelefono(c.getTelefono());
+		cliente.setCuit(c.getCuit());
+		CuentaCorriente cc= new CuentaCorriente();
+		cc.setLimiteCredito(c.getLimite());
+		cc.setConsignacion(c.getConsignacion());
+		cliente.setCuenta(cc);
+		
+		clientes.add(cliente);
+		cliente.saveMe();
+		
 	}
 	
 	

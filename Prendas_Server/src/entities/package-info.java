@@ -5,4 +5,4 @@
  * @author Leandro
  *
  */
-package valueObject;
+package entities;
