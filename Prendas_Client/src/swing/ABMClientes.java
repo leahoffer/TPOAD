@@ -61,6 +61,11 @@ public class ABMClientes {
 		frmAbmClientes.getContentPane().add(btnCrearCliente);
 		
 		JButton btnEliminarCliente = new JButton("Eliminar Cliente");
+		btnEliminarCliente.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				EliminarCliente.BajaCliente();
+			}
+		});
 		btnEliminarCliente.setBounds(111, 87, 171, 23);
 		frmAbmClientes.getContentPane().add(btnEliminarCliente);
 		
