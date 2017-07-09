@@ -80,7 +80,9 @@ public class UbicacionPrenda {
 		this.reservados = reservados;
 	}
 	
-	
+	public String obtenerUbicacion(){
+		return calle + String.valueOf(this.bloque) + String.valueOf(this.estanteria) + String.valueOf(this.posicion);
+	}
 	
 	
 }
