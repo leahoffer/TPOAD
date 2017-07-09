@@ -3,6 +3,9 @@ package negocio;
 import java.util.ArrayList;
 import java.util.List;
 
+import entities.CuentaCorrienteEntity;
+import entities.MovimientoCCEntity;
+
 public class CuentaCorriente {
 
 	private float limiteCredito;
@@ -47,7 +50,18 @@ public class CuentaCorriente {
 		this.movimientos = movimientos;
 	}
 
-	
+	public CuentaCorrienteEntity toEntity()
+	{
+		CuentaCorrienteEntity cce = new CuentaCorrienteEntity();
+		cce.setConsignacion(this.consignacion);
+		cce.setLimiteCredito(this.limiteCredito);
+		cce.setSaldo(this.saldo);
+		List<MovimientoCCEntity> movs = new ArrayList<MovimientoCCEntity>();
+		for (MovimientoCC mcc : this.getMovimientos())
+			movs.add(mcc.toEntity());
+		cce.setMovimientos(movs);
+		return cce;
+	}
 	
 	
 }

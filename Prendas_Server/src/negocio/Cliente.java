@@ -83,20 +83,7 @@ public class Cliente {
 		clienteEntity.setDireccion(this.getDireccion());
 		clienteEntity.setCuit(this.getCuit());
 		clienteEntity.setTelefono(this.getTelefono());
-		CuentaCorrienteEntity ccEntity= new CuentaCorrienteEntity();
-		List<MovimientoCCEntity> movsEntity= new ArrayList<MovimientoCCEntity>();
-		for (MovimientoCC mov: this.getCuenta().getMovimientos())
-		{
-			MovimientoCCEntity movEntity= new MovimientoCCEntity();
-			movEntity.setFecha(mov.getFecha());
-			movEntity.setMonto(mov.getMonto());
-			movEntity.setPositivo(mov.isPositivo());
-			movsEntity.add(movEntity);
-		}
-		ccEntity.setConsignacion(this.getCuenta().getConsignacion());
-		ccEntity.setLimiteCredito(this.getCuenta().getLimiteCredito());
-		ccEntity.setSaldo(this.getCuenta().getSaldo());
-		ccEntity.setMovimientos(movsEntity);
+		CuentaCorrienteEntity ccEntity = this.getCuenta().toEntity();
 		clienteEntity.setCc(ccEntity);
 		return clienteEntity;
 		}

@@ -5,8 +5,6 @@ import java.rmi.Naming;
 import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 
-import com.sun.org.apache.xerces.internal.util.URI.MalformedURIException;
-
 import hibernate.HibernateUtil;
 import tda.TDANegocioPublicado;
 

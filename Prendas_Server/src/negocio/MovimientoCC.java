@@ -2,6 +2,8 @@ package negocio;
 
 import java.util.Date;
 
+import entities.MovimientoCCEntity;
+
 public class MovimientoCC {
 
 	private float monto;
@@ -36,6 +38,13 @@ public class MovimientoCC {
 		this.positivo = positivo;
 	}
 
-	
+	public MovimientoCCEntity toEntity()
+	{
+		MovimientoCCEntity mcce = new MovimientoCCEntity();
+		mcce.setFecha(this.fecha);
+		mcce.setMonto(this.monto);
+		mcce.setPositivo(this.positivo);
+		return mcce;
+	}
 	
 }

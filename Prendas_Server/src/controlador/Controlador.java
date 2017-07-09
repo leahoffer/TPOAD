@@ -33,6 +33,8 @@ public class Controlador {
 		this.proveedores = new ArrayList<Proveedor>();
 		this.prendasGenericas = new ArrayList<PrendaGenerica>();
 	}
+	
+	
 	public void nuevoCliente(ClienteVO c) {
 		// TODO Auto-generated method stub
 		Cliente cliente= new Cliente();
