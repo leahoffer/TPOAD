@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import negocio.*;
-import vo.ClienteVO;
+import vos.ClienteVO;
 
 public class Controlador {
 

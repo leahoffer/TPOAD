@@ -3,7 +3,7 @@ package tda;
 import java.rmi.Remote;
 import java.rmi.RemoteException;
 
-import vo.ClienteVO;
+import vos.ClienteVO;
 
 public interface TDANegocioPublicado extends Remote {
 	

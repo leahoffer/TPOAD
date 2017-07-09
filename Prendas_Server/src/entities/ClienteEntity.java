@@ -1,11 +1,14 @@
 package entities;
 
+import java.io.Serializable;
+
 import javax.persistence.*;
 
 @Entity
 @Table(name="Clientes")
-public class ClienteEntity {
-	
+public class ClienteEntity implements Serializable{
+
+	private static final long serialVersionUID = 1L;
 	@Id
 	private int legajo;
 	private String nombreComercio;

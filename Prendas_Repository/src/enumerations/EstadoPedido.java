@@ -1,4 +1,4 @@
-package enumeration;
+package enumerations;
 
 public enum EstadoPedido {
 

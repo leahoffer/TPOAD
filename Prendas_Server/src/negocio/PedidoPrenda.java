@@ -4,12 +4,15 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import enumerations.EstadoPedido;
+
 public class PedidoPrenda {
 
 	private Cliente cliente;
 	private Date fechaGen;
 	private float total;
 	private List<ItemPedidoP> prendas;
+	private EstadoPedido estado;
 	
 	public PedidoPrenda() {
 		super();
@@ -46,6 +49,14 @@ public class PedidoPrenda {
 
 	public void setPrendas(List<ItemPedidoP> prendas) {
 		this.prendas = prendas;
+	}
+
+	public EstadoPedido getEstado() {
+		return estado;
+	}
+
+	public void setEstado(EstadoPedido estado) {
+		this.estado = estado;
 	}
 	
 	

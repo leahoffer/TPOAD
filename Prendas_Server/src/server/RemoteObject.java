@@ -5,7 +5,7 @@ import java.rmi.server.UnicastRemoteObject;
 
 import controlador.Controlador;
 import tda.TDANegocioPublicado;
-import vo.ClienteVO;
+import vos.ClienteVO;
 
 public class RemoteObject extends UnicastRemoteObject implements TDANegocioPublicado {
 

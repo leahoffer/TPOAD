@@ -4,7 +4,7 @@ import java.rmi.Naming;
 import java.rmi.RemoteException;
 
 import tda.TDANegocioPublicado;
-import vo.ClienteVO;
+import vos.ClienteVO;
 
 public class BusinessDelegate implements TDANegocioPublicado {
 

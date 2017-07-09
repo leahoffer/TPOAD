@@ -3,7 +3,7 @@ package negocio;
 import java.util.ArrayList;
 import java.util.List;
 
-import dao.ClienteDAO;
+import daos.ClienteDAO;
 import entities.ClienteEntity;
 import entities.CuentaCorrienteEntity;
 import entities.MovimientoCCEntity;

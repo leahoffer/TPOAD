@@ -3,7 +3,7 @@ package rawTest;
 import java.rmi.RemoteException;
 
 import businessdelegate.BusinessDelegate;
-import vo.ClienteVO;
+import vos.ClienteVO;
 
 public class Test {
 	

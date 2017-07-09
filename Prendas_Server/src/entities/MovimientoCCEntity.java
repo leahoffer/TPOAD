@@ -1,12 +1,14 @@
 package entities;
 
+import java.io.Serializable;
 import java.util.Date;
 import javax.persistence.*;
 
 @Entity
 @Table(name="Movimientos_CC")
-public class MovimientoCCEntity {
+public class MovimientoCCEntity implements Serializable{
 	
+	private static final long serialVersionUID = 1L;
 	@Id
 	@GeneratedValue
 	private int nro;
