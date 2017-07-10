@@ -39,7 +39,11 @@ public class Controlador {
 	
 	
 	
-	//ABM CLIENTES
+	/*
+	 * 
+	 * ABM CLIENTES
+	 * 
+	 */
 	public void nuevoCliente(ClienteVO c) {
 		// TODO Auto-generated method stub
 		Cliente cliente= new Cliente();
@@ -68,6 +72,14 @@ public class Controlador {
 		ClienteDAO.getInstancia().eliminarCliente(cvo);
 		
 	}
+	
+	
+	
+	/*
+	 * 
+	 * ABM PRENDAS
+	 * 
+	 */
 	public void nuevaPrenda(PrendaVO pvo) {
 		// TODO Auto-generated method stub
 		PrendaGenerica pg= new PrendaGenerica();

@@ -7,6 +7,7 @@ import javax.persistence.*;
 @Table(name="Insumos")
 public class InsumoEntity implements Serializable{
 
+	private static final long serialVersionUID = 1L;
 	@Id
 	private String codigo;
 	private String nombre;

@@ -7,6 +7,8 @@ import javax.persistence.*;
 @Entity
 @Table(name="Items_Receta")
 public class ItemRecetaEntity implements Serializable{
+
+	private static final long serialVersionUID = 1L;
 	
 	@Id
 	@GeneratedValue
