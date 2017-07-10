@@ -13,6 +13,7 @@ public class PrendaGenerica {
 	private String descripcion;
 	private int cantTalle;
 	private int cantColor;
+	private float ganancia;
 	private List<Color> colores;
 	private List<Talle> talles;
 	
@@ -70,6 +71,14 @@ public class PrendaGenerica {
 		this.talles = talles;
 	}
 
+	public float getGanancia() {
+		return ganancia;
+	}
+
+	public void setGanancia(float ganancia) {
+		this.ganancia = ganancia;
+	}
+	
 	public PrendaGenericaEntity toEntity() {
 		// TODO Auto-generated method stub
 		PrendaGenericaEntity res= new PrendaGenericaEntity();
@@ -77,6 +86,7 @@ public class PrendaGenerica {
 		res.setDescripcion(this.getDescripcion());
 		res.setCantColor(this.getCantColor());
 		res.setCantTalle(this.getCantTalle());
+		res.setGanancia(this.getGanancia());
 		List<ColorEntity> colores= new ArrayList<ColorEntity>();
 		List<TalleEntity> talles= new ArrayList<TalleEntity>();
 		
@@ -93,6 +103,8 @@ public class PrendaGenerica {
 		return res;
 		
 	}
+
+	
 	
 	
 	

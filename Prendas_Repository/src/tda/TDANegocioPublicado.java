@@ -2,8 +2,10 @@ package tda;
 
 import java.rmi.Remote;
 import java.rmi.RemoteException;
+import java.util.List;
 
 import vos.ClienteVO;
+import vos.InsumoVO;
 import vos.PrendaVO;
 
 public interface TDANegocioPublicado extends Remote {
@@ -15,4 +17,6 @@ public interface TDANegocioPublicado extends Remote {
 	public void eliminarCliente(ClienteVO cvo) throws RemoteException;
 	
 	public void nuevaPrenda(PrendaVO p) throws RemoteException;
+	
+	public List<InsumoVO> mostrarInsumos() throws RemoteException;
 }

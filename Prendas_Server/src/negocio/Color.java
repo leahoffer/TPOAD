@@ -12,7 +12,7 @@ public class Color {
 
 	public Color(String cvo) {
 		// TODO Auto-generated constructor stub
-		color= cvo;
+		this.color= cvo;
 	}
 
 	public String getColor() {

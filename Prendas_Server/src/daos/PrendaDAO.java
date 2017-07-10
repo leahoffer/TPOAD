@@ -18,13 +18,18 @@ public class PrendaDAO {
 	}
 
 	public void guardarPrenda(PrendaEntity prenda) {
-		// TODO Auto-generated method stub
-		SessionFactory sf= HibernateUtil.getSessionFactory();
-		Session s= sf.getCurrentSession();
-		s.beginTransaction();
-		s.save(prenda);
-		s.getTransaction().commit();
-		
+		try
+		{
+			SessionFactory sf= HibernateUtil.getSessionFactory();
+			Session s= sf.getCurrentSession();
+			s.beginTransaction();
+			s.save(prenda);
+			s.getTransaction().commit();
+		}
+		catch(Exception e)
+		{
+			e.printStackTrace();
+		}		
 	}
 
 }

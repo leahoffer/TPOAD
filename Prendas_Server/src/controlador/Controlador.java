@@ -4,9 +4,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 import daos.ClienteDAO;
+import daos.InsumoDAO;
 import entities.ClienteEntity;
+import entities.InsumoEntity;
+import enumerations.Area;
 import negocio.*;
 import vos.ClienteVO;
+import vos.DetalleAreaVO;
+import vos.InsumoVO;
+import vos.ItemRecetaVO;
 import vos.PrendaVO;
 
 public class Controlador {
@@ -99,12 +105,42 @@ public class Controlador {
 		p.setPrenda(pg);
 		p.setColor(new Color(pvo.getColor()));
 		p.setTalle(new Talle(pvo.getTalle()));
-		p.setCosto(pvo.getCosto());
+		p.calcularCosto();
 		p.setEnProduccion(pvo.isEnProduccion());
-		p.setPrecio(pvo.getPrecio());
+		p.calcularPrecio();
+		List<ItemReceta> irs = new ArrayList<ItemReceta>();
+		List<DetalleArea> das = new ArrayList<DetalleArea>();
+		for(ItemRecetaVO irvo : pvo.getReceta())
+		{
+			ItemReceta ir = new ItemReceta();
+			ir.setCantidad(irvo.getCantidad());
+			ir.setDesperdicio(irvo.getDesperdicio());
+			Insumo i = new Insumo();
+			i.setCantAComprar(irvo.getInsumo().getCantAComprar());
+			i.setCodigo(irvo.getInsumo().getCodigo());
+			i.setNombre(irvo.getInsumo().getNombre());
+			i.setPrecioComprado(irvo.getInsumo().getPrecioComprado());
+			i.setPtoPedido(irvo.getInsumo().getPtoPedido());
+			ir.setInsumo(i);
+			irs.add(ir);
+		}
+		for(DetalleAreaVO davo : pvo.getAreas())
+		{
+			DetalleArea da = new DetalleArea();
+			da.setArea(Area.valueOf(davo.getArea()));
+			da.setDuracion(davo.getDuracion());
+			das.add(da);
+		}
 		p.saveMe();
 	}
 	
-	
+	public List<InsumoVO> mostrarInsumos(){
+		List<InsumoEntity> aux = InsumoDAO.getInstancia().traerTodosLosInusmos();
+		List<InsumoVO> mostrar = new ArrayList<InsumoVO>();
+		for(InsumoEntity ie : aux)
+			mostrar.add(ie.toNegocio().toVO());
+		return mostrar;
+		
+	}
 	
 }

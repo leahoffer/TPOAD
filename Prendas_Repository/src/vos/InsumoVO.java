@@ -1,64 +1,62 @@
-package entities;
+package vos;
+
 import java.io.Serializable;
 
-import javax.persistence.*;
+public class InsumoVO implements Serializable {
 
-import negocio.Insumo;
+	private static final long serialVersionUID = -6787568370203418926L;
 
-@Entity
-@Table(name="Insumos")
-public class InsumoEntity implements Serializable{
-
-	private static final long serialVersionUID = 1L;
-	@Id
 	private String codigo;
 	private String nombre;
 	private float ptoPedido;
 	private float cantAComprar;
 	private float precioComprado;
 	
-	public InsumoEntity() {
-		// TODO Auto-generated constructor stub
+	public InsumoVO() {
 	}
+
 	public String getCodigo() {
 		return codigo;
 	}
+
 	public void setCodigo(String codigo) {
 		this.codigo = codigo;
 	}
+
 	public String getNombre() {
 		return nombre;
 	}
+
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
 	}
+
 	public float getPtoPedido() {
 		return ptoPedido;
 	}
+
 	public void setPtoPedido(float ptoPedido) {
 		this.ptoPedido = ptoPedido;
 	}
+
 	public float getCantAComprar() {
 		return cantAComprar;
 	}
+
 	public void setCantAComprar(float cantAComprar) {
 		this.cantAComprar = cantAComprar;
 	}
+
 	public float getPrecioComprado() {
 		return precioComprado;
 	}
+
 	public void setPrecioComprado(float precioComprado) {
 		this.precioComprado = precioComprado;
 	}
 	
-	public Insumo toNegocio(){
-		Insumo i = new Insumo();
-		i.setCantAComprar(this.cantAComprar);
-		i.setCodigo(this.codigo);
-		i.setNombre(this.nombre);
-		i.setPrecioComprado(this.precioComprado);
-		i.setPtoPedido(this.ptoPedido);
-		return i;
+	public String toString(){
+		return codigo + " - " + nombre;
 	}
 	
 }

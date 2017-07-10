@@ -142,8 +142,24 @@ public class Prenda {
 		
 	}
 	
+	public float obtenerCosto(){
+		float costo = 0;
+		for(ItemReceta ir : this.getItemsReceta())
+			costo = costo + (ir.getInsumo().getPrecioComprado()*ir.getCantidad());
+		return costo;
+	}
 	
-	
+	public void calcularCosto(){
+		float costo = 0;
+		for(ItemReceta ir : this.getItemsReceta())
+			costo = costo + (ir.getInsumo().getPrecioComprado()*ir.getCantidad());
+		this.costo = costo;
+	}
+
+	public void calcularPrecio() {
+		this.precio = this.costo * this.getPrenda().getGanancia();
+		
+	}
 	
 	
 	

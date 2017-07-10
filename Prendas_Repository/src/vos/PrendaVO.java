@@ -1,12 +1,11 @@
 package vos;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 public class PrendaVO implements Serializable {
-	
-	/**
-	 * 
-	 */
+
 	private static final long serialVersionUID = 1340429982151665292L;
 	private PrendaGenericaVO prenda;
 	private String color;
@@ -14,8 +13,11 @@ public class PrendaVO implements Serializable {
 	private boolean enProduccion;
 	private float precio;
 	private float costo;
+	private List<ItemRecetaVO> receta;
+	private List<DetalleAreaVO> areas;
 	public PrendaVO() {
-		// TODO Auto-generated constructor stub
+		this.receta = new ArrayList<ItemRecetaVO>();
+		this.areas = new ArrayList<DetalleAreaVO>();
 	}
 	public PrendaGenericaVO getPrenda() {
 		return prenda;
@@ -54,6 +56,25 @@ public class PrendaVO implements Serializable {
 		this.costo = costo;
 	}
 	
-	
+	public void setPrecio(){
+		this.precio = this.costo * this.getPrenda().getGanancia();
+	}
+	public List<ItemRecetaVO> getReceta() {
+		return receta;
+	}
+	public void setReceta(List<ItemRecetaVO> receta) {
+		this.receta = receta;
+	}
+	public List<DetalleAreaVO> getAreas() {
+		return areas;
+	}
+	public void setAreas(List<DetalleAreaVO> areas) {
+		this.areas = areas;
+	}
 
+	public void agregarItem(ItemRecetaVO irvo){
+		this.receta.add(irvo);
+	}
+	
+	
 }

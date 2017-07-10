@@ -2,9 +2,11 @@ package businessdelegate;
 
 import java.rmi.Naming;
 import java.rmi.RemoteException;
+import java.util.List;
 
 import tda.TDANegocioPublicado;
 import vos.ClienteVO;
+import vos.InsumoVO;
 import vos.PrendaVO;
 
 public class BusinessDelegate implements TDANegocioPublicado {
@@ -59,6 +61,12 @@ public class BusinessDelegate implements TDANegocioPublicado {
 	public void nuevaPrenda(PrendaVO p) throws RemoteException {
 		// TODO Auto-generated method stub
 		remoteObject.nuevaPrenda(p);
+	}
+
+
+	@Override
+	public List<InsumoVO> mostrarInsumos() throws RemoteException {
+		return remoteObject.mostrarInsumos();
 	}
 	
 	

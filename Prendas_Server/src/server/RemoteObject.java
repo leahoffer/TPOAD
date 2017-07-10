@@ -2,10 +2,12 @@ package server;
 
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
+import java.util.List;
 
 import controlador.Controlador;
 import tda.TDANegocioPublicado;
 import vos.ClienteVO;
+import vos.InsumoVO;
 import vos.PrendaVO;
 
 public class RemoteObject extends UnicastRemoteObject implements TDANegocioPublicado {
@@ -40,6 +42,11 @@ public class RemoteObject extends UnicastRemoteObject implements TDANegocioPubli
 	public void nuevaPrenda(PrendaVO p) throws RemoteException {
 		// TODO Auto-generated method stub
 		controlador.nuevaPrenda(p);
+	}
+
+	@Override
+	public List<InsumoVO> mostrarInsumos() throws RemoteException {
+		return controlador.mostrarInsumos();
 	}
 	
 }
