@@ -123,7 +123,7 @@ public class Prenda {
 		List<DetalleAreaEntity> detsE= new ArrayList<DetalleAreaEntity>();
 		List<ItemRecetaEntity> itemsE= new ArrayList<ItemRecetaEntity>();
 		
-		for (MovStock m: this.getMovStocks())
+		for (MovStock m: this.movStocks)
 		{
 			movsE.add(m.toEntity());
 		}
@@ -133,7 +133,7 @@ public class Prenda {
 			detsE.add(d.toEntity());
 		}
 		
-		for (ItemReceta i: this.getItemsReceta())
+		for (ItemReceta i: this.itemsReceta)
 		{
 			itemsE.add(i.toEntity());
 		}

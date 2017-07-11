@@ -29,11 +29,11 @@ public class AgregarInsumos {
 	/**
 	 * Launch the application.
 	 */
-	public static void main(String[] args) {
+	public static void NuevoAgregarInsumoVentana(List<ItemRecetaVO> receta) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					AgregarInsumos window = new AgregarInsumos();
+					AgregarInsumos window = new AgregarInsumos(receta);
 					window.frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -45,22 +45,19 @@ public class AgregarInsumos {
 	/**
 	 * Create the application.
 	 */
-	public AgregarInsumos() {
-		initialize();
+	public AgregarInsumos(List<ItemRecetaVO> receta) {
+		initialize(receta);
 	}
 
 	/**
 	 * Initialize the contents of the frame.
 	 */
-	private void initialize() {
+	private void initialize(List<ItemRecetaVO> receta) {
 		
 
 		List<InsumoVO> insumos = new ArrayList<InsumoVO>();
-		List<PrendaGenericaVO> prendasg= new ArrayList<PrendaGenericaVO>();
 		try {
-			
 			insumos = BusinessDelegate.getInstancia().mostrarInsumos();
-			prendasg= BusinessDelegate.getInstancia().mostrarPrendas();
 		} catch (RemoteException e2) {
 			// TODO Auto-generated catch block
 			e2.printStackTrace();
@@ -82,29 +79,15 @@ public class AgregarInsumos {
 		for(InsumoVO ivo : insumos)
 			cbInsumos.addItem(ivo);
 		
-		JComboBox<PrendaGenericaVO> cb_prendas = new JComboBox<PrendaGenericaVO>();
-		cb_prendas.setBounds(109, 11, 121, 20);
-		frame.getContentPane().add(cb_prendas);
-		for(PrendaGenericaVO pvo: prendasg)
-		{
-			cb_prendas.addItem(pvo);
-		}
 		
 		JButton btnAgregar = new JButton("Agregar");
 		btnAgregar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				
-				
-				try {
-					ItemRecetaVO iro = new ItemRecetaVO();
-					iro.setCantidad(Float.parseFloat(textField_cant.getText()));
-					iro.setDesperdicio(Float.parseFloat(textField_desperdicio.getText()));
-					iro.setInsumo((InsumoVO) cbInsumos.getSelectedItem());
-					BusinessDelegate.getInstancia().agregarItemReceta(iro, (PrendaGenericaVO) cb_prendas.getSelectedItem());
-				} catch (RemoteException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
+				ItemRecetaVO iro = new ItemRecetaVO();
+				iro.setCantidad(Float.parseFloat(textField_cant.getText()));
+				iro.setDesperdicio(Float.parseFloat(textField_desperdicio.getText()));
+				iro.setInsumo((InsumoVO) cbInsumos.getSelectedItem());
+				receta.add(iro);
 			}
 		});
 		btnAgregar.setBounds(141, 133, 89, 23);
@@ -123,11 +106,6 @@ public class AgregarInsumos {
 		textField_desperdicio.setColumns(10);
 		textField_desperdicio.setBounds(109, 102, 121, 20);
 		frame.getContentPane().add(textField_desperdicio);
-		
-		JLabel lblPrenda = new JLabel("Prenda");
-		lblPrenda.setFont(new Font("Tahoma", Font.BOLD, 12));
-		lblPrenda.setBounds(10, 13, 72, 14);
-		frame.getContentPane().add(lblPrenda);
 		
 		JLabel lblInsumo = new JLabel("Insumo");
 		lblInsumo.setFont(new Font("Tahoma", Font.BOLD, 12));

@@ -211,7 +211,7 @@ public class CrearPrenda {
 				pgvo.setCantTalle(Integer.parseInt(txtCantTalle.getText()));
 				pgvo.setColores(colores);
 				pgvo.setTalles(talles);
-				
+				pgvo.setGanancia(Float.parseFloat(txtGanancia.getText()));
 				if(!talles.isEmpty() && !colores.isEmpty())
 				{
 					for(String talle : talles)
@@ -224,7 +224,7 @@ public class CrearPrenda {
 							pvo.setPrenda(pgvo);
 							pvo.setTalle(talle);
 							pvo.setAreas(detalles);
-							
+							pvo.setReceta(receta);
 							try {
 								BusinessDelegate.getInstancia().nuevaPrenda(pvo);
 								System.out.println("Se creó la prenda " + pgvo.getDescripcion() + " " + talle + " " + color);
@@ -283,5 +283,14 @@ public class CrearPrenda {
 		});
 		btnVerItems.setBounds(238, 450, 166, 23);
 		frmCrearPrenda.getContentPane().add(btnVerItems);
+		
+		JButton btnAgregarInsumos = new JButton("Agregar Insumos");
+		btnAgregarInsumos.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				AgregarInsumos.NuevoAgregarInsumoVentana(receta);
+			}
+		});
+		btnAgregarInsumos.setBounds(186, 382, 166, 23);
+		frmCrearPrenda.getContentPane().add(btnAgregarInsumos);
 	}
 }

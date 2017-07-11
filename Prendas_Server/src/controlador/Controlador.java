@@ -97,6 +97,7 @@ public class Controlador {
 		pg.setDescripcion(pvo.getPrenda().getDescripcion());
 		pg.setCantColor(pvo.getPrenda().getCantColor());
 		pg.setCantTalle(pvo.getPrenda().getCantTalle());
+		pg.setGanancia(pvo.getPrenda().getGanancia());
 		for (String cvo: pvo.getPrenda().getColores())
 		{
 			pg.getColores().add(new Color(cvo));
@@ -111,9 +112,7 @@ public class Controlador {
 		p.setTalle(new Talle(pvo.getTalle()));
 		p.setEnProduccion(pvo.isEnProduccion());
 		List<DetalleArea> das = new ArrayList<DetalleArea>();
-		/*List<ItemReceta> irs = new ArrayList<ItemReceta>();
-		
-		
+		List<ItemReceta> irs = new ArrayList<ItemReceta>();
 		for(ItemRecetaVO irvo : pvo.getReceta())
 		{
 			ItemReceta ir = new ItemReceta();
@@ -127,7 +126,7 @@ public class Controlador {
 			i.setPtoPedido(irvo.getInsumo().getPtoPedido());
 			ir.setInsumo(i);
 			irs.add(ir);
-		}*/
+		}
 		for(DetalleAreaVO davo : pvo.getAreas())
 		{
 			DetalleArea da = new DetalleArea();
@@ -136,6 +135,7 @@ public class Controlador {
 			das.add(da);
 		}
 		p.setDetAreas(das);
+		p.setItemsReceta(irs);
 		p.saveMe();
 	}
 	
