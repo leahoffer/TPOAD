@@ -128,7 +128,7 @@ public class Prenda {
 			movsE.add(m.toEntity());
 		}
 		
-		for (DetalleArea d: this.getDetAreas())
+		for (DetalleArea d: this.detAreas)
 		{
 			detsE.add(d.toEntity());
 		}
@@ -137,7 +137,9 @@ public class Prenda {
 		{
 			itemsE.add(i.toEntity());
 		}
-		
+		p.setDetAreas(detsE);
+		p.setMovStocks(movsE);
+		p.setItemsReceta(itemsE);
 		return p;
 		
 	}

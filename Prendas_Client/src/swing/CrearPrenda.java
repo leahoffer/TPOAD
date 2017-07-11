@@ -34,9 +34,6 @@ public class CrearPrenda {
 	private JTextField txtCantTalle;
 	private JTextField txtCantColor;
 	private JTextField txtGanancia;
-	private JTextField txtCantInsumo;
-	private JTextField txtDesperdicio;
-	private JTextField txtDuracion;
 
 	/**
 	 * Launch the application.
@@ -79,7 +76,8 @@ public class CrearPrenda {
 			e2.printStackTrace();
 		}
 		List<ItemRecetaVO> receta = new ArrayList<ItemRecetaVO>();
-		List<DetalleAreaVO> areas = new ArrayList<DetalleAreaVO>();
+		List<DetalleAreaVO> detalles = new ArrayList<DetalleAreaVO>();
+		PrendaGenericaVO pgvo = new PrendaGenericaVO();
 		
 		JLabel lblCrearPrenda = new JLabel("Crear Prenda");
 		lblCrearPrenda.setFont(new Font("Tahoma", Font.BOLD, 20));
@@ -181,7 +179,6 @@ public class CrearPrenda {
 		JButton btnCrearPrenda = new JButton("Crear Prenda");
 		btnCrearPrenda.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				PrendaGenericaVO pgvo = new PrendaGenericaVO();
 				List<String> colores = new ArrayList<String>();
 				List<String> talles = new ArrayList<String>();
 				if (chckbxNegro.isSelected())
@@ -226,24 +223,8 @@ public class CrearPrenda {
 							pvo.setEnProduccion(true);
 							pvo.setPrenda(pgvo);
 							pvo.setTalle(talle);
-							pvo.setAreas(areas);
-							/*for(ItemRecetaVO irvo : receta)
-							{
-								if(irvo.getInsumo().getNombre().contains("Tela"))
-								{
-									if(talle == "S")
-										irvo.setCantidad((float) (irvo.getCantidad()*1.1));
-									if(talle == "M")
-										irvo.setCantidad((float) (irvo.getCantidad()*1.15));
-									if(talle == "L")
-										irvo.setCantidad((float) (irvo.getCantidad()*1.2));
-									if(talle == "XL")
-										irvo.setCantidad((float) (irvo.getCantidad()*1.25));
-									if(talle == "XXL")
-										irvo.setCantidad((float) (irvo.getCantidad()*1.3));
-								}
-								pvo.agregarItem(irvo);
-							}*/
+							pvo.setAreas(detalles);
+							
 							try {
 								BusinessDelegate.getInstancia().nuevaPrenda(pvo);
 								System.out.println("Se creó la prenda " + pgvo.getDescripcion() + " " + talle + " " + color);
@@ -284,82 +265,15 @@ public class CrearPrenda {
 		frmCrearPrenda.getContentPane().add(txtGanancia);
 		txtGanancia.setColumns(10);
 		
-		JLabel lblInsumos = new JLabel("Insumos:");
-		lblInsumos.setBounds(220, 184, 64, 14);
-		frmCrearPrenda.getContentPane().add(lblInsumos);
 		
-		
-		JComboBox<InsumoVO> cbInsumos = new JComboBox<InsumoVO>();
-		cbInsumos.setBounds(220, 207, 196, 20);
-		frmCrearPrenda.getContentPane().add(cbInsumos);
-		for(InsumoVO ivo : insumos)
-			cbInsumos.addItem(ivo);
-		
-		JLabel lblCantidadInsumo = new JLabel("Cantidad");
-		lblCantidadInsumo.setBounds(238, 240, 74, 14);
-		frmCrearPrenda.getContentPane().add(lblCantidadInsumo);
-		
-		txtCantInsumo = new JTextField();
-		txtCantInsumo.setBounds(322, 237, 86, 20);
-		frmCrearPrenda.getContentPane().add(txtCantInsumo);
-		txtCantInsumo.setColumns(10);
-		
-		JLabel lblDesperdicio = new JLabel("Desperdicio");
-		lblDesperdicio.setBounds(238, 266, 74, 14);
-		frmCrearPrenda.getContentPane().add(lblDesperdicio);
-		
-		txtDesperdicio = new JTextField();
-		txtDesperdicio.setBounds(322, 263, 86, 20);
-		frmCrearPrenda.getContentPane().add(txtDesperdicio);
-		txtDesperdicio.setColumns(10);
-		
-		JButton btnAgregarInsumo = new JButton("Agregar Insumo");
-		btnAgregarInsumo.addActionListener(new ActionListener() {
+		JButton btnAgregarAreas = new JButton("Agregar Areas");
+		btnAgregarAreas.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				ItemRecetaVO iro = new ItemRecetaVO();
-				iro.setCantidad(Float.parseFloat(txtCantInsumo.getText()));
-				iro.setDesperdicio(Float.parseFloat(txtDesperdicio.getText()));
-				iro.setInsumo((InsumoVO) cbInsumos.getSelectedItem());
+				AgregarDetalleArea.NuevoAgregarDAVentana(pgvo, detalles);
 			}
 		});
-		btnAgregarInsumo.setBounds(238, 288, 166, 23);
-		frmCrearPrenda.getContentPane().add(btnAgregarInsumo);
-		
-		JLabel lblAreas = new JLabel("Areas:");
-		lblAreas.setBounds(220, 323, 46, 14);
-		frmCrearPrenda.getContentPane().add(lblAreas);
-		
-		JComboBox cbAreas = new JComboBox();
-		cbAreas.setBounds(220, 348, 196, 20);
-		frmCrearPrenda.getContentPane().add(cbAreas);
-		cbAreas.addItem("Marcado");
-		cbAreas.addItem("Corte");
-		cbAreas.addItem("Habilidado");
-		cbAreas.addItem("Costura");
-		cbAreas.addItem("Estampado");
-		cbAreas.addItem("Acabado");
-		cbAreas.addItem("Planchado");
-		cbAreas.addItem("Empacado");
-		
-		JLabel lblDuracion = new JLabel("Duraci\u00F3n");
-		lblDuracion.setBounds(238, 379, 74, 14);
-		frmCrearPrenda.getContentPane().add(lblDuracion);
-		
-		txtDuracion = new JTextField();
-		txtDuracion.setBounds(322, 376, 86, 20);
-		frmCrearPrenda.getContentPane().add(txtDuracion);
-		txtDuracion.setColumns(10);
-		
-		JButton btnAgregarArea = new JButton("Agregar Area");
-		btnAgregarArea.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				DetalleAreaVO davo = new DetalleAreaVO();
-				davo.setArea((String) cbAreas.getSelectedItem());
-				davo.setDuracion(Float.parseFloat(txtDuracion.getText()));
-			}
-		});
-		btnAgregarArea.setBounds(238, 408, 166, 23);
-		frmCrearPrenda.getContentPane().add(btnAgregarArea);
+		btnAgregarAreas.setBounds(10, 382, 166, 23);
+		frmCrearPrenda.getContentPane().add(btnAgregarAreas);
 		
 		JButton btnVerItems = new JButton("Ver Items");
 		btnVerItems.addActionListener(new ActionListener() {

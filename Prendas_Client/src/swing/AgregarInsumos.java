@@ -111,6 +111,11 @@ public class AgregarInsumos {
 		frame.getContentPane().add(btnAgregar);
 		
 		JButton btnFinalizar = new JButton("Finalizar");
+		btnFinalizar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				frame.dispose();
+			}
+		});
 		btnFinalizar.setBounds(141, 162, 89, 23);
 		frame.getContentPane().add(btnFinalizar);
 		

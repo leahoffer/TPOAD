@@ -110,8 +110,9 @@ public class Controlador {
 		p.setColor(new Color(pvo.getColor()));
 		p.setTalle(new Talle(pvo.getTalle()));
 		p.setEnProduccion(pvo.isEnProduccion());
-		/*List<ItemReceta> irs = new ArrayList<ItemReceta>();
 		List<DetalleArea> das = new ArrayList<DetalleArea>();
+		/*List<ItemReceta> irs = new ArrayList<ItemReceta>();
+		
 		
 		for(ItemRecetaVO irvo : pvo.getReceta())
 		{
@@ -126,14 +127,15 @@ public class Controlador {
 			i.setPtoPedido(irvo.getInsumo().getPtoPedido());
 			ir.setInsumo(i);
 			irs.add(ir);
-		}
+		}*/
 		for(DetalleAreaVO davo : pvo.getAreas())
 		{
 			DetalleArea da = new DetalleArea();
 			da.setArea(Area.valueOf(davo.getArea()));
 			da.setDuracion(davo.getDuracion());
 			das.add(da);
-		}*/
+		}
+		p.setDetAreas(das);
 		p.saveMe();
 	}
 	

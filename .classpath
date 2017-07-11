@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="Prendas_Client/src"/>
+	<classpathentry kind="src" path="Prendas_Repository/src"/>
+	<classpathentry kind="src" path="Prendas_Server/src"/>
+	<classpathentry kind="lib" path="Prendas_Server/lib/antlr-2.7.6.jar"/>
+	<classpathentry kind="lib" path="Prendas_Server/lib/commons-collections-3.1.jar"/>
+	<classpathentry kind="lib" path="Prendas_Server/lib/commons-logging-1.1.1.jar"/>
+	<classpathentry kind="lib" path="Prendas_Server/lib/dom4j-1.6.1.jar"/>
+	<classpathentry kind="lib" path="Prendas_Server/lib/ejb3-persistence.jar"/>
+	<classpathentry kind="lib" path="Prendas_Server/lib/hibernate-annotations.jar"/>
+	<classpathentry kind="lib" path="Prendas_Server/lib/hibernate-commons-annotations.jar"/>
+	<classpathentry kind="lib" path="Prendas_Server/lib/hibernate3.jar"/>
+	<classpathentry kind="lib" path="Prendas_Server/lib/javassist-3.4.GA.jar"/>
+	<classpathentry kind="lib" path="Prendas_Server/lib/jta-1.1.jar"/>
+	<classpathentry kind="lib" path="Prendas_Server/lib/jtds-1.2.5.jar"/>
+	<classpathentry kind="lib" path="Prendas_Server/lib/slf4j-api-1.5.6.jar"/>
+	<classpathentry kind="lib" path="Prendas_Server/lib/slf4j-simple-1.5.6.jar"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="output" path="Prendas_Client/bin"/>
+</classpath>
