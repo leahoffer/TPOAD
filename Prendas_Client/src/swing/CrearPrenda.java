@@ -227,7 +227,7 @@ public class CrearPrenda {
 							pvo.setPrenda(pgvo);
 							pvo.setTalle(talle);
 							pvo.setAreas(areas);
-							for(ItemRecetaVO irvo : receta)
+							/*for(ItemRecetaVO irvo : receta)
 							{
 								if(irvo.getInsumo().getNombre().contains("Tela"))
 								{
@@ -243,7 +243,7 @@ public class CrearPrenda {
 										irvo.setCantidad((float) (irvo.getCantidad()*1.3));
 								}
 								pvo.agregarItem(irvo);
-							}
+							}*/
 							try {
 								BusinessDelegate.getInstancia().nuevaPrenda(pvo);
 								System.out.println("Se creó la prenda " + pgvo.getDescripcion() + " " + talle + " " + color);

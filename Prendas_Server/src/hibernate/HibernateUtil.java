@@ -37,6 +37,8 @@ public class HibernateUtil
         	 config.addAnnotatedClass(DetalleAreaEntity.class);
         	 config.addAnnotatedClass(ItemRecetaEntity.class);
         	 config.addAnnotatedClass(InsumoEntity.class);
+        	 
+        	 
              sessionFactory = config.buildSessionFactory();
              
         }

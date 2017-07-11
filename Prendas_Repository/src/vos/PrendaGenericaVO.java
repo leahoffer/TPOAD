@@ -59,6 +59,11 @@ public class PrendaGenericaVO implements Serializable{
 		this.ganancia = ganancia;
 	}
 	
+	public String toString()
+	{
+		return codigo+" - "+descripcion;
+	}
+	
 	
 
 }

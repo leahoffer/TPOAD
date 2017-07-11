@@ -8,6 +8,8 @@ import controlador.Controlador;
 import tda.TDANegocioPublicado;
 import vos.ClienteVO;
 import vos.InsumoVO;
+import vos.ItemRecetaVO;
+import vos.PrendaGenericaVO;
 import vos.PrendaVO;
 
 public class RemoteObject extends UnicastRemoteObject implements TDANegocioPublicado {
@@ -47,6 +49,18 @@ public class RemoteObject extends UnicastRemoteObject implements TDANegocioPubli
 	@Override
 	public List<InsumoVO> mostrarInsumos() throws RemoteException {
 		return controlador.mostrarInsumos();
+	}
+
+	@Override
+	public List<PrendaGenericaVO> mostrarPrendas() throws RemoteException {
+		// TODO Auto-generated method stub
+		return controlador.mostrarPrendas();
+	}
+
+	@Override
+	public void agregarItemReceta(ItemRecetaVO item, PrendaGenericaVO prenda) throws RemoteException {
+		// TODO Auto-generated method stub
+		controlador.agregarItemReceta(item, prenda);
 	}
 	
 }

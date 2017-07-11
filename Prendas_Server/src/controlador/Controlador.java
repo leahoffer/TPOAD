@@ -5,14 +5,18 @@ import java.util.List;
 
 import daos.ClienteDAO;
 import daos.InsumoDAO;
+import daos.PrendaDAO;
 import entities.ClienteEntity;
 import entities.InsumoEntity;
+import entities.PrendaEntity;
+import entities.PrendaGenericaEntity;
 import enumerations.Area;
 import negocio.*;
 import vos.ClienteVO;
 import vos.DetalleAreaVO;
 import vos.InsumoVO;
 import vos.ItemRecetaVO;
+import vos.PrendaGenericaVO;
 import vos.PrendaVO;
 
 public class Controlador {
@@ -105,11 +109,10 @@ public class Controlador {
 		p.setPrenda(pg);
 		p.setColor(new Color(pvo.getColor()));
 		p.setTalle(new Talle(pvo.getTalle()));
-		p.calcularCosto();
 		p.setEnProduccion(pvo.isEnProduccion());
-		p.calcularPrecio();
-		List<ItemReceta> irs = new ArrayList<ItemReceta>();
+		/*List<ItemReceta> irs = new ArrayList<ItemReceta>();
 		List<DetalleArea> das = new ArrayList<DetalleArea>();
+		
 		for(ItemRecetaVO irvo : pvo.getReceta())
 		{
 			ItemReceta ir = new ItemReceta();
@@ -130,7 +133,7 @@ public class Controlador {
 			da.setArea(Area.valueOf(davo.getArea()));
 			da.setDuracion(davo.getDuracion());
 			das.add(da);
-		}
+		}*/
 		p.saveMe();
 	}
 	
@@ -140,6 +143,46 @@ public class Controlador {
 		for(InsumoEntity ie : aux)
 			mostrar.add(ie.toNegocio().toVO());
 		return mostrar;
+		
+	}
+	public List<PrendaGenericaVO> mostrarPrendas() {
+		// TODO Auto-generated method stub
+		List<PrendaGenericaEntity> aux= PrendaDAO.getInstancia().traerTodasLasGenericas();
+		List<PrendaGenericaVO> mostrar= new ArrayList<PrendaGenericaVO>();
+		for(PrendaGenericaEntity pe: aux)
+		{
+			PrendaGenericaVO p= new PrendaGenericaVO();
+			p.setCodigo(pe.getCodigo());
+			p.setDescripcion(pe.getDescripcion());
+			p.setCantColor(pe.getCantColor());
+			p.setCantTalle(pe.getCantTalle());
+			mostrar.add(p);
+		}
+		return mostrar;
+	}
+	public void agregarItemReceta(ItemRecetaVO item, PrendaGenericaVO prenda) {
+		// TODO Auto-generated method stub
+		Insumo insumo= new Insumo();
+		insumo.setCantAComprar(item.getInsumo().getCantAComprar());
+		insumo.setCodigo(item.getInsumo().getCodigo());
+		insumo.setNombre(item.getInsumo().getNombre());
+		insumo.setPrecioComprado(item.getInsumo().getPrecioComprado());
+		insumo.setPtoPedido(item.getInsumo().getPtoPedido());
+		
+		ItemReceta i = new ItemReceta();
+		i.setCantidad(item.getCantidad());
+		i.setDesperdicio(item.getDesperdicio());
+		i.setInsumo(insumo);
+		
+		List<PrendaEntity> prendas= PrendaDAO.getInstancia().traerEspecificas(prenda);
+		for (PrendaEntity p: prendas)
+		{
+			/*Aca es donde tenes que fijarte que segun que PrendaEntity trajiste, cambiar 
+			el item para asignarle otra cantidad (mas o menos) 
+			segun el talle o (que color es) segun el color. WESA.
+			Por ahora no importa que prendaEntity p sea, le agrega el mismo a todas.*/
+			PrendaDAO.getInstancia().agregarItemPrendas(i.toEntity(), p);
+		}
 		
 	}
 	

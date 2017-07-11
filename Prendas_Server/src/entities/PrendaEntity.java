@@ -32,12 +32,16 @@ public class PrendaEntity implements Serializable {
 	@OneToMany(cascade=CascadeType.ALL)
 	private List<DetalleAreaEntity> detAreas;
 	
-	@OneToMany(cascade=CascadeType.ALL)
+	@OneToMany(cascade=CascadeType.ALL, fetch=FetchType.EAGER)
 	private List<ItemRecetaEntity> itemsReceta;
 
 	public PrendaEntity(){
 	}
 	
+	public void AgregarItem (ItemRecetaEntity i)
+	{
+		this.itemsReceta.add(i);
+	}
 	public PrendaGenericaEntity getPrenda() {
 		return prenda;
 	}
