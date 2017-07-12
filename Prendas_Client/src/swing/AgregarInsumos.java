@@ -27,7 +27,7 @@ public class AgregarInsumos {
 	private JTextField textField_desperdicio;
 
 	/**
-	 * Launch the application.
+	 * Launch the application. 
 	 */
 	public static void NuevoAgregarInsumoVentana(List<ItemRecetaVO> receta) {
 		EventQueue.invokeLater(new Runnable() {
@@ -54,7 +54,8 @@ public class AgregarInsumos {
 	 */
 	private void initialize(List<ItemRecetaVO> receta) {
 		
-
+		List<String> insumosMostrados = new ArrayList<String>();
+		
 		List<InsumoVO> insumos = new ArrayList<InsumoVO>();
 		try {
 			insumos = BusinessDelegate.getInstancia().mostrarInsumos();
@@ -73,21 +74,37 @@ public class AgregarInsumos {
 		frame.getContentPane().add(textField_cant);
 		textField_cant.setColumns(10);
 		
-		JComboBox<InsumoVO> cbInsumos = new JComboBox<InsumoVO>();
+		JComboBox<String> cbInsumos = new JComboBox<String>();
 		cbInsumos.setBounds(109, 40, 121, 20);
 		frame.getContentPane().add(cbInsumos);
 		for(InsumoVO ivo : insumos)
-			cbInsumos.addItem(ivo);
+		{
+			if(!insumosMostrados.contains(ivo.getNombre()))
+				insumosMostrados.add(ivo.getNombre());
+		}
 		
 		
 		JButton btnAgregar = new JButton("Agregar");
 		btnAgregar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				ItemRecetaVO iro = new ItemRecetaVO();
-				iro.setCantidad(Float.parseFloat(textField_cant.getText()));
-				iro.setDesperdicio(Float.parseFloat(textField_desperdicio.getText()));
-				iro.setInsumo((InsumoVO) cbInsumos.getSelectedItem());
-				receta.add(iro);
+				List<InsumoVO> insumos = new ArrayList<InsumoVO>();
+				try {
+					insumos = BusinessDelegate.getInstancia().mostrarInsumos();
+				} catch (RemoteException e2) {
+					// TODO Auto-generated catch block
+					e2.printStackTrace();
+				}
+				for(InsumoVO ivo : insumos)
+				{
+					if(ivo.getNombre().equals(cbInsumos.getSelectedItem()))
+					{
+						ItemRecetaVO irvo = new ItemRecetaVO();
+						irvo.setCantidad(Float.parseFloat(textField_cant.getText()));
+						irvo.setDesperdicio(Float.parseFloat(textField_desperdicio.getText()));
+						irvo.setInsumo(ivo);
+						receta.add(irvo);
+					}
+				}
 			}
 		});
 		btnAgregar.setBounds(141, 133, 89, 23);

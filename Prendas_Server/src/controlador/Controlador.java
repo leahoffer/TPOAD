@@ -124,6 +124,7 @@ public class Controlador {
 			i.setNombre(irvo.getInsumo().getNombre());
 			i.setPrecioComprado(irvo.getInsumo().getPrecioComprado());
 			i.setPtoPedido(irvo.getInsumo().getPtoPedido());
+			i.setColor(new Color(irvo.getInsumo().getColor()));
 			ir.setInsumo(i);
 			irs.add(ir);
 		}

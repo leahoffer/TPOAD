@@ -11,6 +11,7 @@ public class InsumoVO implements Serializable {
 	private float ptoPedido;
 	private float cantAComprar;
 	private float precioComprado;
+	private String color;
 	
 	public InsumoVO() {
 	}
@@ -55,6 +56,14 @@ public class InsumoVO implements Serializable {
 		this.precioComprado = precioComprado;
 	}
 	
+	public String getColor() {
+		return color;
+	}
+
+	public void setColor(String color) {
+		this.color = color;
+	}
+
 	public String toString(){
 		return codigo + " - " + nombre;
 	}
