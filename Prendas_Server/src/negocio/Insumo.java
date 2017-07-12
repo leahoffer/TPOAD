@@ -1,6 +1,7 @@
 package negocio;
 
 import entities.InsumoEntity;
+import vos.InsumoVO;
 
 public class Insumo {
 	
@@ -53,6 +54,16 @@ public class Insumo {
 		return res;
 	}
 	
+	public InsumoVO toVO(){
+		InsumoVO ivo = new InsumoVO();
+		ivo.setCantAComprar(this.cantAComprar);
+		ivo.setCodigo(this.codigo);
+		ivo.setNombre(this.nombre);
+		ivo.setPrecioComprado(this.precioComprado);
+		ivo.setPtoPedido(this.ptoPedido);
+		return ivo;
+		
+	}
 	
 
 }

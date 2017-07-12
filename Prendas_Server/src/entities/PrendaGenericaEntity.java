@@ -15,6 +15,7 @@ public class PrendaGenericaEntity implements Serializable {
 	private String descripcion;
 	private int cantTalle;
 	private int cantColor;
+	private float ganancia;
 	
 	@OneToMany(cascade=CascadeType.ALL)
 	private List<ColorEntity> colores;
@@ -60,6 +61,12 @@ public class PrendaGenericaEntity implements Serializable {
 	}
 	public void setTalles(List<TalleEntity> talles) {
 		this.talles = talles;
+	}
+	public float getGanancia() {
+		return ganancia;
+	}
+	public void setGanancia(float ganancia) {
+		this.ganancia = ganancia;
 	}
 	
 	

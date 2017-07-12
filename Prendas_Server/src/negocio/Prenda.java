@@ -123,27 +123,45 @@ public class Prenda {
 		List<DetalleAreaEntity> detsE= new ArrayList<DetalleAreaEntity>();
 		List<ItemRecetaEntity> itemsE= new ArrayList<ItemRecetaEntity>();
 		
-		for (MovStock m: this.getMovStocks())
+		for (MovStock m: this.movStocks)
 		{
 			movsE.add(m.toEntity());
 		}
 		
-		for (DetalleArea d: this.getDetAreas())
+		for (DetalleArea d: this.detAreas)
 		{
 			detsE.add(d.toEntity());
 		}
 		
-		for (ItemReceta i: this.getItemsReceta())
+		for (ItemReceta i: this.itemsReceta)
 		{
 			itemsE.add(i.toEntity());
 		}
-		
+		p.setDetAreas(detsE);
+		p.setMovStocks(movsE);
+		p.setItemsReceta(itemsE);
 		return p;
 		
 	}
 	
+	public float obtenerCosto(){
+		float costo = 0;
+		for(ItemReceta ir : this.getItemsReceta())
+			costo = costo + (ir.getInsumo().getPrecioComprado()*ir.getCantidad());
+		return costo;
+	}
 	
-	
+	public void calcularCosto(){
+		float costo = 0;
+		for(ItemReceta ir : this.getItemsReceta())
+			costo = costo + (ir.getInsumo().getPrecioComprado()*ir.getCantidad());
+		this.costo = costo;
+	}
+
+	public void calcularPrecio() {
+		this.precio = this.costo * this.getPrenda().getGanancia();
+		
+	}
 	
 	
 	
