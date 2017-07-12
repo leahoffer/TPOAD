@@ -15,7 +15,7 @@ public class ItemRecetaEntity implements Serializable{
 	private int id;
 	private float cantidad;
 	private float desperdicio;
-	@OneToOne(cascade=CascadeType.ALL)
+	@OneToOne
 	private InsumoEntity insumo;
 	public ItemRecetaEntity() {
 		// TODO Auto-generated constructor stub

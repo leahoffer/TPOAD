@@ -225,6 +225,43 @@ public class CrearPrenda {
 							pvo.setTalle(talle);
 							pvo.setAreas(detalles);
 							pvo.setReceta(receta);
+							for (DetalleAreaVO d: detalles)
+							{
+							
+								if (pvo.getTalle().equals("S"))
+									d.setDuracion((float) (d.getDuracion()*1.1));
+								if (pvo.getTalle().equals("M"))
+									d.setDuracion((float) (d.getDuracion()*1.15));
+								if (pvo.getTalle().equals("L"))
+									d.setDuracion((float) (d.getDuracion()*1.2));
+								if (pvo.getTalle().equals("XL"))
+									d.setDuracion((float) (d.getDuracion()*1.25));
+								if (pvo.getTalle().equals("XXL"))
+									d.setDuracion((float) (d.getDuracion()*1.3));
+							}
+							
+							for (ItemRecetaVO i: receta)
+							{
+								if (i.getInsumo().getNombre().equals("Tela"))
+								{
+									if (pvo.getTalle().equals("S"))
+										i.setCantidad((float) (i.getCantidad()*1.1));
+										i.setDesperdicio((float) (i.getDesperdicio()*1.1));
+									if (pvo.getTalle().equals("M"))
+										i.setCantidad((float) (i.getCantidad()*1.1));
+										i.setDesperdicio((float) (i.getDesperdicio()*1.15));
+									if (pvo.getTalle().equals("L"))
+										i.setCantidad((float) (i.getCantidad()*1.1));
+										i.setDesperdicio((float) (i.getDesperdicio()*1.2));
+									if (pvo.getTalle().equals("XL"))
+										i.setCantidad((float) (i.getCantidad()*1.1));
+										i.setDesperdicio((float) (i.getDesperdicio()*1.25));
+									if (pvo.getTalle().equals("XXL"))
+										i.setCantidad((float) (i.getCantidad()*1.1));
+										i.setDesperdicio((float) (i.getDesperdicio()*1.3));
+								}
+								
+							}
 							try {
 								BusinessDelegate.getInstancia().nuevaPrenda(pvo);
 								System.out.println("Se creó la prenda " + pgvo.getDescripcion() + " " + talle + " " + color);
