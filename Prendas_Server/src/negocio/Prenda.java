@@ -22,6 +22,16 @@ public class Prenda {
 	private List<DetalleArea> detAreas;
 	private List<ItemReceta> itemsReceta;
 	
+	private int idaux;
+	
+	public int getIdaux() {
+		return idaux;
+	}
+
+	public void setIdaux(int idaux) {
+		this.idaux = idaux;
+	}
+
 	public Prenda() {
 		// TODO Auto-generated constructor stub
 		movStocks= new ArrayList<MovStock>();
@@ -140,6 +150,7 @@ public class Prenda {
 		p.setDetAreas(detsE);
 		p.setMovStocks(movsE);
 		p.setItemsReceta(itemsE);
+		p.setId(this.idaux);
 		return p;
 		
 	}

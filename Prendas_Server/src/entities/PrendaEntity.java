@@ -51,6 +51,17 @@ public class PrendaEntity implements Serializable {
 	public PrendaEntity(){
 	}
 	
+	
+	public int getId() {
+		return id;
+	}
+
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+
 	public void AgregarItem (ItemRecetaEntity i)
 	{
 		this.itemsReceta.add(i);
@@ -164,6 +175,7 @@ public class PrendaEntity implements Serializable {
 			i.setInsumo(ie.getInsumo().toNegocio());
 			items.add(i);
 		}
+		p.setIdaux(this.id);
 		return p;
 	}
 	
