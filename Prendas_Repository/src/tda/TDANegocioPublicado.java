@@ -15,4 +15,6 @@ public interface TDANegocioPublicado extends Remote {
 	public void eliminarCliente(ClienteVO cvo) throws RemoteException;
 	
 	public void nuevaPrenda(PrendaVO p) throws RemoteException;
+	
+	
 }

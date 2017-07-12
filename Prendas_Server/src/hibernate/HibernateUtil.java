@@ -8,9 +8,11 @@ import entities.ColorEntity;
 import entities.CuentaCorrienteEntity;
 import entities.DetalleAreaEntity;
 import entities.InsumoEntity;
+import entities.ItemPedidoPEntity;
 import entities.ItemRecetaEntity;
 import entities.MovStockEntity;
 import entities.MovimientoCCEntity;
+import entities.PedidoPrendaEntity;
 import entities.PrendaEntity;
 import entities.PrendaGenericaEntity;
 import entities.TalleEntity;
@@ -37,6 +39,9 @@ public class HibernateUtil
         	 config.addAnnotatedClass(DetalleAreaEntity.class);
         	 config.addAnnotatedClass(ItemRecetaEntity.class);
         	 config.addAnnotatedClass(InsumoEntity.class);
+        	 
+        	 config.addAnnotatedClass(PedidoPrendaEntity.class);
+        	 config.addAnnotatedClass(ItemPedidoPEntity.class);
              sessionFactory = config.buildSessionFactory();
              
         }

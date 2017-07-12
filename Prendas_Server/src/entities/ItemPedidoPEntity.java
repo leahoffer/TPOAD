@@ -2,20 +2,21 @@ package entities;
 
 import java.io.Serializable;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Entity;
-import javax.persistence.ManyToOne;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
 @Table(name="Items_Pedido_Prenda")
 public class ItemPedidoPEntity implements Serializable {
 	private static final long serialVersionUID = 1L;
 
+	@Id
+	@GeneratedValue
+	private int id;
+	
 	private int cantidad;
 	private float subtotal;
 	
-	@ManyToOne(cascade=CascadeType.ALL)
+	@ManyToOne
 	private PrendaEntity prenda;
 	
 	public ItemPedidoPEntity(){

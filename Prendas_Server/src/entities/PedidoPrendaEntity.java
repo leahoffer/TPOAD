@@ -1,7 +1,7 @@
 package entities;
 
 import java.io.Serializable;
-import java.util.Date;
+import java.sql.Date;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -19,7 +19,7 @@ public class PedidoPrendaEntity implements Serializable {
 	@Id
 	private int numero;
 	
-	@ManyToOne(cascade=CascadeType.ALL)
+	@ManyToOne
 	private ClienteEntity cliente;
 	
 	private Date fechaGen;
