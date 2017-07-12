@@ -1,5 +1,7 @@
 package negocio;
 
+import entities.ItemPedidoPEntity;
+
 public class ItemPedidoP {
 
 	private int cantidad;
@@ -11,6 +13,7 @@ public class ItemPedidoP {
 		this.prenda = new Prenda();
 	}
 
+	
 	public int getCantidad() {
 		return cantidad;
 	}
@@ -33,6 +36,22 @@ public class ItemPedidoP {
 
 	public void setPrenda(Prenda prenda) {
 		this.prenda = prenda;
+	}
+
+
+	public void calcularSubtotal() {
+		// TODO Auto-generated method stub
+		subtotal=this.prenda.getPrecio();
+	}
+
+
+	public ItemPedidoPEntity toEntity() {
+		// TODO Auto-generated method stub
+		ItemPedidoPEntity ie= new ItemPedidoPEntity();
+		ie.setCantidad(this.getCantidad());
+		ie.setSubtotal(this.getSubtotal());
+		ie.setPrenda(this.getPrenda().toEntity());
+		return ie;
 	}
 	
 	

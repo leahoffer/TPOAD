@@ -1,8 +1,16 @@
 package entities;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.*;
+
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
+
+import negocio.Color;
+import negocio.PrendaGenerica;
+import negocio.Talle;
 
 @Entity
 @Table(name="Prendas_Genericas")
@@ -67,6 +75,26 @@ public class PrendaGenericaEntity implements Serializable {
 	}
 	public void setGanancia(float ganancia) {
 		this.ganancia = ganancia;
+	}
+	public PrendaGenerica toNegocio() {
+		// TODO Auto-generated method stub
+		PrendaGenerica pg= new PrendaGenerica();
+		pg.setCantColor(this.getCantColor());
+		pg.setCantTalle(this.getCantTalle());
+		pg.setCodigo(this.getCodigo());
+		pg.setDescripcion(this.getDescripcion());
+		pg.setGanancia(this.getGanancia());
+		List<Color> colores= new ArrayList<Color>();
+		List<Talle> talles= new ArrayList<Talle>();
+		for (ColorEntity c: this.getColores())
+		{
+			colores.add(new Color(c.getColor()));
+		}
+		for (TalleEntity t: this.getTalles())
+		{
+			talles.add(new Talle(t.getTalle()));
+		}
+		return pg;
 	}
 	
 	

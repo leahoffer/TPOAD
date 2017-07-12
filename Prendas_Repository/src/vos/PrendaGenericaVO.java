@@ -13,8 +13,14 @@ public class PrendaGenericaVO implements Serializable{
 	private float ganancia;
 	private List<String> colores;
 	private List<String> talles;
+	
+	
 	public PrendaGenericaVO() {
 		// TODO Auto-generated constructor stub
+	}
+	public PrendaGenericaVO(String codigo) {
+		// TODO Auto-generated constructor stub
+		this.codigo=codigo;
 	}
 	public String getCodigo() {
 		return codigo;

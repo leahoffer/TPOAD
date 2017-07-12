@@ -109,7 +109,7 @@ public class Prenda {
 		PrendaDAO.getInstancia().guardarPrenda(this.toEntity());
 	}
 
-	private PrendaEntity toEntity() {
+	public PrendaEntity toEntity() {
 		// TODO Auto-generated method stub
 		PrendaEntity p= new PrendaEntity();
 		p.setCosto(this.getCosto());

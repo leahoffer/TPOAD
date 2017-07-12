@@ -11,11 +11,14 @@ import entities.InsumoEntity;
 import entities.PrendaEntity;
 import entities.PrendaGenericaEntity;
 import enumerations.Area;
+import enumerations.EstadoPedido;
 import negocio.*;
 import vos.ClienteVO;
 import vos.DetalleAreaVO;
 import vos.InsumoVO;
+import vos.ItemPedidoPVO;
 import vos.ItemRecetaVO;
+import vos.PedidoPrendaVO;
 import vos.PrendaGenericaVO;
 import vos.PrendaVO;
 
@@ -136,6 +139,8 @@ public class Controlador {
 		}
 		p.setDetAreas(das);
 		p.setItemsReceta(irs);
+		p.calcularCosto();
+		p.calcularPrecio();
 		p.saveMe();
 	}
 	
@@ -179,13 +184,41 @@ public class Controlador {
 		List<PrendaEntity> prendas= PrendaDAO.getInstancia().traerEspecificas(prenda);
 		for (PrendaEntity p: prendas)
 		{
-			/*Aca es donde tenes que fijarte que segun que PrendaEntity trajiste, cambiar 
-			el item para asignarle otra cantidad (mas o menos) 
-			segun el talle o (que color es) segun el color. WESA.
-			Por ahora no importa que prendaEntity p sea, le agrega el mismo a todas.*/
+			
 			PrendaDAO.getInstancia().agregarItemPrendas(i.toEntity(), p);
 		}
 		
+	}
+	public void nuevoPedido(PedidoPrendaVO pvo) {
+		// TODO Auto-generated method stub
+		Cliente c= this.traerClientePorPK(pvo.getCliente().getLegajo());
+		PedidoPrenda p= new PedidoPrenda();
+		p.setCliente(c);
+		p.setEstado(EstadoPedido.Invalido);
+		p.setFechaGen(pvo.getFechaGen());
+		List <ItemPedidoP> items= new ArrayList<ItemPedidoP>();
+		for (ItemPedidoPVO ivo: pvo.getPrendas())
+		{
+			ItemPedidoP i= new ItemPedidoP();
+			i.setCantidad(ivo.getCantidad());
+			i.setPrenda(this.traerPrendaEspecificaPorPK(ivo.getPrenda()));
+			i.calcularSubtotal();
+			items.add(i);
+		}
+		p.setPrendas(items);
+		p.calcularTotal();
+		p.saveMe();
+	}
+	
+	private Prenda traerPrendaEspecificaPorPK(PrendaVO prenda) {
+		// TODO Auto-generated method stub
+		PrendaEntity p= PrendaDAO.getInstancia().traerEspecifica(prenda);
+		return p.toNegocio();
+	}
+	private Cliente traerClientePorPK(int legajo) {
+		// TODO Auto-generated method stub
+		ClienteEntity c=ClienteDAO.getInstancia().buscarCliente(legajo);
+		return c.toNegocio();
 	}
 	
 }

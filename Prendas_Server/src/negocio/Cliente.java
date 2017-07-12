@@ -74,7 +74,7 @@ public class Cliente {
 		ClienteDAO.getInstancia().guardarCliente(this.toEntity());
 	}
 
-	private ClienteEntity toEntity() {
+	public ClienteEntity toEntity() {
 		// TODO Auto-generated method stub
 		ClienteEntity clienteEntity= new ClienteEntity();
 		clienteEntity.setLegajo(this.getLegajo());

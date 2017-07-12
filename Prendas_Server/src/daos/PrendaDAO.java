@@ -11,7 +11,9 @@ import entities.ItemRecetaEntity;
 import entities.PrendaEntity;
 import entities.PrendaGenericaEntity;
 import hibernate.HibernateUtil;
+import negocio.Prenda;
 import vos.PrendaGenericaVO;
+import vos.PrendaVO;
 
 public class PrendaDAO {
 	
@@ -70,6 +72,18 @@ public class PrendaDAO {
 		List<PrendaEntity> lista= s.createQuery("from PrendaEntity p where p.prenda.codigo ='"+prenda.getCodigo()+"'").list();
 		s.getTransaction().commit();
 		return lista;
+	}
+
+	public PrendaEntity traerEspecifica(PrendaVO prenda) {
+		// TODO Auto-generated method stub
+		SessionFactory sf= HibernateUtil.getSessionFactory();
+		Session s=sf.getCurrentSession();
+		s.beginTransaction();
+		String hql="from PrendaEntity p where p.prenda.codigo='"+prenda.getPrenda().getCodigo()+"' and p.color.color='"+prenda.getColor()+"' and p.talle.talle='"+prenda.getTalle()+"'";
+		System.out.println(hql);
+		List<PrendaEntity> lista= s.createQuery(hql).list();
+		PrendaEntity res= lista.get(0);
+		return res;
 	}
 
 }

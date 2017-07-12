@@ -1,9 +1,10 @@
 package vos;
 
+import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 
-public class PedidoPrendaVO {
+public class PedidoPrendaVO implements Serializable {
 	
 	private ClienteVO cliente;
 	private Date fechaGen;

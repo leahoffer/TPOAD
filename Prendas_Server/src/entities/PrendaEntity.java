@@ -1,9 +1,22 @@
 package entities;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.*;
+
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
+
+import enumerations.Area;
+import negocio.Color;
+import negocio.DetalleArea;
+import negocio.ItemReceta;
+import negocio.MovStock;
+import negocio.Prenda;
+import negocio.PrendaGenerica;
+import negocio.Talle;
 
 @Entity
 @Table(name="Prendas")
@@ -112,6 +125,46 @@ public class PrendaEntity implements Serializable {
 
 	public void setItemsReceta(List<ItemRecetaEntity> itemsReceta) {
 		this.itemsReceta = itemsReceta;
+	}
+
+	public Prenda toNegocio() {
+		// TODO Auto-generated method stub
+		
+		Prenda p= new Prenda();
+		p.setPrenda(this.getPrenda().toNegocio());
+		p.setColor(new Color(this.getColor().getColor()));
+		p.setTalle(new Talle(this.getTalle().getTalle()));
+		p.setEnProduccion(this.isEnProduccion());
+		p.setPrecio(this.getPrecio());
+		p.setCosto(this.getCosto());
+		List<DetalleArea> dets= new ArrayList<DetalleArea>();
+		List<ItemReceta> items= new ArrayList<ItemReceta>();
+		List<MovStock> movs= new ArrayList<MovStock>();
+		for (DetalleAreaEntity de: this.getDetAreas())
+		{
+			DetalleArea d= new DetalleArea();
+			d.setArea(Area.valueOf(de.getArea()));
+			d.setDuracion(de.getDuracion());
+			dets.add(d);
+		}
+		for (MovStockEntity me:this.getMovStocks())
+		{
+			MovStock m= new MovStock();
+			m.setFecha(me.getFecha());
+			m.setMonto(me.getMonto());
+			m.setPositivo(me.isPositivo());
+			movs.add(m);
+			
+		}
+		for (ItemRecetaEntity ie: this.getItemsReceta())
+		{
+			ItemReceta i= new ItemReceta();
+			i.setCantidad(ie.getCantidad());
+			i.setDesperdicio(ie.getDesperdicio());
+			i.setInsumo(ie.getInsumo().toNegocio());
+			items.add(i);
+		}
+		return p;
 	}
 	
 	

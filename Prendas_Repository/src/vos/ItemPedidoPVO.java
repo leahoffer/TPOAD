@@ -1,7 +1,8 @@
 package vos;
 
+import java.io.Serializable;
 
-public class ItemPedidoPVO {
+public class ItemPedidoPVO implements Serializable{
 	
 	private int cantidad;
 	private float subtotal;
