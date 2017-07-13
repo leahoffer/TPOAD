@@ -23,7 +23,7 @@ public class PedidoPrendaEntity implements Serializable {
 	private ClienteEntity cliente;
 	
 	private Date fechaGen;
-	private float total;
+	private double total;
 	private String estado;
 	
 	@OneToMany(cascade=CascadeType.ALL)
@@ -56,11 +56,11 @@ public class PedidoPrendaEntity implements Serializable {
 		this.fechaGen = fechaGen;
 	}
 
-	public float getTotal() {
+	public double getTotal() {
 		return total;
 	}
 
-	public void setTotal(float total) {
+	public void setTotal(double total) {
 		this.total = total;
 	}
 

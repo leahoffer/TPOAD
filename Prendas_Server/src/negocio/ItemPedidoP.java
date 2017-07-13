@@ -5,7 +5,7 @@ import entities.ItemPedidoPEntity;
 public class ItemPedidoP {
 
 	private int cantidad;
-	private float subtotal;
+	private double subtotal;
 	private Prenda prenda;
 	
 	public ItemPedidoP() {
@@ -22,11 +22,11 @@ public class ItemPedidoP {
 		this.cantidad = cantidad;
 	}
 
-	public float getSubtotal() {
+	public double getSubtotal() {
 		return subtotal;
 	}
 
-	public void setSubtotal(float subtotal) {
+	public void setSubtotal(double subtotal) {
 		this.subtotal = subtotal;
 	}
 

@@ -14,7 +14,7 @@ public class ItemPedidoPEntity implements Serializable {
 	private int id;
 	
 	private int cantidad;
-	private float subtotal;
+	private double subtotal;
 	
 	@ManyToOne
 	private PrendaEntity prenda;
@@ -30,11 +30,11 @@ public class ItemPedidoPEntity implements Serializable {
 		this.cantidad = cantidad;
 	}
 
-	public float getSubtotal() {
+	public double getSubtotal() {
 		return subtotal;
 	}
 
-	public void setSubtotal(float subtotal) {
+	public void setSubtotal(double subtotal) {
 		this.subtotal = subtotal;
 	}
 

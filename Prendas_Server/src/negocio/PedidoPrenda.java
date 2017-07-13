@@ -13,7 +13,7 @@ public class PedidoPrenda {
 
 	private Cliente cliente;
 	private Date fechaGen;
-	private float total;
+	private double total;
 	private List<ItemPedidoP> prendas;
 	private EstadoPedido estado;
 	private int nro;
@@ -47,11 +47,11 @@ public class PedidoPrenda {
 		this.fechaGen = fechaGen;
 	}
 
-	public float getTotal() {
+	public double getTotal() {
 		return total;
 	}
 
-	public void setTotal(float total) {
+	public void setTotal(double total) {
 		this.total = total;
 	}
 
@@ -73,7 +73,7 @@ public class PedidoPrenda {
 
 	public void calcularTotal() {
 		// TODO Auto-generated method stub
-		float totalaux=0;
+		double totalaux=0;
 		for (ItemPedidoP i: prendas)
 		{
 			totalaux=totalaux+i.getSubtotal();
