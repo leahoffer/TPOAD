@@ -101,8 +101,8 @@ public class AgregarInsumos {
 					if(ivo.getNombre().equals(cbInsumos.getSelectedItem()))
 					{
 						ItemRecetaVO irvo = new ItemRecetaVO();
-						irvo.setCantidad(Float.parseFloat(textField_cant.getText()));
-						irvo.setDesperdicio(Float.parseFloat(textField_desperdicio.getText()));
+						irvo.setCantidad(Double.parseDouble(textField_cant.getText()));
+						irvo.setDesperdicio(Double.parseDouble(textField_desperdicio.getText()));
 						irvo.setInsumo(ivo);
 						receta.add(irvo);
 					}
