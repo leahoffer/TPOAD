@@ -22,8 +22,8 @@ public class TestPrenda {
 			List<String> colores= new ArrayList<String>();
 			List<String> talles= new ArrayList<String>();
 			
-			colores.add("Rojo");
-			colores.add("Azul");
+			colores.add("Negro");
+			colores.add("Blanco");
 			talles.add("XL");
 			talles.add("L");
 			

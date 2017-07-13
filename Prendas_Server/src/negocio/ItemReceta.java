@@ -5,7 +5,7 @@ import entities.ItemRecetaEntity;
 public class ItemReceta {
 	
 	private float cantidad;
-	private float desperdicio;
+	private double desperdicio;
 	private Insumo insumo;
 	
 	public ItemReceta() {
@@ -18,10 +18,10 @@ public class ItemReceta {
 	public void setCantidad(float cantidad) {
 		this.cantidad = cantidad;
 	}
-	public float getDesperdicio() {
+	public double getDesperdicio() {
 		return desperdicio;
 	}
-	public void setDesperdicio(float desperdicio) {
+	public void setDesperdicio(double desperdicio) {
 		this.desperdicio = desperdicio;
 	}
 	public Insumo getInsumo() {

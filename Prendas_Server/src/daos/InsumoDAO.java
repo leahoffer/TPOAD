@@ -22,9 +22,10 @@ public class InsumoDAO {
 	{
 		try{
 			SessionFactory sf = HibernateUtil.getSessionFactory();
-			Session s = sf.getCurrentSession();
+			Session s = sf.openSession();
 			s.beginTransaction();
 			List<InsumoEntity> lista = (List<InsumoEntity>)s.createQuery("from InsumoEntity").list();
+			s.close();
 			return lista;
 		}
 		catch (Exception e){

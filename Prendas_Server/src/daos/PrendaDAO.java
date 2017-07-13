@@ -28,10 +28,11 @@ public class PrendaDAO {
 		try
 		{
 			SessionFactory sf= HibernateUtil.getSessionFactory();
-			Session s= sf.getCurrentSession();
+			Session s= sf.openSession();
 			s.beginTransaction();
-			s.save(prenda);
+			s.saveOrUpdate(prenda);
 			s.getTransaction().commit();
+			s.close();
 		}
 		catch(Exception e)
 		{
@@ -42,33 +43,34 @@ public class PrendaDAO {
 	public List<PrendaGenericaEntity> traerTodasLasGenericas() {
 		// TODO Auto-generated method stub
 		SessionFactory sf= HibernateUtil.getSessionFactory();
-		Session s= sf.getCurrentSession();
+		Session s= sf.openSession();
 		s.beginTransaction();
 		List<PrendaGenericaEntity> lista = (List<PrendaGenericaEntity>)s.createQuery("from PrendaGenericaEntity").list();
 		s.getTransaction().commit();
+		s.close();
 		return lista;
 	}
 
 	public void agregarItemPrendas(ItemRecetaEntity i, PrendaEntity p) {
 		// TODO Auto-generated method stub
 		SessionFactory sf= HibernateUtil.getSessionFactory();
-		Session s= sf.getCurrentSession();
+		Session s= sf.openSession();
 		s.beginTransaction();
 		p.AgregarItem(i);
 		s.saveOrUpdate(p);
 		s.getTransaction().commit();
-		
-		
-		
+		s.close();
+				
 	}
 
 	public List<PrendaEntity> traerEspecificas(PrendaGenericaVO prenda) {
 		// TODO Auto-generated method stub
 		SessionFactory sf= HibernateUtil.getSessionFactory();
-		Session s=sf.getCurrentSession();
+		Session s=sf.openSession();
 		s.beginTransaction();
 		List<PrendaEntity> lista= s.createQuery("from PrendaEntity p where p.prenda.codigo ='"+prenda.getCodigo()+"'").list();
 		s.getTransaction().commit();
+		s.close();
 		return lista;
 	}
 

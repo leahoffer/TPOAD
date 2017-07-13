@@ -66,7 +66,7 @@ public class AgregarInsumos {
 		
 		frame = new JFrame();
 		frame.setBounds(100, 100, 264, 245);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		
 		textField_cant = new JTextField();
@@ -82,6 +82,8 @@ public class AgregarInsumos {
 			if(!insumosMostrados.contains(ivo.getNombre()))
 				insumosMostrados.add(ivo.getNombre());
 		}
+		for(String s : insumosMostrados)
+			cbInsumos.addItem(s);
 		
 		
 		JButton btnAgregar = new JButton("Agregar");

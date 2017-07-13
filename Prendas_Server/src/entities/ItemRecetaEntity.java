@@ -14,8 +14,8 @@ public class ItemRecetaEntity implements Serializable{
 	@GeneratedValue
 	private int id;
 	private float cantidad;
-	private float desperdicio;
-	@OneToOne
+	private double desperdicio;
+	@OneToOne(fetch=FetchType.EAGER)
 	private InsumoEntity insumo;
 	public ItemRecetaEntity() {
 		// TODO Auto-generated constructor stub
@@ -32,10 +32,10 @@ public class ItemRecetaEntity implements Serializable{
 	public void setCantidad(float cantidad) {
 		this.cantidad = cantidad;
 	}
-	public float getDesperdicio() {
+	public double getDesperdicio() {
 		return desperdicio;
 	}
-	public void setDesperdicio(float desperdicio) {
+	public void setDesperdicio(double desperdicio) {
 		this.desperdicio = desperdicio;
 	}
 	public InsumoEntity getInsumo() {
