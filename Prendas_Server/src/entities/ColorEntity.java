@@ -4,6 +4,8 @@ import java.io.Serializable;
 
 import javax.persistence.*;
 
+import negocio.Color;
+
 @Entity
 @Table(name="Colores")
 public class ColorEntity implements Serializable{
@@ -23,6 +25,11 @@ public class ColorEntity implements Serializable{
 
 	public void setColor(String color) {
 		this.color = color;
+	}
+
+	public Color toNegocio() {
+		Color c = new Color(this.color);
+		return c;
 	}
 	
 	

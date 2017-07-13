@@ -13,7 +13,7 @@ public class PrendaGenerica {
 	private String descripcion;
 	private int cantTalle;
 	private int cantColor;
-	private float ganancia;
+	private double ganancia;
 	private List<Color> colores;
 	private List<Talle> talles;
 	
@@ -71,11 +71,11 @@ public class PrendaGenerica {
 		this.talles = talles;
 	}
 
-	public float getGanancia() {
+	public double getGanancia() {
 		return ganancia;
 	}
 
-	public void setGanancia(float ganancia) {
+	public void setGanancia(double ganancia) {
 		this.ganancia = ganancia;
 	}
 	
@@ -99,7 +99,8 @@ public class PrendaGenerica {
 		{
 			talles.add(t.toEntity());
 		}
-		
+		/*res.setColores(colores);
+		res.setTalles(talles);*/
 		return res;
 		
 	}

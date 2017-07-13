@@ -17,6 +17,9 @@ public class InsumoEntity implements Serializable{
 	private float cantAComprar;
 	private float precioComprado;
 	
+	@OneToOne(fetch=FetchType.EAGER)
+	private ColorEntity color;
+	
 	public InsumoEntity() {
 		// TODO Auto-generated constructor stub
 	}
@@ -51,6 +54,12 @@ public class InsumoEntity implements Serializable{
 		this.precioComprado = precioComprado;
 	}
 	
+	public ColorEntity getColor() {
+		return color;
+	}
+	public void setColor(ColorEntity color) {
+		this.color = color;
+	}
 	public Insumo toNegocio(){
 		Insumo i = new Insumo();
 		i.setCantAComprar(this.cantAComprar);
@@ -58,6 +67,7 @@ public class InsumoEntity implements Serializable{
 		i.setNombre(this.nombre);
 		i.setPrecioComprado(this.precioComprado);
 		i.setPtoPedido(this.ptoPedido);
+		i.setColor(this.getColor().toNegocio());
 		return i;
 	}
 	

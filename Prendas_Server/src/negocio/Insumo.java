@@ -10,6 +10,8 @@ public class Insumo {
 	private float ptoPedido;
 	private float cantAComprar;
 	private float precioComprado;
+	private Color color;
+	
 	public Insumo() {
 		// TODO Auto-generated constructor stub
 	}
@@ -43,6 +45,12 @@ public class Insumo {
 	public void setPrecioComprado(float precioComprado) {
 		this.precioComprado = precioComprado;
 	}
+	public Color getColor() {
+		return color;
+	}
+	public void setColor(Color color) {
+		this.color = color;
+	}
 	public InsumoEntity toEntity() {
 		// TODO Auto-generated method stub
 		InsumoEntity res= new InsumoEntity();
@@ -51,6 +59,7 @@ public class Insumo {
 		res.setNombre(this.getNombre());
 		res.setPrecioComprado(this.getPrecioComprado());
 		res.setPtoPedido(this.getPtoPedido());
+		res.setColor(this.getColor().toEntity());
 		return res;
 	}
 	
@@ -61,6 +70,7 @@ public class Insumo {
 		ivo.setNombre(this.nombre);
 		ivo.setPrecioComprado(this.precioComprado);
 		ivo.setPtoPedido(this.ptoPedido);
+		ivo.setColor(this.getColor().getColor());
 		return ivo;
 		
 	}

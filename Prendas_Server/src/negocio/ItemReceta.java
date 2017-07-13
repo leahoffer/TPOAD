@@ -4,24 +4,24 @@ import entities.ItemRecetaEntity;
 
 public class ItemReceta {
 	
-	private float cantidad;
-	private float desperdicio;
+	private double cantidad;
+	private double desperdicio;
 	private Insumo insumo;
 	
 	public ItemReceta() {
 		// TODO Auto-generated constructor stub
 		insumo= new Insumo();
 	}
-	public float getCantidad() {
+	public double getCantidad() {
 		return cantidad;
 	}
-	public void setCantidad(float cantidad) {
+	public void setCantidad(double cantidad) {
 		this.cantidad = cantidad;
 	}
-	public float getDesperdicio() {
+	public double getDesperdicio() {
 		return desperdicio;
 	}
-	public void setDesperdicio(float desperdicio) {
+	public void setDesperdicio(double desperdicio) {
 		this.desperdicio = desperdicio;
 	}
 	public Insumo getInsumo() {

@@ -6,20 +6,20 @@ public class ItemRecetaVO implements Serializable {
 
 	private static final long serialVersionUID = 8853205049195501717L;
 
-	private float cantidad;
-	private float desperdicio;
+	private double cantidad;
+	private double desperdicio;
 	private InsumoVO insumo;
 	
-	public float getCantidad() {
+	public double getCantidad() {
 		return cantidad;
 	}
-	public void setCantidad(float cantidad) {
+	public void setCantidad(double cantidad) {
 		this.cantidad = cantidad;
 	}
-	public float getDesperdicio() {
+	public double getDesperdicio() {
 		return desperdicio;
 	}
-	public void setDesperdicio(float desperdicio) {
+	public void setDesperdicio(double desperdicio) {
 		this.desperdicio = desperdicio;
 	}
 	public InsumoVO getInsumo() {

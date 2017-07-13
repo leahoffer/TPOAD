@@ -15,8 +15,8 @@ public class Prenda {
 	private Color color;
 	private Talle talle;
 	private boolean enProduccion;
-	private float precio;
-	private float costo;
+	private double precio;
+	private double costo;
 	
 	private List<MovStock> movStocks;
 	private List<DetalleArea> detAreas;
@@ -74,19 +74,19 @@ public class Prenda {
 		this.enProduccion = enProduccion;
 	}
 
-	public float getPrecio() {
+	public double getPrecio() {
 		return precio;
 	}
 
-	public void setPrecio(float precio) {
+	public void setPrecio(double precio) {
 		this.precio = precio;
 	}
 
-	public float getCosto() {
+	public double getCosto() {
 		return costo;
 	}
 
-	public void setCosto(float costo) {
+	public void setCosto(double costo) {
 		this.costo = costo;
 	}
 
@@ -155,15 +155,15 @@ public class Prenda {
 		
 	}
 	
-	public float obtenerCosto(){
-		float costo = 0;
+	public double obtenerCosto(){
+		double costo = 0;
 		for(ItemReceta ir : this.getItemsReceta())
 			costo = costo + (ir.getInsumo().getPrecioComprado()*ir.getCantidad());
 		return costo;
 	}
 	
 	public void calcularCosto(){
-		float costo = 0;
+		double costo = 0;
 		for(ItemReceta ir : this.getItemsReceta())
 			costo = costo + (ir.getInsumo().getPrecioComprado()*ir.getCantidad());
 		this.costo = costo;
