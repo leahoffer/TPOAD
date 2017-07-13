@@ -36,8 +36,8 @@ public class PrendaEntity implements Serializable {
 	private TalleEntity talle;
 	
 	private boolean enProduccion;
-	private double precio;
-	private double costo;
+	private float precio;
+	private float costo;
 	
 	@OneToMany(cascade=CascadeType.ALL)
 	private List<MovStockEntity> movStocks;
@@ -98,19 +98,19 @@ public class PrendaEntity implements Serializable {
 		this.enProduccion = enProduccion;
 	}
 
-	public double getPrecio() {
+	public float getPrecio() {
 		return precio;
 	}
 
-	public void setPrecio(double precio) {
+	public void setPrecio(float precio) {
 		this.precio = precio;
 	}
 
-	public double getCosto() {
+	public float getCosto() {
 		return costo;
 	}
 
-	public void setCosto(double costo) {
+	public void setCosto(float costo) {
 		this.costo = costo;
 	}
 

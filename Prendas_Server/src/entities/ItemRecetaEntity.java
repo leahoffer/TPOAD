@@ -13,8 +13,8 @@ public class ItemRecetaEntity implements Serializable{
 	@Id
 	@GeneratedValue
 	private int id;
-	private double cantidad;
-	private double desperdicio;
+	private float cantidad;
+	private float desperdicio;
 	@OneToOne(fetch=FetchType.EAGER)
 	private InsumoEntity insumo;
 	public ItemRecetaEntity() {
@@ -26,16 +26,16 @@ public class ItemRecetaEntity implements Serializable{
 	public void setId(int id) {
 		this.id = id;
 	}
-	public double getCantidad() {
+	public float getCantidad() {
 		return cantidad;
 	}
-	public void setCantidad(double cantidad) {
+	public void setCantidad(float cantidad) {
 		this.cantidad = cantidad;
 	}
-	public double getDesperdicio() {
+	public float getDesperdicio() {
 		return desperdicio;
 	}
-	public void setDesperdicio(double desperdicio) {
+	public void setDesperdicio(float desperdicio) {
 		this.desperdicio = desperdicio;
 	}
 	public InsumoEntity getInsumo() {

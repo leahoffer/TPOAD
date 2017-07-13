@@ -69,5 +69,10 @@ public class RemoteObject extends UnicastRemoteObject implements TDANegocioPubli
 		// TODO Auto-generated method stub
 		controlador.nuevoPedido(p);
 	}
+
+	@Override
+	public List<PedidoPrendaVO> mostrarPedidosAValidar() throws RemoteException {
+		return controlador.mostrarPedidosAValidar();
+	}
 	
 }

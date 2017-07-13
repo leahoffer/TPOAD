@@ -1,11 +1,12 @@
 package negocio;
 
 import entities.ItemPedidoPEntity;
+import vos.ItemPedidoPVO;
 
 public class ItemPedidoP {
 
 	private int cantidad;
-	private double subtotal;
+	private float subtotal;
 	private Prenda prenda;
 	
 	public ItemPedidoP() {
@@ -22,11 +23,11 @@ public class ItemPedidoP {
 		this.cantidad = cantidad;
 	}
 
-	public double getSubtotal() {
+	public float getSubtotal() {
 		return subtotal;
 	}
 
-	public void setSubtotal(double subtotal) {
+	public void setSubtotal(float subtotal) {
 		this.subtotal = subtotal;
 	}
 
@@ -52,6 +53,15 @@ public class ItemPedidoP {
 		ie.setSubtotal(this.getSubtotal());
 		ie.setPrenda(this.getPrenda().toEntity());
 		return ie;
+	}
+
+
+	public ItemPedidoPVO toVO() {
+		ItemPedidoPVO ippvo = new ItemPedidoPVO();
+		ippvo.setCantidad(this.cantidad);
+		ippvo.setPrenda(this.prenda.toVO());
+		ippvo.setSubtotal(this.subtotal);
+		return ippvo;
 	}
 	
 	

@@ -8,6 +8,7 @@ import entities.DetalleAreaEntity;
 import entities.ItemRecetaEntity;
 import entities.MovStockEntity;
 import entities.PrendaEntity;
+import vos.PrendaVO;
 
 public class Prenda {
 	
@@ -15,8 +16,8 @@ public class Prenda {
 	private Color color;
 	private Talle talle;
 	private boolean enProduccion;
-	private double precio;
-	private double costo;
+	private float precio;
+	private float costo;
 	
 	private List<MovStock> movStocks;
 	private List<DetalleArea> detAreas;
@@ -74,19 +75,19 @@ public class Prenda {
 		this.enProduccion = enProduccion;
 	}
 
-	public double getPrecio() {
+	public float getPrecio() {
 		return precio;
 	}
 
-	public void setPrecio(double precio) {
+	public void setPrecio(float precio) {
 		this.precio = precio;
 	}
 
-	public double getCosto() {
+	public float getCosto() {
 		return costo;
 	}
 
-	public void setCosto(double costo) {
+	public void setCosto(float costo) {
 		this.costo = costo;
 	}
 
@@ -155,15 +156,15 @@ public class Prenda {
 		
 	}
 	
-	public double obtenerCosto(){
-		double costo = 0;
+	public float obtenerCosto(){
+		float costo = 0;
 		for(ItemReceta ir : this.getItemsReceta())
 			costo = costo + (ir.getInsumo().getPrecioComprado()*ir.getCantidad());
 		return costo;
 	}
 	
 	public void calcularCosto(){
-		double costo = 0;
+		float costo = 0;
 		for(ItemReceta ir : this.getItemsReceta())
 			costo = costo + (ir.getInsumo().getPrecioComprado()*ir.getCantidad());
 		this.costo = costo;
@@ -172,6 +173,19 @@ public class Prenda {
 	public void calcularPrecio() {
 		this.precio = this.costo * this.getPrenda().getGanancia();
 		
+	}
+
+	
+
+	public PrendaVO toVO() {
+		PrendaVO pvo = new PrendaVO();
+		pvo.setColor(this.color.getColor());
+		pvo.setCosto(this.costo);
+		pvo.setEnProduccion(this.enProduccion);
+		pvo.setPrecio(this.precio);
+		pvo.setPrenda(this.prenda.toVO());
+		pvo.setTalle(this.talle.getTalle());
+		return pvo;
 	}
 	
 	

@@ -29,6 +29,10 @@ public class Color {
 		res.setColor(this.getColor());
 		return res;
 	}
+
+	public String toVO() {
+		return this.color;
+	}
 	
 	
 

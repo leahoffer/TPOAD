@@ -5,7 +5,8 @@ import java.util.Date;
 import java.util.List;
 
 public class PedidoPrendaVO implements Serializable {
-	
+
+	private static final long serialVersionUID = -3440875924186219766L;
 	private ClienteVO cliente;
 	private Date fechaGen;
 	private float total;
@@ -36,6 +37,9 @@ public class PedidoPrendaVO implements Serializable {
 	}
 	public void setPrendas(List<ItemPedidoPVO> prendas) {
 		this.prendas = prendas;
+	}
+	public String toString(){
+		return this.cliente.getCuit() + " - " + this.cliente.getNombreComercio() + " - " + this.fechaGen.toString();
 	}
 	
 	

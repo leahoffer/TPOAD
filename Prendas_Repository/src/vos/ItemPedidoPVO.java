@@ -5,7 +5,7 @@ import java.io.Serializable;
 public class ItemPedidoPVO implements Serializable{
 	
 	private int cantidad;
-	private float subtotal;
+	private double subtotal;
 	private PrendaVO prenda;
 	public ItemPedidoPVO() {
 		// TODO Auto-generated constructor stub
@@ -16,10 +16,10 @@ public class ItemPedidoPVO implements Serializable{
 	public void setCantidad(int cantidad) {
 		this.cantidad = cantidad;
 	}
-	public float getSubtotal() {
+	public double getSubtotal() {
 		return subtotal;
 	}
-	public void setSubtotal(float subtotal) {
+	public void setSubtotal(double subtotal) {
 		this.subtotal = subtotal;
 	}
 	public PrendaVO getPrenda() {

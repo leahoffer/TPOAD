@@ -92,6 +92,12 @@ public class BusinessDelegate implements TDANegocioPublicado {
 		// TODO Auto-generated method stub
 		remoteObject.nuevoPedido(p);
 	}
+
+
+	public List<PedidoPrendaVO> mostrarPedidosAValidar() throws RemoteException{
+		// TODO Auto-generated method stub
+		return remoteObject.mostrarPedidosAValidar();
+	}
 	
 	
 	

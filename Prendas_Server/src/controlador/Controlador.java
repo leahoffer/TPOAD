@@ -5,9 +5,11 @@ import java.util.List;
 
 import daos.ClienteDAO;
 import daos.InsumoDAO;
+import daos.PedidoDAO;
 import daos.PrendaDAO;
 import entities.ClienteEntity;
 import entities.InsumoEntity;
+import entities.PedidoPrendaEntity;
 import entities.PrendaEntity;
 import entities.PrendaGenericaEntity;
 import enumerations.Area;
@@ -190,6 +192,13 @@ public class Controlador {
 		}
 		
 	}
+	
+	
+	
+	
+	/*
+	 *ABM PEDIDOS 
+	 */
 	public void nuevoPedido(PedidoPrendaVO pvo) {
 		// TODO Auto-generated method stub
 		Cliente c= this.traerClientePorPK(pvo.getCliente().getLegajo());
@@ -221,5 +230,16 @@ public class Controlador {
 		ClienteEntity c=ClienteDAO.getInstancia().buscarCliente(legajo);
 		return c.toNegocio();
 	}
+	
+	public List<PedidoPrendaVO> mostrarPedidosAValidar()
+	{
+		List<PedidoPrendaVO> res = new ArrayList<PedidoPrendaVO>();
+		List<PedidoPrendaEntity> pedidos = PedidoDAO.getInstancia().mostrarPedidosSinValidar();
+		for(PedidoPrendaEntity ppe : pedidos)
+			res.add(ppe.toNegocio().toVO());
+		return res;
+	}
+	
+	
 	
 }

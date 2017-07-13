@@ -1,5 +1,7 @@
 package daos;
 
+import java.util.List;
+
 import org.hibernate.SessionFactory;
 import org.hibernate.classic.Session;
 
@@ -31,6 +33,23 @@ public class PedidoDAO {
 		}
 		s.save(p);
 		s.getTransaction().commit();
+	}
+	
+	public List<PedidoPrendaEntity> mostrarPedidosSinValidar()
+	{
+		try{
+			SessionFactory sf = HibernateUtil.getSessionFactory();
+			Session s = sf.openSession();
+			s.beginTransaction();
+			List<PedidoPrendaEntity> res = (List<PedidoPrendaEntity>) s.createQuery("from PedidoPrendaEntity pp where pp.estado = 'Invalido'").list();
+			s.getTransaction().commit();
+			return res;
+		}
+		catch(Exception e)
+		{
+			e.printStackTrace();
+		}
+		return null;
 	}
 
 }

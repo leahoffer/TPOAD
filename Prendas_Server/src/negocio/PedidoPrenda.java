@@ -8,12 +8,14 @@ import daos.PedidoDAO;
 import entities.ItemPedidoPEntity;
 import entities.PedidoPrendaEntity;
 import enumerations.EstadoPedido;
+import vos.ItemPedidoPVO;
+import vos.PedidoPrendaVO;
 
 public class PedidoPrenda {
 
 	private Cliente cliente;
 	private Date fechaGen;
-	private double total;
+	private float total;
 	private List<ItemPedidoP> prendas;
 	private EstadoPedido estado;
 	private int nro;
@@ -47,11 +49,11 @@ public class PedidoPrenda {
 		this.fechaGen = fechaGen;
 	}
 
-	public double getTotal() {
+	public float getTotal() {
 		return total;
 	}
 
-	public void setTotal(double total) {
+	public void setTotal(float total) {
 		this.total = total;
 	}
 
@@ -73,7 +75,7 @@ public class PedidoPrenda {
 
 	public void calcularTotal() {
 		// TODO Auto-generated method stub
-		double totalaux=0;
+		float totalaux=0;
 		for (ItemPedidoP i: prendas)
 		{
 			totalaux=totalaux+i.getSubtotal();
@@ -103,6 +105,18 @@ public class PedidoPrenda {
 		return pe;
 		
 		
+	}
+
+	public PedidoPrendaVO toVO() {
+		PedidoPrendaVO ppvo = new PedidoPrendaVO();
+		ppvo.setCliente(this.cliente.toVO());
+		ppvo.setFechaGen(this.fechaGen);
+		ppvo.setTotal(this.total);
+		List<ItemPedidoPVO> its = new ArrayList<ItemPedidoPVO>();
+		for(ItemPedidoP ipp : this.prendas)
+			its.add(ipp.toVO());
+		ppvo.setPrendas(its);
+		return ppvo;
 	}
 	
 	

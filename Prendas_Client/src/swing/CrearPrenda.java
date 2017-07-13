@@ -249,20 +249,20 @@ public class CrearPrenda {
 								if (i.getInsumo().getNombre().equalsIgnoreCase("Tela"))
 								{
 									if (pvo.getTalle().equals("S"))
-										i.setCantidad(i.getCantidad()*1.1);
-										i.setDesperdicio(i.getDesperdicio()*1.1);
+										i.setCantidad((float) (i.getCantidad()*1.1));
+										i.setDesperdicio((float) (i.getDesperdicio()*1.1));
 									if (pvo.getTalle().equals("M"))
-										i.setCantidad(i.getCantidad()*1.1);
-										i.setDesperdicio(i.getDesperdicio()*1.15);
+										i.setCantidad((float) (i.getCantidad()*1.1));
+										i.setDesperdicio((float) (i.getDesperdicio()*1.15));
 									if (pvo.getTalle().equals("L"))
-										i.setCantidad(i.getCantidad()*1.2);
-										i.setDesperdicio(i.getDesperdicio()*1.2);
+										i.setCantidad((float) (i.getCantidad()*1.2));
+										i.setDesperdicio((float) (i.getDesperdicio()*1.2));
 									if (pvo.getTalle().equals("XL"))
-										i.setCantidad(i.getCantidad()*1.25);
-										i.setDesperdicio(i.getDesperdicio()*1.25);
+										i.setCantidad((float) (i.getCantidad()*1.25));
+										i.setDesperdicio((float) (i.getDesperdicio()*1.25));
 									if (pvo.getTalle().equals("XXL"))
-										i.setCantidad(i.getCantidad()*1.3);
-										i.setDesperdicio(i.getDesperdicio()*1.3);
+										i.setCantidad((float) (i.getCantidad()*1.3));
+										i.setDesperdicio((float) (i.getDesperdicio()*1.3));
 								}
 								
 							}

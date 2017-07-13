@@ -6,6 +6,7 @@ import java.util.List;
 import entities.ColorEntity;
 import entities.PrendaGenericaEntity;
 import entities.TalleEntity;
+import vos.PrendaGenericaVO;
 
 public class PrendaGenerica {
 
@@ -13,7 +14,7 @@ public class PrendaGenerica {
 	private String descripcion;
 	private int cantTalle;
 	private int cantColor;
-	private double ganancia;
+	private float ganancia;
 	private List<Color> colores;
 	private List<Talle> talles;
 	
@@ -71,11 +72,11 @@ public class PrendaGenerica {
 		this.talles = talles;
 	}
 
-	public double getGanancia() {
+	public float getGanancia() {
 		return ganancia;
 	}
 
-	public void setGanancia(double ganancia) {
+	public void setGanancia(float ganancia) {
 		this.ganancia = ganancia;
 	}
 	
@@ -103,6 +104,24 @@ public class PrendaGenerica {
 		res.setTalles(talles);*/
 		return res;
 		
+	}
+
+	public PrendaGenericaVO toVO() {
+		PrendaGenericaVO pgvo = new PrendaGenericaVO();
+		pgvo.setCantColor(this.cantColor);
+		pgvo.setCantTalle(this.cantTalle);
+		pgvo.setCodigo(this.codigo);
+		pgvo.setDescripcion(this.descripcion);
+		pgvo.setGanancia(this.ganancia);
+		List<String> colores = new ArrayList<String>();
+		List<String> talles = new ArrayList<String>();
+		for (Color c : this.colores)
+			colores.add(c.getColor());
+		for (Talle t : this.talles)
+			talles.add(t.toString());
+		pgvo.setColores(colores);
+		pgvo.setTalles(talles);
+		return pgvo;
 	}
 
 	

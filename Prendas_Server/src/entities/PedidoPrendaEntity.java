@@ -2,6 +2,7 @@ package entities;
 
 import java.io.Serializable;
 import java.sql.Date;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -10,6 +11,11 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+
+import enumerations.EstadoPedido;
+import negocio.Cliente;
+import negocio.ItemPedidoP;
+import negocio.PedidoPrenda;
 
 @Entity
 @Table(name="Pedidos_Prenda")
@@ -23,7 +29,7 @@ public class PedidoPrendaEntity implements Serializable {
 	private ClienteEntity cliente;
 	
 	private Date fechaGen;
-	private double total;
+	private float total;
 	private String estado;
 	
 	@OneToMany(cascade=CascadeType.ALL)
@@ -56,11 +62,11 @@ public class PedidoPrendaEntity implements Serializable {
 		this.fechaGen = fechaGen;
 	}
 
-	public double getTotal() {
+	public float getTotal() {
 		return total;
 	}
 
-	public void setTotal(double total) {
+	public void setTotal(float total) {
 		this.total = total;
 	}
 
@@ -78,6 +84,20 @@ public class PedidoPrendaEntity implements Serializable {
 
 	public void setEstado(String estado) {
 		this.estado = estado;
+	}
+
+	public PedidoPrenda toNegocio() {
+		PedidoPrenda pp = new PedidoPrenda();
+		pp.setCliente(this.cliente.toNegocio());
+		pp.setEstado(EstadoPedido.valueOf(this.estado));
+		pp.setFechaGen(this.fechaGen);
+		pp.setNro(this.numero);
+		pp.setTotal(this.total);
+		List<ItemPedidoP> its = new ArrayList<ItemPedidoP>();
+		for(ItemPedidoPEntity ippe : this.getItems())
+			its.add(ippe.toNegocio());
+		pp.setPrendas(its);
+		return pp;
 	}
 	
 	

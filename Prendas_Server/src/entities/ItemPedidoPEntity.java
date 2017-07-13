@@ -4,6 +4,8 @@ import java.io.Serializable;
 
 import javax.persistence.*;
 
+import negocio.ItemPedidoP;
+
 @Entity
 @Table(name="Items_Pedido_Prenda")
 public class ItemPedidoPEntity implements Serializable {
@@ -14,7 +16,7 @@ public class ItemPedidoPEntity implements Serializable {
 	private int id;
 	
 	private int cantidad;
-	private double subtotal;
+	private float subtotal;
 	
 	@ManyToOne
 	private PrendaEntity prenda;
@@ -30,11 +32,11 @@ public class ItemPedidoPEntity implements Serializable {
 		this.cantidad = cantidad;
 	}
 
-	public double getSubtotal() {
+	public float getSubtotal() {
 		return subtotal;
 	}
 
-	public void setSubtotal(double subtotal) {
+	public void setSubtotal(float subtotal) {
 		this.subtotal = subtotal;
 	}
 
@@ -44,6 +46,14 @@ public class ItemPedidoPEntity implements Serializable {
 
 	public void setPrenda(PrendaEntity prenda) {
 		this.prenda = prenda;
+	}
+
+	public ItemPedidoP toNegocio() {
+		ItemPedidoP ipp = new ItemPedidoP();
+		ipp.setCantidad(this.cantidad);
+		ipp.setPrenda(this.prenda.toNegocio());
+		ipp.setSubtotal(this.subtotal);
+		return ipp;
 	}
 	
 	
