@@ -2,6 +2,7 @@ package daos;
 
 import java.util.List;
 
+import org.hibernate.Query;
 import org.hibernate.SessionFactory;
 import org.hibernate.classic.Session;
 
@@ -42,7 +43,7 @@ public class PedidoDAO {
 			SessionFactory sf = HibernateUtil.getSessionFactory();
 			Session s = sf.openSession();
 			s.beginTransaction();
-			List<PedidoPrendaEntity> res = (List<PedidoPrendaEntity>) s.createQuery("from PedidoPrendaEntity pp where pp.estado = 'Invalido'").list();
+			List<PedidoPrendaEntity> res = (List<PedidoPrendaEntity>) s.createQuery("from PedidoPrendaEntity pp where pp.estado = 'Pendiente'").list();
 			s.getTransaction().commit();
 			return res;
 		}
@@ -66,6 +67,18 @@ public class PedidoDAO {
 			e.printStackTrace();
 		}
 		return null;
+	}
+
+	public void updatearEstadoPedido(PedidoPrenda pedidoPrenda) {
+		// TODO Auto-generated method stub
+		SessionFactory sf=HibernateUtil.getSessionFactory();
+		Session s=sf.getCurrentSession();
+		s.beginTransaction();
+		Query q=s.createQuery("update PedidoPrendaEntity set estado = ? where numero = ?");
+		q.setString(0, pedidoPrenda.getEstado().toString());
+		q.setInteger(1, pedidoPrenda.getNro());
+		q.executeUpdate();
+		s.getTransaction().commit();
 	}
 
 }

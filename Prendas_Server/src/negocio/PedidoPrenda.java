@@ -19,7 +19,17 @@ public class PedidoPrenda {
 	private List<ItemPedidoP> prendas;
 	private EstadoPedido estado;
 	private int nro;
+	private List<UbicacionPrenda> ubicaciones;
 	
+	
+	public List<UbicacionPrenda> getUbicaciones() {
+		return ubicaciones;
+	}
+
+	public void setUbicaciones(List<UbicacionPrenda> ubicaciones) {
+		this.ubicaciones = ubicaciones;
+	}
+
 	public int getNro() {
 		return nro;
 	}
@@ -140,6 +150,12 @@ public class PedidoPrenda {
 		Almacen.getInstancia().reservarStock(this);
 		//Seteo el estado como Completo.
 		this.estado = EstadoPedido.Completo;
+		PedidoDAO.getInstancia().guardarPedido(this.toEntity());
+	}
+
+	public void updatearEstadoPedido() {
+		// TODO Auto-generated method stub
+		PedidoDAO.getInstancia().updatearEstadoPedido(this);
 	}
 	
 	

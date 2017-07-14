@@ -3,6 +3,7 @@ package entities;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 import javax.persistence.*;
 
@@ -40,7 +41,8 @@ public class PrendaEntity implements Serializable {
 	private float costo;
 	
 	@OneToMany(cascade=CascadeType.ALL)
-	private List<MovStockEntity> movStocks;
+	@LazyCollection(LazyCollectionOption.FALSE)
+	private Set<MovStockEntity> movStocks;
 	
 	@OneToMany(cascade=CascadeType.ALL)
 	private List<DetalleAreaEntity> detAreas;
@@ -114,11 +116,11 @@ public class PrendaEntity implements Serializable {
 		this.costo = costo;
 	}
 
-	public List<MovStockEntity> getMovStocks() {
+	public Set<MovStockEntity> getMovStocks() {
 		return movStocks;
 	}
 
-	public void setMovStocks(List<MovStockEntity> movStocks) {
+	public void setMovStocks(Set<MovStockEntity> movStocks) {
 		this.movStocks = movStocks;
 	}
 

@@ -3,6 +3,8 @@ package negocio;
 import java.util.ArrayList;
 import java.util.List;
 
+import daos.UbicacionDAO;
+
 public class Almacen {
 
 	private List<UbicacionPrenda> ubicacionesPrendas;
@@ -17,7 +19,8 @@ public class Almacen {
 	
 	private Almacen() {
 		this.ubicacionesInsumos = new ArrayList<UbicacionInsumo>();
-		this.ubicacionesPrendas = new ArrayList<UbicacionPrenda>();
+		this.ubicacionesPrendas = UbicacionDAO.getInstancia().traerUbicaciones();
+		
 	}
 
 	public List<UbicacionPrenda> getUbicacionesPrendas() {
@@ -49,7 +52,34 @@ public class Almacen {
 	
 	public void reservarStock(PedidoPrenda pedidoPrenda) {
 		// TODO Auto-generated method stub
+		List<UbicacionPrenda> ubicaciones= new ArrayList<UbicacionPrenda>();
 		
+		for (ItemPedidoP ipp: pedidoPrenda.getPrendas())
+		{
+			int cantidad= ipp.getCantidad();
+			ipp.getPrenda().AgregarMovimientoStock(cantidad, false);
+			for (UbicacionPrenda up: this.ubicacionesPrendas)
+			{
+				if ((cantidad>0) && (up.getPrenda().esIgualA(ipp.getPrenda())))
+				{
+					if (up.getCantidadNeta()>=cantidad)
+					{
+						up.setReservados(up.getReservados()+cantidad);
+						cantidad= 0;
+						ubicaciones.add(up);
+					}
+					else
+					{
+						up.setReservados(up.getReservados()+up.getCantidadNeta());
+						cantidad= cantidad-up.getCantidadNeta();
+						ubicaciones.add(up);
+					}
+					UbicacionDAO.getInstancia().guardarUbicacion(up.toEntity());
+				}
+				
+			}
+		}
+		pedidoPrenda.setUbicaciones(ubicaciones);
 	}
 
 	

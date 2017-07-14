@@ -16,6 +16,7 @@ import entities.PedidoPrendaEntity;
 import entities.PrendaEntity;
 import entities.PrendaGenericaEntity;
 import entities.TalleEntity;
+import entities.UbicacionPrendaEntity;
 
  
 public class HibernateUtil
@@ -42,6 +43,8 @@ public class HibernateUtil
 
         	 config.addAnnotatedClass(PedidoPrendaEntity.class);
         	 config.addAnnotatedClass(ItemPedidoPEntity.class);
+        	 
+        	 config.addAnnotatedClass(UbicacionPrendaEntity.class);
 
              sessionFactory = config.buildSessionFactory();
              

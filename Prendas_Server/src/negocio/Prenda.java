@@ -1,7 +1,10 @@
 package negocio;
 
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import daos.PrendaDAO;
 import entities.DetalleAreaEntity;
@@ -43,6 +46,14 @@ public class Prenda {
 		talle= new Talle();
 	}
 
+	public void AgregarMovimientoStock(int cantidad, boolean pos)
+	{
+		MovStock ms= new MovStock();
+		ms.setCant(cantidad);
+		if (pos)
+			ms.setPositivo(pos);
+		ms.setFecha(new Date());
+	}
 	public PrendaGenerica getPrenda() {
 		return prenda;
 	}
@@ -130,7 +141,7 @@ public class Prenda {
 		p.setColor(this.getColor().toEntity());
 		p.setTalle(this.getTalle().toEntity());
 		
-		List<MovStockEntity> movsE= new ArrayList<MovStockEntity>();
+		Set<MovStockEntity> movsE= new HashSet<MovStockEntity>();
 		List<DetalleAreaEntity> detsE= new ArrayList<DetalleAreaEntity>();
 		List<ItemRecetaEntity> itemsE= new ArrayList<ItemRecetaEntity>();
 		
@@ -204,6 +215,19 @@ public class Prenda {
 			}
 		}
 		return s;
+	}
+
+	public boolean esIgualA(Prenda prenda2) {
+		// TODO Auto-generated method stub
+		if (this.getColor().getColor().equals(prenda2.getColor().getColor()))
+		{
+			if (this.getTalle().getTalle().equals(prenda2.getTalle().getTalle()))
+			{ 
+				if (this.getPrenda().getCodigo().equals(prenda2.getPrenda().getCodigo()))
+					return true;
+			}
+		}
+		return false;
 	}
 	
 	

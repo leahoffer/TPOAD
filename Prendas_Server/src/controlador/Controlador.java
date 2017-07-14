@@ -274,7 +274,9 @@ public class Controlador {
 			{
 				//Si cliente tiene saldo, sigo adelante validando stock
 				pp.setEstado(EstadoPedido.Validado);
+				pp.updatearEstadoPedido();
 				validarStockPedidoPrenda(pp);
+				
 			}
 			else
 			{
@@ -296,13 +298,13 @@ public class Controlador {
 			 *Tipo depende de si el Cliente es Responsable Inscripto... pero igual si todos nuestros clientes son comercios... le puse a todos tipo "A"
 			 *
 			 */
-			Factura f = new Factura();
+			/*Factura f = new Factura();
 			f.setCliente(pp.getCliente());
 			f.setFecha(new Date());
 			f.setPedido(pp);
 			f.setTipo("A");
 			f.setTotal(pp.getTotal());
-			f.setTotalSinIva((float) (pp.getTotal()/(1.21)));
+			f.setTotalSinIva((float) (pp.getTotal()/(1.21)));*/
 			
 		}
 		else
