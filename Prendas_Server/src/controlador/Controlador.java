@@ -241,6 +241,14 @@ public class Controlador {
 		return res;
 	}
 	
+	
+	
+	
+	
+	
+	/*
+	 * VALIDACIÓN DE PEDIDOS + VERIFICAR STOCK
+	 */
 	public void validarPedido(PedidoPrendaVO selectedValue) {
 		//Traigo la prenda po PK
 		PedidoPrenda pp = PedidoDAO.getInstancia().buscarPedido(selectedValue.getNumero());
@@ -283,14 +291,15 @@ public class Controlador {
 		if(validacion)
 		{
 			pp.completarPedido();
-			//Revisar datos de Factura. Razon Social, Cuit quizás no hace falta porque ya guardo un Cliente
-			//Tipo depende de si el Cliente es Responsable Inscripto... pero igual si todos nuestros clientes son comercios... le puse a todos tipo "A"
+			/*
+			 *Revisar datos de Factura. Razon Social, Cuit quizás no hace falta porque ya guardo un Cliente.
+			 *Tipo depende de si el Cliente es Responsable Inscripto... pero igual si todos nuestros clientes son comercios... le puse a todos tipo "A"
+			 *
+			 */
 			Factura f = new Factura();
 			f.setCliente(pp.getCliente());
-			f.setCuit(pp.getCliente().getCuit());
 			f.setFecha(new Date());
 			f.setPedido(pp);
-			f.setRazonSocial(pp.getCliente().getNombreComercio());
 			f.setTipo("A");
 			f.setTotal(pp.getTotal());
 			f.setTotalSinIva((float) (pp.getTotal()/(1.21)));

@@ -88,7 +88,8 @@ public class PedidoPrenda {
 		PedidoDAO.getInstancia().guardarPedido(this.toEntity());
 	}
 
-	private PedidoPrendaEntity toEntity() {
+	
+	public PedidoPrendaEntity toEntity() {
 		// TODO Auto-generated method stub
 		PedidoPrendaEntity pe= new PedidoPrendaEntity();
 		pe.setCliente(this.getCliente().toEntity());

@@ -2,12 +2,13 @@ package negocio;
 
 import java.util.Date;
 
+import daos.FacturaDAO;
+import entities.FacturaEntity;
+
 public class Factura {
 
 	private int numero;
 	private Date fecha;
-	private String cuit;
-	private String razonSocial;
 	private String tipo;
 	private Cliente cliente;
 	private PedidoPrenda pedido;
@@ -34,22 +35,6 @@ public class Factura {
 
 	public void setFecha(Date fecha) {
 		this.fecha = fecha;
-	}
-
-	public String getCuit() {
-		return cuit;
-	}
-
-	public void setCuit(String cuit) {
-		this.cuit = cuit;
-	}
-
-	public String getRazonSocial() {
-		return razonSocial;
-	}
-
-	public void setRazonSocial(String razonSocial) {
-		this.razonSocial = razonSocial;
 	}
 
 	public String getTipo() {
@@ -93,5 +78,20 @@ public class Factura {
 	}
 	
 	
+	public void saveMe(){
+		FacturaDAO.getInstancia().guardarFactura(this.toEntity());
+	}
+	
+	public FacturaEntity toEntity(){
+		FacturaEntity fe = new FacturaEntity();
+		fe.setCliente(this.cliente.toEntity());
+		fe.setFecha(this.fecha);
+		fe.setNumero(this.numero);
+		fe.setPedidoPrenda(this.pedido.toEntity());
+		fe.setTipo(this.tipo);
+		fe.setTotal(this.total);
+		fe.setTotalSinIva(this.totalSinIva);
+		return fe;
+	}
 	
 }
