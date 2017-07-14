@@ -212,6 +212,10 @@ public class CrearPrenda {
 						for(String color : colores)
 						{
 							List<ItemRecetaVO> recetaEspecifica = new ArrayList<ItemRecetaVO>();
+							List<DetalleAreaVO> detallesEspecificos = new ArrayList<DetalleAreaVO>();
+							for(DetalleAreaVO davo : detalles)
+								detallesEspecificos.add(davo);
+							
 							PrendaVO pvo = new PrendaVO();
 							pvo.setColor(color);
 							pvo.setEnProduccion(true);
@@ -228,7 +232,7 @@ public class CrearPrenda {
 							}
 							
 							//Aumento duración en cada área según el talle
-							for (DetalleAreaVO d: detalles)
+							for (DetalleAreaVO d: detallesEspecificos)
 							{
 							
 								if (pvo.getTalle().equals("S"))
@@ -251,25 +255,45 @@ public class CrearPrenda {
 									if (pvo.getTalle().equals("S"))
 										i.setCantidad((float) (i.getCantidad()*1.1));
 										i.setDesperdicio((float) (i.getDesperdicio()*1.1));
+									{
+										i.setCantidad((float) (i.getCantidad()*1.1));
+										i.setDesperdicio((float) (i.getDesperdicio()*1.1));
+									}
 									if (pvo.getTalle().equals("M"))
 										i.setCantidad((float) (i.getCantidad()*1.1));
 										i.setDesperdicio((float) (i.getDesperdicio()*1.15));
+									{
+										i.setCantidad((float) (i.getCantidad()*1.1));
+										i.setDesperdicio((float) (i.getDesperdicio()*1.15));
+									}
 									if (pvo.getTalle().equals("L"))
 										i.setCantidad((float) (i.getCantidad()*1.2));
 										i.setDesperdicio((float) (i.getDesperdicio()*1.2));
+									{
+										i.setCantidad((float) (i.getCantidad()*1.2));
+										i.setDesperdicio((float) (i.getDesperdicio()*1.2));
+									}
 									if (pvo.getTalle().equals("XL"))
 										i.setCantidad((float) (i.getCantidad()*1.25));
 										i.setDesperdicio((float) (i.getDesperdicio()*1.25));
+									{
+										i.setCantidad((float) (i.getCantidad()*1.25));
+										i.setDesperdicio((float) (i.getDesperdicio()*1.25));
+									}
 									if (pvo.getTalle().equals("XXL"))
 										i.setCantidad((float) (i.getCantidad()*1.3));
 										i.setDesperdicio((float) (i.getDesperdicio()*1.3));
+									{
+										i.setCantidad((float) (i.getCantidad()*1.3));
+										i.setDesperdicio((float) (i.getDesperdicio()*1.3));
+									}
 								}
 								
 							}
 							
 							//Después de corregir color, duración y cantidad, seteo Areas y Receta a la Prenda para X color de Y talle
 							pvo.setReceta(recetaEspecifica);
-							pvo.setAreas(detalles);
+							pvo.setAreas(detallesEspecificos);
 							//Guardo la prenda X color Y talle
 							try {
 								BusinessDelegate.getInstancia().nuevaPrenda(pvo);
