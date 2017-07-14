@@ -7,7 +7,7 @@ import entities.MovStockEntity;
 public class MovStock {
 
 	private Date fecha;
-	private float monto;
+	private int cant;
 	private boolean positivo;
 	public MovStock() {
 		// TODO Auto-generated constructor stub
@@ -18,11 +18,11 @@ public class MovStock {
 	public void setFecha(Date fecha) {
 		this.fecha = fecha;
 	}
-	public float getMonto() {
-		return monto;
+	public int getCant() {
+		return cant;
 	}
-	public void setMonto(float monto) {
-		this.monto = monto;
+	public void setCant(int cant) {
+		this.cant = cant;
 	}
 	public boolean isPositivo() {
 		return positivo;
@@ -34,7 +34,7 @@ public class MovStock {
 		// TODO Auto-generated method stub
 		MovStockEntity res= new MovStockEntity();
 		res.setFecha((java.sql.Date) this.getFecha());
-		res.setMonto(this.getMonto());
+		res.setCant(this.getCant());
 		res.setPositivo(this.isPositivo());
 		return res;
 	}

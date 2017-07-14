@@ -187,6 +187,24 @@ public class Prenda {
 		pvo.setTalle(this.talle.getTalle());
 		return pvo;
 	}
+
+	public int calcularStock() {
+		int s = 0;
+		//Por cada movimiento, calculo el stock que tengo para esta prenda
+		for(MovStock ms : this.movStocks)
+		{
+			//Si es positivo, es un ingreso de stock -> Tengo más. Si es negativo, es un egreso -> tengo menos.
+			if(ms.isPositivo())
+			{
+				s = s + ms.getCant();
+			}
+			else
+			{
+				s = s - ms.getCant();
+			}
+		}
+		return s;
+	}
 	
 	
 	

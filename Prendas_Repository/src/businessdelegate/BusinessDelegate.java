@@ -98,6 +98,12 @@ public class BusinessDelegate implements TDANegocioPublicado {
 		// TODO Auto-generated method stub
 		return remoteObject.mostrarPedidosAValidar();
 	}
+
+
+	public void validarPedido(PedidoPrendaVO selectedValue) throws RemoteException {
+		remoteObject.validarPedido(selectedValue);
+		
+	}
 	
 	
 	

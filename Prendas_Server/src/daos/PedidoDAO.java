@@ -9,6 +9,7 @@ import entities.ItemPedidoPEntity;
 import entities.PedidoPrendaEntity;
 import entities.PrendaEntity;
 import hibernate.HibernateUtil;
+import negocio.PedidoPrenda;
 import vos.PrendaVO;
 
 public class PedidoDAO {
@@ -47,6 +48,21 @@ public class PedidoDAO {
 		}
 		catch(Exception e)
 		{
+			e.printStackTrace();
+		}
+		return null;
+	}
+	
+	public PedidoPrenda buscarPedido(int nro){
+		try{
+			PedidoPrendaEntity ppe;
+			SessionFactory sf = HibernateUtil.getSessionFactory();
+			Session s = sf.openSession();
+			s.beginTransaction();
+			ppe = (PedidoPrendaEntity) s.get(PedidoPrendaEntity.class, nro);
+			return ppe.toNegocio();
+		}
+		catch(Exception e){
 			e.printStackTrace();
 		}
 		return null;

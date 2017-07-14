@@ -63,6 +63,14 @@ public class ItemPedidoP {
 		ippvo.setSubtotal(this.subtotal);
 		return ippvo;
 	}
+
+
+	public boolean validarStock() {
+		//Si la prenda tiene stock mayor o igual a la cantidad que pide el Item, sale por true. Si tiene stock menor a la cantidad pedida, sale por false.
+		if(this.prenda.calcularStock() >= this.cantidad)
+			return true;
+		return false;
+	}
 	
 	
 	

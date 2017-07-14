@@ -11,6 +11,8 @@ public class PedidoPrendaVO implements Serializable {
 	private Date fechaGen;
 	private float total;
 	private List<ItemPedidoPVO> prendas;
+	private int numero;
+	
 	public PedidoPrendaVO() {
 		// TODO Auto-generated constructor stub
 	}
@@ -37,6 +39,12 @@ public class PedidoPrendaVO implements Serializable {
 	}
 	public void setPrendas(List<ItemPedidoPVO> prendas) {
 		this.prendas = prendas;
+	}
+	public int getNumero() {
+		return numero;
+	}
+	public void setNumero(int numero) {
+		this.numero = numero;
 	}
 	public String toString(){
 		return this.cliente.getCuit() + " - " + this.cliente.getNombreComercio() + " - " + this.fechaGen.toString();

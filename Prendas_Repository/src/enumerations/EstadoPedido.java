@@ -6,5 +6,6 @@ public enum EstadoPedido {
 	Validado,
 	Incompleto,
 	Completo,
-	Despachado;
+	Despachado,
+	Pendiente;
 }

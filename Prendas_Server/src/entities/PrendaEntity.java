@@ -162,7 +162,7 @@ public class PrendaEntity implements Serializable {
 		{
 			MovStock m= new MovStock();
 			m.setFecha(me.getFecha());
-			m.setMonto(me.getMonto());
+			m.setCant(me.getCant());
 			m.setPositivo(me.isPositivo());
 			movs.add(m);
 			

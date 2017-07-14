@@ -1,6 +1,7 @@
 package controlador;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import daos.ClienteDAO;
@@ -204,7 +205,7 @@ public class Controlador {
 		Cliente c= this.traerClientePorPK(pvo.getCliente().getLegajo());
 		PedidoPrenda p= new PedidoPrenda();
 		p.setCliente(c);
-		p.setEstado(EstadoPedido.Invalido);
+		p.setEstado(EstadoPedido.Pendiente);
 		p.setFechaGen(pvo.getFechaGen());
 		List <ItemPedidoP> items= new ArrayList<ItemPedidoP>();
 		for (ItemPedidoPVO ivo: pvo.getPrendas())
@@ -238,6 +239,67 @@ public class Controlador {
 		for(PedidoPrendaEntity ppe : pedidos)
 			res.add(ppe.toNegocio().toVO());
 		return res;
+	}
+	
+	public void validarPedido(PedidoPrendaVO selectedValue) {
+		//Traigo la prenda po PK
+		PedidoPrenda pp = PedidoDAO.getInstancia().buscarPedido(selectedValue.getNumero());
+		//Boolean para validar si todo ok
+		boolean pedidosok = true;
+		//Busco todos los ItemPedido. Si al menos uno no está en producción, entonces pedido NO OK
+		for(ItemPedidoP ipp : pp.getPrendas())
+		{
+			if (!ipp.getPrenda().isEnProduccion())
+			{
+				pedidosok = false;
+			}
+		}
+		if(!pedidosok)
+		{
+			//Pedido tiene al menos un item con prenda NO en producción. De última mandar throw diciendo que prenda no está en producción
+			pp.setEstado(EstadoPedido.Invalido);
+		}
+		//Si todas las prendas del Pedido están en producción, valido el saldo del cliente
+		else
+		{
+			if(pp.getCliente().validarSaldo(pp))
+			{
+				//Si cliente tiene saldo, sigo adelante validando stock
+				pp.setEstado(EstadoPedido.Validado);
+				validarStockPedidoPrenda(pp);
+			}
+			else
+			{
+				//Si cliente no tiene saldo, Pedido es invalido y de última mandar mensaje con throw diciendo que el cliente ponga la tarasca
+				pp.setEstado(EstadoPedido.Invalido);
+			}
+		}
+		
+	}
+	
+	private void validarStockPedidoPrenda(PedidoPrenda pp) {
+		boolean validacion = pp.validarStock();
+		//Si validacion=true entonces tengo stock
+		if(validacion)
+		{
+			pp.completarPedido();
+			//Revisar datos de Factura. Razon Social, Cuit quizás no hace falta porque ya guardo un Cliente
+			//Tipo depende de si el Cliente es Responsable Inscripto... pero igual si todos nuestros clientes son comercios... le puse a todos tipo "A"
+			Factura f = new Factura();
+			f.setCliente(pp.getCliente());
+			f.setCuit(pp.getCliente().getCuit());
+			f.setFecha(new Date());
+			f.setPedido(pp);
+			f.setRazonSocial(pp.getCliente().getNombreComercio());
+			f.setTipo("A");
+			f.setTotal(pp.getTotal());
+			f.setTotalSinIva((float) (pp.getTotal()/(1.21)));
+			
+		}
+		else
+		{
+			//Acá hay que ver el caso de si es OPP u OPC.
+		}
 	}
 	
 	

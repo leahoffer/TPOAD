@@ -98,7 +98,20 @@ public class Cliente {
 		cvo.setTelefono(this.telefono);
 		return cvo;
 	}
-		
+	
+	public boolean validarSaldo(PedidoPrenda pp)
+	{
+		boolean clienteok = true;
+		if(pp.getTotal() > this.getSaldoDisponible())
+		{
+			clienteok = false;
+		}
+		return clienteok;
+	}
+
+	private float getSaldoDisponible() {
+		return this.getCuenta().getSaldoDisponible();
+	}
 		
 	
 	

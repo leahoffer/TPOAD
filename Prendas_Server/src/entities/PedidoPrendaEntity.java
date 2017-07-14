@@ -7,6 +7,7 @@ import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
@@ -23,7 +24,8 @@ public class PedidoPrendaEntity implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 	@Id
-	private int numero;
+	@GeneratedValue()
+	private Integer numero;
 	
 	@ManyToOne
 	private ClienteEntity cliente;

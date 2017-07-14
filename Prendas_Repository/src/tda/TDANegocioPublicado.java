@@ -31,4 +31,6 @@ public interface TDANegocioPublicado extends Remote {
 
 	public List<PedidoPrendaVO> mostrarPedidosAValidar() throws RemoteException;
 
+	public void validarPedido(PedidoPrendaVO selectedValue) throws RemoteException;
+
 }

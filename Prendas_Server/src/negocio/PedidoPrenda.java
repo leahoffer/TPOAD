@@ -100,7 +100,7 @@ public class PedidoPrenda {
 		{
 			itemspe.add(i.toEntity());
 		}
-		pe.setNumero(1);
+		pe.setNumero(this.nro);
 		pe.setItems(itemspe);
 		return pe;
 		
@@ -116,7 +116,29 @@ public class PedidoPrenda {
 		for(ItemPedidoP ipp : this.prendas)
 			its.add(ipp.toVO());
 		ppvo.setPrendas(its);
+		ppvo.setNumero(this.nro);
 		return ppvo;
+	}
+
+	public boolean validarStock() {
+		//Por cada item, veo si la prenda para ESE item tiene stock. Si NO tiene, sale por false. Si todas tienen, sale por true.
+		for(ItemPedidoP ipp : this.prendas)
+		{
+			if(!ipp.validarStock())
+				return false;
+		}
+		return true;
+		
+	}
+
+	public void completarPedido() {
+		/* Llego acá solo si todos los items del pedido dieron OK en el stock.
+		 * Le digo al Almacen que reserve el stock para cada prenda de este pedido.
+		 * FALTA COMPLETAR EL METODO RESERVARSTOCK DEL ALMACEN
+		 */
+		Almacen.getInstancia().reservarStock(this);
+		//Seteo el estado como Completo.
+		this.estado = EstadoPedido.Completo;
 	}
 	
 	

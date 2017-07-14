@@ -74,5 +74,11 @@ public class RemoteObject extends UnicastRemoteObject implements TDANegocioPubli
 	public List<PedidoPrendaVO> mostrarPedidosAValidar() throws RemoteException {
 		return controlador.mostrarPedidosAValidar();
 	}
+
+	@Override
+	public void validarPedido(PedidoPrendaVO selectedValue) throws RemoteException {
+		controlador.validarPedido(selectedValue);
+		
+	}
 	
 }

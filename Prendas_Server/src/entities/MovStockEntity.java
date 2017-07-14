@@ -15,7 +15,7 @@ public class MovStockEntity implements Serializable {
 	@GeneratedValue
 	private int id;
 	private Date fecha;
-	private float monto;
+	private int cant;
 	private boolean positivo;
 	public MovStockEntity() {
 		// TODO Auto-generated constructor stub
@@ -27,11 +27,11 @@ public class MovStockEntity implements Serializable {
 	public void setFecha(Date fecha) {
 		this.fecha = fecha;
 	}
-	public float getMonto() {
-		return monto;
+	public int getCant() {
+		return cant;
 	}
-	public void setMonto(float monto) {
-		this.monto = monto;
+	public void setCant(int cant) {
+		this.cant = cant;
 	}
 	public boolean isPositivo() {
 		return positivo;

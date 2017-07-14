@@ -62,6 +62,18 @@ public class CuentaCorriente {
 		cce.setMovimientos(movs);
 		return cce;
 	}
+
+	public float getSaldoDisponible() {
+		float resultado = this.limiteCredito;
+		for(MovimientoCC mcc : this.movimientos)
+		{
+			if(mcc.isPositivo())
+				resultado = resultado+mcc.getMonto();
+			else
+				resultado = resultado-mcc.getMonto();
+		}
+		return resultado;
+	}
 	
 	
 }
