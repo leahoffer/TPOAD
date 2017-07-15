@@ -3,10 +3,11 @@ package entities;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
-import javax.persistence.*;
-
 import org.hibernate.annotations.LazyCollection;
 import org.hibernate.annotations.LazyCollectionOption;
+
+import javax.persistence.*;
+
 
 import negocio.Color;
 import negocio.PrendaGenerica;
@@ -24,6 +25,23 @@ public class PrendaGenericaEntity implements Serializable {
 	private String descripcion;
 	private int cantTalle;
 	private int cantColor;
+	
+	
+	private float ganancia;
+		
+	@OneToMany(cascade=CascadeType.ALL)
+	private List<ColorEntity> colores;
+		
+	@OneToMany(cascade=CascadeType.ALL)
+	private List<TalleEntity> talles;
+	
+	
+	public List<ColorEntity> getColores() {
+		return colores;
+	}
+	public void setColores(List<ColorEntity> colores) {
+		this.colores = colores;
+	}
 	public int getCantTalle() {
 		return cantTalle;
 	}
@@ -36,13 +54,6 @@ public class PrendaGenericaEntity implements Serializable {
 	public void setCantColor(int cantColor) {
 		this.cantColor = cantColor;
 	}
-	private float ganancia;
-	
-	@OneToMany
-	private List<ColorEntity> colores;
-	
-	@OneToMany
-	private List<TalleEntity> talles;
 	
 	public PrendaGenericaEntity() {
 		// TODO Auto-generated constructor stub
@@ -60,12 +71,7 @@ public class PrendaGenericaEntity implements Serializable {
 		this.descripcion = descripcion;
 	}
 
-	public List<ColorEntity> getColores() {
-		return colores;
-	}
-	public void setColores(List<ColorEntity> colores) {
-		this.colores = colores;
-	}
+
 	public List<TalleEntity> getTalles() {
 		return talles;
 	}

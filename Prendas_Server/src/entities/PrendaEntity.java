@@ -31,9 +31,9 @@ public class PrendaEntity implements Serializable {
 	@ManyToOne(cascade=CascadeType.ALL)
 	private PrendaGenericaEntity prenda;
 	
-	@OneToOne
+	@OneToOne(cascade=CascadeType.ALL)
 	private ColorEntity color;
-	@OneToOne
+	@OneToOne(cascade=CascadeType.ALL)
 	private TalleEntity talle;
 	
 	private boolean enProduccion;

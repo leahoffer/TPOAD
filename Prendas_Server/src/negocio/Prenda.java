@@ -14,7 +14,6 @@ import entities.PrendaEntity;
 import vos.PrendaVO;
 
 public class Prenda {
-	
 	private PrendaGenerica prenda;
 	private Color color;
 	private Talle talle;
@@ -230,13 +229,15 @@ public class Prenda {
 		return false;
 	}
 
+
+
 	public void updateMe() {
 		PrendaDAO.getInstancia().updatePrenda(this.toEntity());
 		
 	}
-	
+}
 	
 	
 	
 
-}
+
