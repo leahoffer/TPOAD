@@ -4,9 +4,11 @@ import java.io.Serializable;
 import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
@@ -34,8 +36,8 @@ public class PedidoPrendaEntity implements Serializable {
 	private float total;
 	private String estado;
 	
-	@OneToMany(cascade=CascadeType.ALL)
-	private List<ItemPedidoPEntity> items;
+	@OneToMany(cascade=CascadeType.ALL, fetch=FetchType.EAGER)
+	private Set<ItemPedidoPEntity> items;
 
 	public PedidoPrendaEntity(){
 	}
@@ -72,11 +74,11 @@ public class PedidoPrendaEntity implements Serializable {
 		this.total = total;
 	}
 
-	public List<ItemPedidoPEntity> getItems() {
+	public Set<ItemPedidoPEntity> getItems() {
 		return items;
 	}
 
-	public void setItems(List<ItemPedidoPEntity> items) {
+	public void setItems(Set<ItemPedidoPEntity> items) {
 		this.items = items;
 	}
 

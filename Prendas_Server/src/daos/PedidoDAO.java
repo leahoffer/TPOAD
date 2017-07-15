@@ -60,8 +60,14 @@ public class PedidoDAO {
 			SessionFactory sf = HibernateUtil.getSessionFactory();
 			Session s = sf.openSession();
 			s.beginTransaction();
-			ppe = (PedidoPrendaEntity) s.get(PedidoPrendaEntity.class, nro);
-			return ppe.toNegocio();
+			List<PedidoPrendaEntity> pps =  s.createQuery(
+					"select p " +
+					"from PedidoPrendaEntity p " +
+					"join fetch p.items i " +
+					"join fetch i.prenda pr " +
+					"join fetch pr.prenda prg " +
+					"join fetch prg.colores").list();
+			return pps.get(0).toNegocio();
 		}
 		catch(Exception e){
 			e.printStackTrace();

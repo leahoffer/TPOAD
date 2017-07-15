@@ -142,8 +142,8 @@ public class Prenda {
 		p.setTalle(this.getTalle().toEntity());
 		
 		Set<MovStockEntity> movsE= new HashSet<MovStockEntity>();
-		List<DetalleAreaEntity> detsE= new ArrayList<DetalleAreaEntity>();
-		List<ItemRecetaEntity> itemsE= new ArrayList<ItemRecetaEntity>();
+		Set<DetalleAreaEntity> detsE= new HashSet<DetalleAreaEntity>();
+		Set<ItemRecetaEntity> itemsE= new HashSet<ItemRecetaEntity>();
 		
 		for (MovStock m: this.movStocks)
 		{

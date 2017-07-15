@@ -2,7 +2,9 @@ package negocio;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import java.util.concurrent.atomic.AtomicInteger;
 
 import daos.PedidoDAO;
@@ -109,7 +111,7 @@ public class PedidoPrenda {
 		pe.setEstado(this.getEstado().toString());
 		pe.setFechaGen(new java.sql.Date(this.getFechaGen().getTime()));
 		pe.setTotal(this.getTotal());
-		List<ItemPedidoPEntity> itemspe= new ArrayList<ItemPedidoPEntity>();
+		Set<ItemPedidoPEntity> itemspe= new HashSet<ItemPedidoPEntity>();
 		for (ItemPedidoP i: this.prendas)
 		{
 			itemspe.add(i.toEntity());

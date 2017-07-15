@@ -18,7 +18,7 @@ public class ItemPedidoPEntity implements Serializable {
 	private int cantidad;
 	private float subtotal;
 	
-	@ManyToOne
+	@ManyToOne(fetch=FetchType.EAGER)
 	private PrendaEntity prenda;
 	
 	public ItemPedidoPEntity(){

@@ -1,7 +1,9 @@
 package negocio;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import entities.ColorEntity;
 import entities.PrendaGenericaEntity;
@@ -88,8 +90,8 @@ public class PrendaGenerica {
 		res.setCantColor(this.getCantColor());
 		res.setCantTalle(this.getCantTalle());
 		res.setGanancia(this.getGanancia());
-		List<ColorEntity> colores= new ArrayList<ColorEntity>();
-		List<TalleEntity> talles= new ArrayList<TalleEntity>();
+		Set<ColorEntity> colores= new HashSet<ColorEntity>();
+		Set<TalleEntity> talles= new HashSet<TalleEntity>();
 		
 		for (Color c: this.getColores())
 		{
@@ -100,8 +102,8 @@ public class PrendaGenerica {
 		{
 			talles.add(t.toEntity());
 		}
-		/*res.setColores(colores);
-		res.setTalles(talles);*/
+		res.setColores(colores);
+		res.setTalles(talles);
 		return res;
 		
 	}

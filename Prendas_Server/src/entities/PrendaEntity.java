@@ -28,12 +28,12 @@ public class PrendaEntity implements Serializable {
 	@GeneratedValue
 	private int id;
 	
-	@ManyToOne(cascade=CascadeType.ALL)
+	@ManyToOne(cascade=CascadeType.ALL, fetch=FetchType.EAGER)
 	private PrendaGenericaEntity prenda;
 	
-	@OneToOne(cascade=CascadeType.ALL)
+	@OneToOne
 	private ColorEntity color;
-	@OneToOne(cascade=CascadeType.ALL)
+	@OneToOne
 	private TalleEntity talle;
 	
 	private boolean enProduccion;
@@ -41,14 +41,13 @@ public class PrendaEntity implements Serializable {
 	private float costo;
 	
 	@OneToMany(cascade=CascadeType.ALL)
-	@LazyCollection(LazyCollectionOption.FALSE)
 	private Set<MovStockEntity> movStocks;
 	
 	@OneToMany(cascade=CascadeType.ALL)
-	private List<DetalleAreaEntity> detAreas;
+	private Set<DetalleAreaEntity> detAreas;
 	
-	@OneToMany(cascade=CascadeType.ALL, fetch=FetchType.EAGER)
-	private List<ItemRecetaEntity> itemsReceta;
+	@OneToMany(cascade=CascadeType.ALL)
+	private Set<ItemRecetaEntity> itemsReceta;
 
 	public PrendaEntity(){
 	}
@@ -124,19 +123,19 @@ public class PrendaEntity implements Serializable {
 		this.movStocks = movStocks;
 	}
 
-	public List<DetalleAreaEntity> getDetAreas() {
+	public Set<DetalleAreaEntity> getDetAreas() {
 		return detAreas;
 	}
 
-	public void setDetAreas(List<DetalleAreaEntity> detAreas) {
+	public void setDetAreas(Set<DetalleAreaEntity> detAreas) {
 		this.detAreas = detAreas;
 	}
 
-	public List<ItemRecetaEntity> getItemsReceta() {
+	public Set<ItemRecetaEntity> getItemsReceta() {
 		return itemsReceta;
 	}
 
-	public void setItemsReceta(List<ItemRecetaEntity> itemsReceta) {
+	public void setItemsReceta(Set<ItemRecetaEntity> itemsReceta) {
 		this.itemsReceta = itemsReceta;
 	}
 
