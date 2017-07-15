@@ -44,7 +44,7 @@ public class UbicacionDAO {
 		return res;
 	}
 	
-	public UbicacionPrenda traerUbicacionMasAlta(UbicacionPrendaEntity upe)
+	public UbicacionPrenda traerUbicacionMasAlta()
 	{
 		try
 		{
