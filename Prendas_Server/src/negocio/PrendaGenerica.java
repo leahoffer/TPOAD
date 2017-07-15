@@ -90,8 +90,8 @@ public class PrendaGenerica {
 		res.setCantColor(this.getCantColor());
 		res.setCantTalle(this.getCantTalle());
 		res.setGanancia(this.getGanancia());
-		Set<ColorEntity> colores= new HashSet<ColorEntity>();
-		Set<TalleEntity> talles= new HashSet<TalleEntity>();
+		List<ColorEntity> colores= new ArrayList<ColorEntity>();
+		List<TalleEntity> talles= new ArrayList<TalleEntity>();
 		
 		for (Color c: this.getColores())
 		{

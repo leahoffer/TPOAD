@@ -28,17 +28,17 @@ public class PrendaGenericaEntity implements Serializable {
 	
 	
 	@OneToMany
-	private Set<ColorEntity> colores;
+	private List<ColorEntity> colores;
 	
 	@OneToMany
-	private Set<TalleEntity> talles;
+	private List<TalleEntity> talles;
 	
 	
 	
-	public Set<ColorEntity> getColores() {
+	public List<ColorEntity> getColores() {
 		return colores;
 	}
-	public void setColores(Set<ColorEntity> colores) {
+	public void setColores(List<ColorEntity> colores) {
 		this.colores = colores;
 	}
 	public int getCantTalle() {
@@ -71,10 +71,10 @@ public class PrendaGenericaEntity implements Serializable {
 	}
 
 
-	public Set<TalleEntity> getTalles() {
+	public List<TalleEntity> getTalles() {
 		return talles;
 	}
-	public void setTalles(Set<TalleEntity> talles) {
+	public void setTalles(List<TalleEntity> talles) {
 		this.talles = talles;
 	}
 	public float getGanancia() {
