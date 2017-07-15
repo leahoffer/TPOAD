@@ -6,6 +6,7 @@ import java.util.List;
 
 import daos.ClienteDAO;
 import daos.InsumoDAO;
+import daos.OrdenProduccionDAO;
 import daos.PedidoDAO;
 import daos.PrendaDAO;
 import entities.ClienteEntity;
@@ -377,5 +378,18 @@ public class Controlador {
 	}
 	
 	
+	public void completarOrdenProduccion(int numero){
+		OrdenProduccion op = OrdenProduccionDAO.getInstancia().traerOrden(numero);
+		op.setEstado("Completa");
+		for(Prenda p : op.getPrendas())
+		{
+			p.AgregarMovimientoStock(op.getCantidadAProducir(), true);
+			p.updateMe();
+		}
+		Almacen.getInstancia().colocarPrendas(op);
+		
+		
+		
+	}
 	
 }
