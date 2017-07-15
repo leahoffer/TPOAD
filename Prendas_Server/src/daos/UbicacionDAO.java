@@ -43,4 +43,23 @@ public class UbicacionDAO {
 		}
 		return res;
 	}
+	
+	public UbicacionPrenda traerUbicacionMasAlta(UbicacionPrendaEntity upe)
+	{
+		try
+		{
+			SessionFactory sf = HibernateUtil.getSessionFactory();
+			Session s = sf.openSession();
+			List<UbicacionPrendaEntity> ubicaciones;
+			String hql = "from UbicacionPrendaEntity upe order by upe.ubicacion desc";
+			ubicaciones = s.createQuery(hql).list();
+			UbicacionPrendaEntity resultado = ubicaciones.get(0);
+			return resultado.toNegocio();
+		}
+		catch(Exception e)
+		{
+			e.printStackTrace();
+		}
+		return null;
+	}
 }

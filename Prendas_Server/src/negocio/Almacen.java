@@ -1,6 +1,7 @@
 package negocio;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 import daos.UbicacionDAO;
@@ -80,6 +81,31 @@ public class Almacen {
 			}
 		}
 		pedidoPrenda.setUbicaciones(ubicaciones);
+	}
+
+	public void colocarPrendas(OrdenProduccion op) 
+	{
+		for(Prenda p : op.getPrendas())
+		{
+			UbicacionPrenda up = new UbicacionPrenda();
+			up.setPrenda(p);
+			up.setCantidad(op.getCantidadAProducir());
+			buscarYColocar(up);
+		}
+	}
+
+	private void buscarYColocar(UbicacionPrenda ubicacion)
+	{
+		List<String> calles = new ArrayList<String>();
+		String[] a = {"A", "B", "C", "D", "E", "F", "G"};
+		for(String s : a)
+			calles.add(s);
+		
+		for(UbicacionPrenda up : this.ubicacionesPrendas)
+		{
+			
+		}
+		
 	}
 
 	
