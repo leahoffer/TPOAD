@@ -1,9 +1,13 @@
 package entities;
 
 import java.sql.Date;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.*;
+
+import negocio.OrdenProduccion;
+import negocio.Prenda;
 
 @Entity
 @Table(name="Ordenes_Produccion")
@@ -64,6 +68,20 @@ public class OrdenProduccionEntity {
 	}
 	public void setEstado(String estado) {
 		this.estado = estado;
+	}
+	public OrdenProduccion toNegocio() {
+		OrdenProduccion op = new OrdenProduccion();
+		op.setCantidadAProducir(this.cantidadAProducir);
+		op.setEstado(this.estado);
+		op.setFecha(this.fecha);
+		op.setNro(this.nro);
+		op.setPedido(this.pedido.toNegocio());
+		op.setTipo(this.tipo);
+		List<Prenda> prendas = new ArrayList<Prenda>();
+		for(PrendaEntity pe : this.prendas)
+			prendas.add(pe.toNegocio());
+		op.setPrendas(prendas);
+		return op;
 	}
 	
 	

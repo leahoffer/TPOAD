@@ -1,6 +1,7 @@
 package negocio;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 import daos.UbicacionDAO;
@@ -86,6 +87,107 @@ public class Almacen {
 			}
 		}
 		pedidoPrenda.setUbicaciones(ubicaciones);
+	}
+
+	public void colocarPrendas(OrdenProduccion op) 
+	{
+		for(Prenda p : op.getPrendas())
+		{
+			UbicacionPrenda up = new UbicacionPrenda();
+			up.setPrenda(p);
+			up.setCantidad(op.getCantidadAProducir());
+			buscarYColocar(up);
+		}
+	}
+
+	private void buscarYColocar(UbicacionPrenda ubicacion)
+	{
+		UbicacionPrenda up = new UbicacionPrenda();
+		up = UbicacionDAO.getInstancia().traerUbicacionMasAlta();
+		if(up.getPosicion()==21)
+		{
+			if(up.getEstanteria()==6)
+			{
+				if(up.getBloque()==5)
+				{
+					if(up.getCalle().equalsIgnoreCase("A"))
+					{
+						ubicacion.setCalle("B");
+						ubicacion.setBloque(1);
+						ubicacion.setEstanteria(1);
+						ubicacion.setPosicion(1);
+						ubicacion.setUbicacion(ubicacion.obtenerUbicacion());
+						UbicacionDAO.getInstancia().guardarUbicacion(ubicacion.toEntity());
+					}
+					else if (up.getCalle().equalsIgnoreCase("B"))
+					{
+						ubicacion.setCalle("C");
+						ubicacion.setBloque(1);
+						ubicacion.setEstanteria(1);
+						ubicacion.setPosicion(1);
+						ubicacion.setUbicacion(ubicacion.obtenerUbicacion());
+						UbicacionDAO.getInstancia().guardarUbicacion(ubicacion.toEntity());
+					}
+					else if (up.getCalle().equalsIgnoreCase("C"))
+					{
+						ubicacion.setCalle("D");
+						ubicacion.setBloque(1);
+						ubicacion.setEstanteria(1);
+						ubicacion.setPosicion(1);
+						ubicacion.setUbicacion(ubicacion.obtenerUbicacion());
+						UbicacionDAO.getInstancia().guardarUbicacion(ubicacion.toEntity());
+					}
+					else if (up.getCalle().equalsIgnoreCase("D"))
+					{
+						ubicacion.setCalle("E");
+						ubicacion.setBloque(1);
+						ubicacion.setEstanteria(1);
+						ubicacion.setPosicion(1);
+						ubicacion.setUbicacion(ubicacion.obtenerUbicacion());
+						UbicacionDAO.getInstancia().guardarUbicacion(ubicacion.toEntity());
+					}
+					else if (up.getCalle().equalsIgnoreCase("E"))
+					{
+						ubicacion.setCalle("F");
+						ubicacion.setBloque(1);
+						ubicacion.setEstanteria(1);
+						ubicacion.setPosicion(1);
+						ubicacion.setUbicacion(ubicacion.obtenerUbicacion());
+						UbicacionDAO.getInstancia().guardarUbicacion(ubicacion.toEntity());
+					}
+					else if (up.getCalle().equalsIgnoreCase("F"))
+					{
+						ubicacion.setCalle("G");
+						ubicacion.setBloque(1);
+						ubicacion.setEstanteria(1);
+						ubicacion.setPosicion(1);
+						ubicacion.setUbicacion(ubicacion.obtenerUbicacion());
+						UbicacionDAO.getInstancia().guardarUbicacion(ubicacion.toEntity());
+					}
+				}
+				else
+				{
+					ubicacion.setBloque(up.getBloque()+1);
+					ubicacion.setEstanteria(1);
+					ubicacion.setPosicion(1);
+					ubicacion.setUbicacion(ubicacion.obtenerUbicacion());
+					UbicacionDAO.getInstancia().guardarUbicacion(ubicacion.toEntity());
+				}
+			}
+			else
+			{
+				ubicacion.setEstanteria(up.getEstanteria()+1);
+				ubicacion.setPosicion(1);
+				ubicacion.setUbicacion(ubicacion.obtenerUbicacion());
+				UbicacionDAO.getInstancia().guardarUbicacion(ubicacion.toEntity());
+			}
+		}
+		else
+		{
+			ubicacion.setPosicion(up.getPosicion()+1);
+			ubicacion.setUbicacion(ubicacion.obtenerUbicacion());
+			UbicacionDAO.getInstancia().guardarUbicacion(ubicacion.toEntity());
+		}
 	}
 
 	

@@ -88,4 +88,21 @@ public class PrendaDAO {
 		return res;
 	}
 
+	public void updatePrenda(PrendaEntity entity) {
+		try
+		{
+			SessionFactory sf = HibernateUtil.getSessionFactory();
+			Session s = sf.openSession();
+			s.beginTransaction();
+			s.update(entity);
+			s.beginTransaction().commit();
+			s.close();
+		}
+		catch (Exception e)
+		{
+			e.printStackTrace();
+		}
+		
+	}
+
 }
