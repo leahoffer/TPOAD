@@ -18,12 +18,16 @@ public class TestPedido {
 
 			PrendaVO p= new PrendaVO();
 			p.setColor("Negro");
-			p.setTalle("S");
-			p.setPrenda(new PrendaGenericaVO("P001"));
+			p.setTalle("XS");
+			p.setPrenda(new PrendaGenericaVO("P003"));
 			PrendaVO p2= new PrendaVO();
 			p2.setColor("Blanco");
 			p2.setTalle("S");
-			p2.setPrenda(new PrendaGenericaVO("P001"));
+			p2.setPrenda(new PrendaGenericaVO("P003"));
+			PrendaVO p3= new PrendaVO();
+			p3.setColor("Negro");
+			p3.setTalle("L");
+			p3.setPrenda(new PrendaGenericaVO("P003"));
 		
 			List<ItemPedidoPVO> items= new ArrayList<ItemPedidoPVO>();
 			ItemPedidoPVO ipvo= new ItemPedidoPVO();
@@ -32,9 +36,13 @@ public class TestPedido {
 			ItemPedidoPVO ipvo2= new ItemPedidoPVO();
 			ipvo2.setCantidad(20);
 			ipvo2.setPrenda(p2);
+			ItemPedidoPVO ipvo3 = new ItemPedidoPVO();
+			ipvo3.setCantidad(10);
+			ipvo3.setPrenda(p3);
 			
 			items.add(ipvo);
 			items.add(ipvo2);
+			items.add(ipvo3);
 			
 			ClienteVO c= new ClienteVO();
 			c.setLegajo(1001);

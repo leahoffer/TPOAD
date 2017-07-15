@@ -3,22 +3,40 @@ package negocio;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.concurrent.atomic.AtomicInteger;
+
+import daos.OrdenProduccionDAO;
+import entities.OrdenProduccionEntity;
+import entities.PrendaEntity;
 
 public class OrdenProduccion {
 
+	private static final AtomicInteger incrementador = new AtomicInteger(0);
+	private int nro;
 	private String tipo;
 	private Date fecha;
-	private List<Talle> talles;
-	private List<Color> colores;
+	//Una orden de produccion nunca va a ser de mas de una prenda generica, todas las prendas tienen la misma prendagenerica.
+	private List<Prenda> prendas;
 	private PedidoPrenda pedido;
 	private int cantidadAProducir;
 	private String estado;
 	
+	
+
+	public List<Prenda> getPrendas() {
+		return prendas;
+	}
+
+	public void setPrendas(List<Prenda> prendas) {
+		this.prendas = prendas;
+	}
+
 	public OrdenProduccion() {
 		super();
-		this.talles = new ArrayList<Talle>();
-		this.colores = new ArrayList<Color>();
+		this.prendas= new ArrayList<Prenda>();
 		this.pedido = new PedidoPrenda();
+		setNro(incrementador.incrementAndGet());
+		cantidadAProducir=100;
 	}
 
 	public String getTipo() {
@@ -37,21 +55,6 @@ public class OrdenProduccion {
 		this.fecha = fecha;
 	}
 
-	public List<Talle> getTalles() {
-		return talles;
-	}
-
-	public void setTalles(List<Talle> talles) {
-		this.talles = talles;
-	}
-
-	public List<Color> getColores() {
-		return colores;
-	}
-
-	public void setColores(List<Color> colores) {
-		this.colores = colores;
-	}
 
 	public PedidoPrenda getPedido() {
 		return pedido;
@@ -75,6 +78,37 @@ public class OrdenProduccion {
 
 	public void setEstado(String estado) {
 		this.estado = estado;
+	}
+
+	public void saveMe() {
+		// TODO Auto-generated method stub
+		OrdenProduccionDAO.getInstancia().guardarOrden(this.toEntity());
+	}
+
+	private OrdenProduccionEntity toEntity() {
+		// TODO Auto-generated method stub
+		OrdenProduccionEntity ope= new OrdenProduccionEntity();
+		ope.setCantidadAProducir(this.getCantidadAProducir());
+		ope.setEstado(this.getEstado());
+		ope.setFecha(new java.sql.Date(this.getFecha().getTime()));
+		ope.setNro(this.getNro());
+		ope.setPedido(this.getPedido().toEntity());
+		ope.setTipo(this.getTipo());
+		List<PrendaEntity> prendase= new ArrayList<PrendaEntity>();
+		for (Prenda p: this.getPrendas())
+		{
+			prendase.add(p.toEntity());
+		}
+		ope.setPrendas(prendase);
+		return ope;
+	}
+
+	public int getNro() {
+		return nro;
+	}
+
+	public void setNro(int nro) {
+		this.nro = nro;
 	}
 	
 	

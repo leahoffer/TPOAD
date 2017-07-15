@@ -3,6 +3,7 @@ package negocio;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.concurrent.atomic.AtomicInteger;
 
 import daos.PedidoDAO;
 import entities.ItemPedidoPEntity;
@@ -13,6 +14,7 @@ import vos.PedidoPrendaVO;
 
 public class PedidoPrenda {
 
+	private static AtomicInteger instanciador= new AtomicInteger(0);
 	private Cliente cliente;
 	private Date fechaGen;
 	private float total;
@@ -41,6 +43,7 @@ public class PedidoPrenda {
 	public PedidoPrenda() {
 		super();
 		this.prendas = new ArrayList<ItemPedidoP>();
+		this.nro=instanciador.incrementAndGet();
 	}
 
 	public Cliente getCliente() {
@@ -131,14 +134,16 @@ public class PedidoPrenda {
 		return ppvo;
 	}
 
-	public boolean validarStock() {
+	public List<Prenda> validarStock() {
 		//Por cada item, veo si la prenda para ESE item tiene stock. Si NO tiene, sale por false. Si todas tienen, sale por true.
+		List<Prenda> sinstock= new ArrayList<Prenda>();
+		
 		for(ItemPedidoP ipp : this.prendas)
 		{
 			if(!ipp.validarStock())
-				return false;
+				sinstock.add(ipp.getPrenda());
 		}
-		return true;
+		return sinstock;
 		
 	}
 

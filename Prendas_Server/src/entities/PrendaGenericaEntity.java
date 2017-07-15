@@ -20,9 +20,22 @@ public class PrendaGenericaEntity implements Serializable {
 	
 	@Id
 	private String codigo;
+	
 	private String descripcion;
 	private int cantTalle;
 	private int cantColor;
+	public int getCantTalle() {
+		return cantTalle;
+	}
+	public void setCantTalle(int cantTalle) {
+		this.cantTalle = cantTalle;
+	}
+	public int getCantColor() {
+		return cantColor;
+	}
+	public void setCantColor(int cantColor) {
+		this.cantColor = cantColor;
+	}
 	private float ganancia;
 	
 	@OneToMany(cascade=CascadeType.ALL)
@@ -46,18 +59,7 @@ public class PrendaGenericaEntity implements Serializable {
 	public void setDescripcion(String descripcion) {
 		this.descripcion = descripcion;
 	}
-	public int getCantTalle() {
-		return cantTalle;
-	}
-	public void setCantTalle(int cantTalle) {
-		this.cantTalle = cantTalle;
-	}
-	public int getCantColor() {
-		return cantColor;
-	}
-	public void setCantColor(int cantColor) {
-		this.cantColor = cantColor;
-	}
+
 	public List<ColorEntity> getColores() {
 		return colores;
 	}
@@ -79,6 +81,7 @@ public class PrendaGenericaEntity implements Serializable {
 	public PrendaGenerica toNegocio() {
 		// TODO Auto-generated method stub
 		PrendaGenerica pg= new PrendaGenerica();
+		
 		pg.setCantColor(this.getCantColor());
 		pg.setCantTalle(this.getCantTalle());
 		pg.setCodigo(this.getCodigo());
@@ -96,6 +99,7 @@ public class PrendaGenericaEntity implements Serializable {
 		}
 		return pg;
 	}
+
 	
 	
 	

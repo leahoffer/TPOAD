@@ -12,11 +12,13 @@ import entities.ItemPedidoPEntity;
 import entities.ItemRecetaEntity;
 import entities.MovStockEntity;
 import entities.MovimientoCCEntity;
+import entities.OrdenProduccionEntity;
 import entities.PedidoPrendaEntity;
 import entities.PrendaEntity;
 import entities.PrendaGenericaEntity;
 import entities.TalleEntity;
 import entities.UbicacionPrendaEntity;
+import negocio.OrdenProduccion;
 
  
 public class HibernateUtil
@@ -45,6 +47,7 @@ public class HibernateUtil
         	 config.addAnnotatedClass(ItemPedidoPEntity.class);
         	 
         	 config.addAnnotatedClass(UbicacionPrendaEntity.class);
+        	 config.addAnnotatedClass(OrdenProduccionEntity.class);
 
              sessionFactory = config.buildSessionFactory();
              

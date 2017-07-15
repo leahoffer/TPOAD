@@ -288,9 +288,9 @@ public class Controlador {
 	}
 	
 	private void validarStockPedidoPrenda(PedidoPrenda pp) {
-		boolean validacion = pp.validarStock();
+		List<Prenda> sinstock = pp.validarStock();
 		//Si validacion=true entonces tengo stock
-		if(validacion)
+		if(sinstock.isEmpty())
 		{
 			pp.completarPedido();
 			/*
@@ -310,7 +310,68 @@ public class Controlador {
 		else
 		{
 			//Acá hay que ver el caso de si es OPP u OPC.
+			int i=0;
+			pp.setEstado(EstadoPedido.Incompleto);
+			pp.updatearEstadoPedido();
+			while(!sinstock.isEmpty())
+			{
+				List<Prenda> prendasMismaGenerica = new ArrayList<Prenda>();
+				prendasMismaGenerica.add(sinstock.get(i));
+				sinstock.remove(i);
+				String codigo=prendasMismaGenerica.get(0).getPrenda().getCodigo();
+				while ((!sinstock.isEmpty()) && (sinstock.get(i).getPrenda().getCodigo().equals(codigo)))
+				{
+					while((!sinstock.isEmpty()) && (sinstock.get(i).getPrenda().getCodigo().equals(codigo)))
+					{
+						prendasMismaGenerica.add(sinstock.get(i));
+						sinstock.remove(i);
+					}
+				}
+				if (!prendasMismaGenerica.isEmpty())
+				{
+					if (prendasMismaGenerica.size()>=3)
+						this.nuevaOPCompleta(prendasMismaGenerica.get(0).getPrenda(), pp);
+					else
+						this.nuevaOPParcial(prendasMismaGenerica, pp);
+				}
+			}
+					
+			
 		}
+	}
+	private void nuevaOPParcial(List<Prenda> prendasMismaGenerica, PedidoPrenda pp) {
+		// TODO Auto-generated method stub
+		 OrdenProduccion op= new OrdenProduccion();
+		 op.setEstado("Incompleta");
+		 op.setFecha(new Date());
+		 op.setPedido(pp);
+		 op.setPrendas(prendasMismaGenerica);
+		 op.setTipo("Parcial");
+		 op.saveMe();
+		
+	}
+	private void nuevaOPCompleta(PrendaGenerica prenda, PedidoPrenda pp) {
+		// TODO Auto-generated method stub
+		OrdenProduccion op= new OrdenProduccion();
+		op.setEstado("Incompleta");
+		op.setFecha(new Date());
+		op.setPedido(pp);
+		op.setTipo("Completa");
+		List<Prenda> prendas= new ArrayList<Prenda>();
+		for (Color c:prenda.getColores())
+		{
+			for (Talle t:prenda.getTalles())
+			{
+				PrendaVO pvo= new PrendaVO();
+				pvo.setColor(c.getColor());
+				pvo.setTalle(t.getTalle());
+				pvo.setPrenda(new PrendaGenericaVO(prenda.getCodigo()));
+				Prenda p = PrendaDAO.getInstancia().traerEspecifica(pvo).toNegocio();
+				prendas.add(p);
+			}
+		}
+		op.setPrendas(prendas);
+		op.saveMe();
 	}
 	
 	
