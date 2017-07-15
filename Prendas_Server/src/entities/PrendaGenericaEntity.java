@@ -3,7 +3,8 @@ package entities;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
 
 import javax.persistence.*;
 
@@ -24,15 +25,15 @@ public class PrendaGenericaEntity implements Serializable {
 	private String descripcion;
 	private int cantTalle;
 	private int cantColor;
+	
+	
 	private float ganancia;
-	
-	
-	@OneToMany
+		
+	@OneToMany(cascade=CascadeType.ALL)
 	private List<ColorEntity> colores;
-	
-	@OneToMany
+		
+	@OneToMany(cascade=CascadeType.ALL)
 	private List<TalleEntity> talles;
-	
 	
 	
 	public List<ColorEntity> getColores() {
