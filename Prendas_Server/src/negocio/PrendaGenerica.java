@@ -102,8 +102,8 @@ public class PrendaGenerica {
 		{
 			talles.add(t.toEntity());
 		}
-		/*res.setColores(colores);
-		res.setTalles(talles);*/
+		res.setColores(colores);
+		res.setTalles(talles);
 		return res;
 		
 	}

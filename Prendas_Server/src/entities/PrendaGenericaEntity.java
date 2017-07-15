@@ -29,10 +29,10 @@ public class PrendaGenericaEntity implements Serializable {
 	
 	private float ganancia;
 		
-	@OneToMany(cascade=CascadeType.ALL)
+	@OneToMany
 	private List<ColorEntity> colores;
 		
-	@OneToMany(cascade=CascadeType.ALL)
+	@OneToMany
 	private List<TalleEntity> talles;
 	
 	
