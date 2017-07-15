@@ -32,7 +32,7 @@ public class PrendaDAO {
 			SessionFactory sf= HibernateUtil.getSessionFactory();
 			Session s= sf.openSession();
 			s.beginTransaction();
-			s.saveOrUpdate(prenda);
+			s.save(prenda);
 			s.getTransaction().commit();
 			s.close();
 		}

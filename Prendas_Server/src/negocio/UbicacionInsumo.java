@@ -1,5 +1,7 @@
 package negocio;
 
+import entities.UbicacionInsumoEntity;
+
 public class UbicacionInsumo {
 
 	private Insumo insumo;
@@ -11,6 +13,16 @@ public class UbicacionInsumo {
 	private float cantidad;
 	private float reservados;
 	
+	
+	
+	public float getReservados() {
+		return reservados;
+	}
+
+	public void setReservados(float reservados) {
+		this.reservados = reservados;
+	}
+
 	public UbicacionInsumo() {
 		super();
 		this.insumo = new Insumo();
@@ -72,12 +84,23 @@ public class UbicacionInsumo {
 		this.cantidad = cantidad;
 	}
 
-	public float getReservados() {
-		return reservados;
+	public float getCantidadNeta()
+	{
+		return cantidad-reservados;
 	}
 
-	public void setReservados(float reservados) {
-		this.reservados = reservados;
+	public UbicacionInsumoEntity toEntity() {
+		// TODO Auto-generated method stub
+		UbicacionInsumoEntity uie= new UbicacionInsumoEntity();
+		uie.setBloque(this.getBloque());
+		uie.setCalle(this.getCalle());
+		uie.setCantidad(this.getCantidad());
+		uie.setEstanteria(this.getEstanteria());
+		uie.setInsumo(this.getInsumo().toEntity());
+		uie.setPosicion(this.getPosicion());
+		uie.setReservados(this.getReservados());
+		uie.setUbicacion(this.getUbicacion());
+		return uie;
 	}
 	
 	

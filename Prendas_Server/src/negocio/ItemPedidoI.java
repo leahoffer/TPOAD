@@ -1,5 +1,7 @@
 package negocio;
 
+import entities.ItemPedidoIEntity;
+
 public class ItemPedidoI {
 	
 	private Insumo insumo;
@@ -8,6 +10,10 @@ public class ItemPedidoI {
 		// TODO Auto-generated constructor stub
 		
 		insumo= new Insumo();
+	}
+	public ItemPedidoI(Insumo i) {
+		// TODO Auto-generated constructor stub
+		insumo=i;
 	}
 	public Insumo getInsumo() {
 		return insumo;
@@ -20,6 +26,13 @@ public class ItemPedidoI {
 	}
 	public void setCantidad(float cantidad) {
 		this.cantidad = cantidad;
+	}
+	public ItemPedidoIEntity toEntity() {
+		// TODO Auto-generated method stub
+		ItemPedidoIEntity res= new ItemPedidoIEntity();
+		res.setCantidad(this.getCantidad());
+		res.setInsumo(this.getInsumo().toEntity());
+		return res;
 	}
 	
 	

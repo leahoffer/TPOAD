@@ -7,6 +7,7 @@ import org.hibernate.SessionFactory;
 import org.hibernate.classic.Session;
 
 import entities.ItemPedidoPEntity;
+import entities.PedidoInsumoEntity;
 import entities.PedidoPrendaEntity;
 import entities.PrendaEntity;
 import hibernate.HibernateUtil;
@@ -84,6 +85,15 @@ public class PedidoDAO {
 		q.setString(0, pedidoPrenda.getEstado().toString());
 		q.setInteger(1, pedidoPrenda.getNro());
 		q.executeUpdate();
+		s.getTransaction().commit();
+	}
+
+	public void guardarPedidoInsumo(PedidoInsumoEntity entity) {
+		// TODO Auto-generated method stub
+		SessionFactory sf=HibernateUtil.getSessionFactory();
+		Session s=sf.getCurrentSession();
+		s.beginTransaction();
+		s.save(entity);
 		s.getTransaction().commit();
 	}
 

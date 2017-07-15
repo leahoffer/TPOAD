@@ -2,11 +2,15 @@ package daos;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import negocio.Insumo;
+import negocio.UbicacionInsumo;
 import negocio.UbicacionPrenda;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 
+import entities.UbicacionInsumoEntity;
 import entities.UbicacionPrendaEntity;
 import hibernate.HibernateUtil;
 
@@ -43,4 +47,34 @@ public class UbicacionDAO {
 		}
 		return res;
 	}
+	
+	public List<UbicacionInsumo> traerUbicacionesI()
+	{
+		SessionFactory sf= HibernateUtil.getSessionFactory();
+		Session s= sf.getCurrentSession();
+		s.beginTransaction();
+		List<UbicacionInsumoEntity> ube= s.createQuery("from UbicacionInsumoEntity").list();
+		List<UbicacionInsumo> res= new ArrayList<UbicacionInsumo>();
+		for (UbicacionInsumoEntity u: ube)
+		{
+			res.add(u.toNegocio());
+		}
+		return res;
+	}
+
+	public float traerStockI(Insumo i) {
+		// TODO Auto-generated method stub
+		SessionFactory sf= HibernateUtil.getSessionFactory();
+		Session s= sf.getCurrentSession();
+		s.beginTransaction();
+		float resultado = 0;
+		List<UbicacionInsumoEntity> ube= s.createQuery("from UbicacionInsumoEntity where codigo='"+i.getCodigo()+"'").list();
+		for (UbicacionInsumoEntity u: ube)
+		{
+			resultado=resultado+u.getCantidadNeta();
+		}
+		return resultado;
+	}
+
+	
 }

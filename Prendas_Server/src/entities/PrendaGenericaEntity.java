@@ -27,7 +27,7 @@ public class PrendaGenericaEntity implements Serializable {
 	private float ganancia;
 	
 	
-	@OneToMany(fetch=FetchType.EAGER)
+	@OneToMany
 	private Set<ColorEntity> colores;
 	
 	@OneToMany

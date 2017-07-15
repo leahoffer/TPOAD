@@ -348,6 +348,7 @@ public class Controlador {
 		 op.setPrendas(prendasMismaGenerica);
 		 op.setTipo("Parcial");
 		 op.saveMe();
+		 op.validarInsumos();
 		
 	}
 	private void nuevaOPCompleta(PrendaGenerica prenda, PedidoPrenda pp) {
@@ -372,6 +373,7 @@ public class Controlador {
 		}
 		op.setPrendas(prendas);
 		op.saveMe();
+		op.validarInsumos();
 	}
 	
 	

@@ -28,7 +28,7 @@ public class PrendaEntity implements Serializable {
 	@GeneratedValue
 	private int id;
 	
-	@ManyToOne(cascade=CascadeType.ALL, fetch=FetchType.EAGER)
+	@ManyToOne(cascade=CascadeType.ALL)
 	private PrendaGenericaEntity prenda;
 	
 	@OneToOne

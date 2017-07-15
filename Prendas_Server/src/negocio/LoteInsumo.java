@@ -1,5 +1,7 @@
 package negocio;
 
+import entities.LoteInsumoEntity;
+
 public class LoteInsumo {
 
 	private Insumo insumo;
@@ -34,6 +36,15 @@ public class LoteInsumo {
 
 	public void setUbicacion(UbicacionInsumo ubicacion) {
 		this.ubicacion = ubicacion;
+	}
+
+	public LoteInsumoEntity toEntity() {
+		// TODO Auto-generated method stub
+		LoteInsumoEntity res= new LoteInsumoEntity();
+		res.setCantidad(this.getCantidad());
+		res.setInsumo(this.getInsumo().toEntity());
+		res.setUbicacion(this.getUbicacion().toEntity());
+		return res;
 	}
 	
 	
