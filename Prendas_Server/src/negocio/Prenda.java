@@ -28,6 +28,14 @@ public class Prenda {
 	
 	private int idaux;
 	
+	public float calcularDuracion(){
+		float duraux=0;
+		for (DetalleArea d: detAreas)
+		{
+			duraux=duraux+d.getDuracion();
+		}
+		return duraux;
+	}
 	public int getIdaux() {
 		return idaux;
 	}
@@ -182,7 +190,7 @@ public class Prenda {
 	}
 
 	public void calcularPrecio() {
-		this.precio = this.costo * this.getPrenda().getGanancia();
+		this.precio = this.costo + (this.costo*this.getPrenda().getGanancia());
 		
 	}
 

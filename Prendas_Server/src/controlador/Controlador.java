@@ -218,6 +218,7 @@ public class Controlador {
 		}
 		p.setPrendas(items);
 		p.calcularTotal();
+		p.calcularFechaProbable();
 		p.saveMe();
 	}
 	
@@ -275,19 +276,21 @@ public class Controlador {
 				//Si cliente tiene saldo, sigo adelante validando stock
 				pp.setEstado(EstadoPedido.Validado);
 				pp.updatearEstadoPedido();
-				validarStockPedidoPrenda(pp);
+				System.out.println("Su total es "+pp.getTotal()+". Su fecha estimada es el "+pp.getFechaProbable());
 				
 			}
 			else
 			{
 				//Si cliente no tiene saldo, Pedido es invalido y de última mandar mensaje con throw diciendo que el cliente ponga la tarasca
 				pp.setEstado(EstadoPedido.Invalido);
+				
 			}
 		}
 		
 	}
 	
-	private void validarStockPedidoPrenda(PedidoPrenda pp) {
+	private void validarStockPedidoPrenda(PedidoPrendaVO ppvo) {
+		PedidoPrenda pp = PedidoDAO.getInstancia().buscarPedido(ppvo.getNumero());
 		List<Prenda> sinstock = pp.validarStock();
 		//Si validacion=true entonces tengo stock
 		if(sinstock.isEmpty())

@@ -85,7 +85,7 @@ public class ValidarPedido {
 			public void actionPerformed(ActionEvent arg0) {
 				try {
 					BusinessDelegate.getInstancia().validarPedido(list.getSelectedValue());
-					System.out.println("Pedido validado negri.");
+				//	System.out.println("Pedido validado negri.");
 				} catch (RemoteException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();

@@ -1,6 +1,7 @@
 package negocio;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicInteger;
@@ -17,12 +18,26 @@ public class PedidoPrenda {
 	private static AtomicInteger instanciador= new AtomicInteger(0);
 	private Cliente cliente;
 	private Date fechaGen;
+	private Date fechaProbable;
 	private float total;
 	private List<ItemPedidoP> prendas;
 	private EstadoPedido estado;
 	private int nro;
 	private List<UbicacionPrenda> ubicaciones;
 	
+	public void calcularFechaProbable()
+	{
+		float total=0;
+		for (ItemPedidoP i: prendas)
+		{
+			total=total+i.getPrenda().calcularDuracion();
+		}
+		int dias= Math.round(total);
+		 Calendar cal = Calendar.getInstance();
+	     cal.setTime(fechaGen);
+	     cal.add(Calendar.DATE, dias); 
+	     fechaProbable=cal.getTime();
+	}
 	
 	public List<UbicacionPrenda> getUbicaciones() {
 		return ubicaciones;
@@ -161,6 +176,14 @@ public class PedidoPrenda {
 	public void updatearEstadoPedido() {
 		// TODO Auto-generated method stub
 		PedidoDAO.getInstancia().updatearEstadoPedido(this);
+	}
+
+	public Date getFechaProbable() {
+		return fechaProbable;
+	}
+
+	public void setFechaProbable(Date fechaProbable) {
+		this.fechaProbable = fechaProbable;
 	}
 	
 	
