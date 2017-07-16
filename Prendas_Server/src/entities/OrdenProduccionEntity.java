@@ -1,22 +1,27 @@
 package entities;
 
 import java.sql.Date;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.*;
+
+import negocio.OrdenProduccion;
+import negocio.Prenda;
 
 @Entity
 @Table(name="Ordenes_Produccion")
 public class OrdenProduccionEntity {
 
 	@Id
+	@GeneratedValue(strategy=GenerationType.AUTO)
 	private int nro;
 	private String tipo;
 	private Date fecha;
 	//Una orden de produccion nunca va a ser de mas de una prenda generica, todas las prendas tienen la misma prendagenerica.
-	@OneToMany
+	@OneToMany(fetch=FetchType.EAGER)
 	private List<PrendaEntity> prendas;
-	@ManyToOne
+	@ManyToOne(fetch=FetchType.EAGER)
 	private PedidoPrendaEntity pedido;
 	private int cantidadAProducir;
 	private String estado;
@@ -66,6 +71,19 @@ public class OrdenProduccionEntity {
 		this.estado = estado;
 	}
 	
-	
+	public OrdenProduccion toNegocio() {
+		OrdenProduccion op = new OrdenProduccion();
+		op.setCantidadAProducir(this.cantidadAProducir);
+		op.setEstado(this.estado);
+		op.setFecha(this.fecha);
+		op.setNro(this.nro);
+		op.setPedido(this.pedido.toNegocio());
+		op.setTipo(this.tipo);
+		List<Prenda> prendas = new ArrayList<Prenda>();
+		for(PrendaEntity pe : this.prendas)
+			prendas.add(pe.toNegocio());
+		op.setPrendas(prendas);
+		return op;
+	}
 	
 }

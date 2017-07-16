@@ -6,6 +6,7 @@ import java.util.List;
 
 import daos.ClienteDAO;
 import daos.InsumoDAO;
+import daos.OrdenProduccionDAO;
 import daos.PedidoDAO;
 import daos.PrendaDAO;
 import entities.ClienteEntity;
@@ -351,6 +352,7 @@ public class Controlador {
 		 op.setPrendas(prendasMismaGenerica);
 		 op.setTipo("Parcial");
 		 op.saveMe();
+		 op.validarInsumos();
 		
 	}
 	private void nuevaOPCompleta(PrendaGenerica prenda, PedidoPrenda pp) {
@@ -375,8 +377,21 @@ public class Controlador {
 		}
 		op.setPrendas(prendas);
 		op.saveMe();
+		op.validarInsumos();
 	}
 	
 	
+	public void completarOrdenProduccion(int numero){
+		OrdenProduccion op = OrdenProduccionDAO.getInstancia().traerOrden(numero);
+		op.setEstado("Completa");
+		OrdenProduccionDAO.getInstancia().updateOrden(op.toEntity());
+		for(Prenda p : op.getPrendas())
+		{
+			p.AgregarMovimientoStock(op.getCantidadAProducir(), true);
+			p.updateMe();
+		}
+		Almacen.getInstancia().colocarPrendas(op);
+
+	}
 	
 }

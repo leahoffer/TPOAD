@@ -42,7 +42,7 @@ public class PrendaEntity implements Serializable {
 	
 	@OneToMany(cascade=CascadeType.ALL)
 	@LazyCollection(LazyCollectionOption.FALSE)
-	private Set<MovStockEntity> movStocks;
+	private List<MovStockEntity> movStocks;
 	
 	@OneToMany(cascade=CascadeType.ALL)
 	private List<DetalleAreaEntity> detAreas;
@@ -116,11 +116,11 @@ public class PrendaEntity implements Serializable {
 		this.costo = costo;
 	}
 
-	public Set<MovStockEntity> getMovStocks() {
+	public List<MovStockEntity> getMovStocks() {
 		return movStocks;
 	}
 
-	public void setMovStocks(Set<MovStockEntity> movStocks) {
+	public void setMovStocks(List<MovStockEntity> movStocks) {
 		this.movStocks = movStocks;
 	}
 

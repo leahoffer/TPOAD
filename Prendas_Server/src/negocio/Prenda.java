@@ -149,7 +149,7 @@ public class Prenda {
 		p.setColor(this.getColor().toEntity());
 		p.setTalle(this.getTalle().toEntity());
 		
-		Set<MovStockEntity> movsE= new HashSet<MovStockEntity>();
+		List<MovStockEntity> movsE= new ArrayList<MovStockEntity>();
 		List<DetalleAreaEntity> detsE= new ArrayList<DetalleAreaEntity>();
 		List<ItemRecetaEntity> itemsE= new ArrayList<ItemRecetaEntity>();
 		
@@ -238,7 +238,10 @@ public class Prenda {
 		return false;
 	}
 	
-	
+	public void updateMe() {
+		PrendaDAO.getInstancia().updatePrenda(this.toEntity());
+		
+	}
 	
 	
 

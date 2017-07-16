@@ -97,6 +97,11 @@ public class ValidarPedido {
 		frame.getContentPane().add(btnValidarPedido);
 		
 		JButton btnSalir = new JButton("Salir");
+		btnSalir.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				frame.dispose();
+			}
+		});
 		btnSalir.setBounds(156, 216, 171, 23);
 		frame.getContentPane().add(btnSalir);
 	}
