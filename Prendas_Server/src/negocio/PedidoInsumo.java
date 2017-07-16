@@ -5,6 +5,7 @@ import java.util.Date;
 import java.util.List;
 
 import daos.PedidoDAO;
+import entities.ItemPedidoIEntity;
 import entities.LoteInsumoEntity;
 import entities.PedidoInsumoEntity;
 

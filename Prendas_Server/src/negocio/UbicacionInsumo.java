@@ -1,5 +1,7 @@
 package negocio;
 
+import entities.UbicacionInsumoEntity;
+
 public class UbicacionInsumo {
 
 	private Insumo insumo;
@@ -81,7 +83,19 @@ public class UbicacionInsumo {
 	}
 	
 	
-	
+	public UbicacionInsumoEntity toEntity() {
+		// TODO Auto-generated method stub
+		UbicacionInsumoEntity uie= new UbicacionInsumoEntity();
+		uie.setBloque(this.getBloque());
+		uie.setCalle(this.getCalle());
+		uie.setCantidad(this.getCantidad());
+		uie.setEstanteria(this.getEstanteria());
+		uie.setInsumo(this.getInsumo().toEntity());
+		uie.setPosicion(this.getPosicion());
+		uie.setReservados(this.getReservados());
+		uie.setUbicacion(this.getUbicacion());
+		return uie;
+	}
 	
 	
 }

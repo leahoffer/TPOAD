@@ -9,6 +9,7 @@ import negocio.UbicacionPrenda;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 
+import entities.UbicacionInsumoEntity;
 import entities.UbicacionPrendaEntity;
 import hibernate.HibernateUtil;
 

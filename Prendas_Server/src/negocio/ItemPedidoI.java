@@ -1,5 +1,7 @@
 package negocio;
 
+import entities.ItemPedidoIEntity;
+
 public class ItemPedidoI {
 	
 	private Insumo insumo;
