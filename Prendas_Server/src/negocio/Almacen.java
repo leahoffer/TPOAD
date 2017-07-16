@@ -187,9 +187,14 @@ public class Almacen {
 			ubicacion.setUbicacion(ubicacion.obtenerUbicacion());
 			UbicacionDAO.getInstancia().guardarUbicacion(ubicacion.toEntity());
 		}
+		/*ubicacion.setCalle("A");
+		ubicacion.setBloque(1);
+		ubicacion.setEstanteria(1);
+		ubicacion.setPosicion(1);
+		ubicacion.setUbicacion(ubicacion.obtenerUbicacion());
+		UbicacionDAO.getInstancia().guardarUbicacion(ubicacion.toEntity());*/
 	}
 	
-
 	
 	
 }

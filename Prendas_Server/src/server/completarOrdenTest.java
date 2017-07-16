@@ -1,10 +1,12 @@
 package server;
 
+import controlador.Controlador;
+import daos.OrdenProduccionDAO;
+
 public class completarOrdenTest {
 
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-
+		Controlador.getInstancia().completarOrdenProduccion(8);
 	}
 
 }

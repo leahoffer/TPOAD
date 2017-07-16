@@ -14,13 +14,14 @@ import negocio.Prenda;
 public class OrdenProduccionEntity {
 
 	@Id
+	@GeneratedValue(strategy=GenerationType.AUTO)
 	private int nro;
 	private String tipo;
 	private Date fecha;
 	//Una orden de produccion nunca va a ser de mas de una prenda generica, todas las prendas tienen la misma prendagenerica.
-	@OneToMany
+	@OneToMany(fetch=FetchType.EAGER)
 	private List<PrendaEntity> prendas;
-	@ManyToOne
+	@ManyToOne(fetch=FetchType.EAGER)
 	private PedidoPrendaEntity pedido;
 	private int cantidadAProducir;
 	private String estado;

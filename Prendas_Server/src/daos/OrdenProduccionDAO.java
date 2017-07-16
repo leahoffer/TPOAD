@@ -34,10 +34,10 @@ public class OrdenProduccionDAO {
 			SessionFactory sf = HibernateUtil.getSessionFactory();
 			Session s = sf.openSession();
 			s.beginTransaction();
-			OrdenProduccionEntity ope = (OrdenProduccionEntity)s.get(OrdenProduccionEntity.class, numero);
+			OrdenProduccionEntity ope = (OrdenProduccionEntity)s.load(OrdenProduccionEntity.class, numero);
 			s.beginTransaction().commit();
-			s.close();
 			OrdenProduccion op = ope.toNegocio();
+			s.close();
 			return op;
 		}
 		catch (Exception e)
@@ -45,5 +45,39 @@ public class OrdenProduccionDAO {
 			e.printStackTrace();
 		}
 		return null;
+	}
+	
+	
+	public int traerSiguienteNumeroDeOrden()
+	{
+		try
+		{
+			SessionFactory sf = HibernateUtil.getSessionFactory();
+			Session s = sf.openSession();
+			OrdenProduccionEntity ope = new OrdenProduccionEntity();
+			int i = (int) s.createQuery("select ope.nro from OrdenProduccionEntity ope order by nro asc").setFirstResult(0).setMaxResults(1).uniqueResult();
+			return i+1;
+		}
+		catch (Exception e)
+		{
+			e.printStackTrace();
+		}
+		return -1;
+	}
+
+	public void updateOrden(OrdenProduccionEntity entity) {
+		try
+		{
+			SessionFactory sf = HibernateUtil.getSessionFactory();
+			Session s = sf.openSession();
+			s.update(entity);
+			s.beginTransaction().commit();
+			s.close();
+		}
+		catch(Exception e)
+		{
+			e.printStackTrace();
+		}
+		
 	}
 }

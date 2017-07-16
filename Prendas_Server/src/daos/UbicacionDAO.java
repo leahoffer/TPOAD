@@ -56,7 +56,7 @@ public class UbicacionDAO {
 			Session s = sf.openSession();
 			List<UbicacionPrendaEntity> ubicaciones;
 			String hql = "from UbicacionPrendaEntity upe order by upe.ubicacion desc";
-			ubicaciones = s.createQuery(hql).list();
+			ubicaciones = (List<UbicacionPrendaEntity>)s.createQuery(hql).list();
 			UbicacionPrendaEntity resultado = ubicaciones.get(0);
 			return resultado.toNegocio();
 		}

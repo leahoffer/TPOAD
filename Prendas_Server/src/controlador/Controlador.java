@@ -381,6 +381,7 @@ public class Controlador {
 	public void completarOrdenProduccion(int numero){
 		OrdenProduccion op = OrdenProduccionDAO.getInstancia().traerOrden(numero);
 		op.setEstado("Completa");
+		OrdenProduccionDAO.getInstancia().updateOrden(op.toEntity());
 		for(Prenda p : op.getPrendas())
 		{
 			p.AgregarMovimientoStock(op.getCantidadAProducir(), true);

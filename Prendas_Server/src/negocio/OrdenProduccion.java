@@ -11,7 +11,6 @@ import entities.PrendaEntity;
 
 public class OrdenProduccion {
 
-	private static final AtomicInteger incrementador = new AtomicInteger(0);
 	private int nro;
 	private String tipo;
 	private Date fecha;
@@ -35,7 +34,6 @@ public class OrdenProduccion {
 		super();
 		this.prendas= new ArrayList<Prenda>();
 		this.pedido = new PedidoPrenda();
-		setNro(incrementador.incrementAndGet());
 		cantidadAProducir=100;
 	}
 

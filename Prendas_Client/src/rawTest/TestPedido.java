@@ -19,15 +19,15 @@ public class TestPedido {
 			PrendaVO p= new PrendaVO();
 			p.setColor("Negro");
 			p.setTalle("XS");
-			p.setPrenda(new PrendaGenericaVO("P001"));
+			p.setPrenda(new PrendaGenericaVO("P002"));
 			PrendaVO p2= new PrendaVO();
 			p2.setColor("Blanco");
 			p2.setTalle("S");
-			p2.setPrenda(new PrendaGenericaVO("P001"));
+			p2.setPrenda(new PrendaGenericaVO("P002"));
 			PrendaVO p3= new PrendaVO();
 			p3.setColor("Negro");
 			p3.setTalle("L");
-			p3.setPrenda(new PrendaGenericaVO("P002"));
+			p3.setPrenda(new PrendaGenericaVO("P003"));
 		
 			List<ItemPedidoPVO> items= new ArrayList<ItemPedidoPVO>();
 			ItemPedidoPVO ipvo= new ItemPedidoPVO();
