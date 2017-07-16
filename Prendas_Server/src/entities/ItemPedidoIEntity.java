@@ -39,13 +39,7 @@ public class ItemPedidoIEntity implements Serializable{
 		// TODO Auto-generated constructor stub
 	}
 	
-	public ItemPedidoIEntity toEntity() {
-		// TODO Auto-generated method stub
-		ItemPedidoIEntity res= new ItemPedidoIEntity();
-		res.setCantidad(this.getCantidad());
-		res.setInsumo(this.getInsumo().toEntity());
-		return res;
-	}
+	
 	
 
 }
