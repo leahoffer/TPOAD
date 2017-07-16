@@ -4,6 +4,9 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import entities.LoteInsumoEntity;
+import entities.PedidoInsumoEntity;
+
 public class PedidoInsumo {
 
 	private int numero;

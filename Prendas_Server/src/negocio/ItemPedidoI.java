@@ -28,6 +28,12 @@ public class ItemPedidoI {
 		this.cantidad = cantidad;
 	}
 	
-	
+	public ItemPedidoIEntity toEntity() {
+		// TODO Auto-generated method stub
+		ItemPedidoIEntity res= new ItemPedidoIEntity();
+		res.setCantidad(this.getCantidad());
+		res.setInsumo(this.getInsumo().toEntity());
+		return res;
+	}
 
 }

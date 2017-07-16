@@ -2,6 +2,8 @@ package daos;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import negocio.Insumo;
 import negocio.UbicacionPrenda;
 
 import org.hibernate.Session;
@@ -62,6 +64,20 @@ public class UbicacionDAO {
 			e.printStackTrace();
 		}
 		return null;
+	}
+
+	public float traerStockI(Insumo i) {
+		// TODO Auto-generated method stub
+		SessionFactory sf= HibernateUtil.getSessionFactory();
+		Session s= sf.getCurrentSession();
+		s.beginTransaction();
+		float resultado = 0;
+		List<UbicacionInsumoEntity> ube= s.createQuery("from UbicacionInsumoEntity where codigo='"+i.getCodigo()+"'").list();
+		for (UbicacionInsumoEntity u: ube)
+		{
+			resultado=resultado+u.getCantidadNeta();
+		}
+		return resultado;
 	}
 	
 	
