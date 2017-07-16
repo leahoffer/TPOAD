@@ -1,5 +1,7 @@
 package negocio;
 
+import java.util.List;
+
 import entities.InsumoEntity;
 import vos.InsumoVO;
 
@@ -74,6 +76,25 @@ public class Insumo {
 		return ivo;
 		
 	}
+	
+	public boolean noEstaEn(List<ItemPedidoI> itemspedido) {
+		// TODO Auto-generated method stub
+		for (ItemPedidoI i: itemspedido)
+		{
+			if (i.getInsumo().getCodigo().equals(this.getCodigo()))
+				return true;
+		}
+		return false;
+	}
+	public void agregarA(List<ItemPedidoI> itemspedido, float cantidad) {
+		// TODO Auto-generated method stub
+		for (ItemPedidoI ip: itemspedido)
+		{
+			if (ip.getInsumo().getCodigo().equals(this.getCodigo()))
+				ip.setCantidad(ip.getCantidad()+cantidad);
+		}
+	}
+	
 	
 
 }

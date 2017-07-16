@@ -39,6 +39,8 @@ public class Almacen {
 		this.ubicacionesInsumos = ubicacionesInsumos;
 	}
 	
+	
+	
 	/*La idea es que este método vaya recorriendo las ubicaciones que tienen prenda = pedidoPrenda.getItemPedidoP().getPrenda()
 	 *y si la cantidad del bulto es = pedidoPrenda.getItemPedidoP.getCant(), que reserve por la totalidad.
 	 *

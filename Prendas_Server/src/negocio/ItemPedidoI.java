@@ -9,6 +9,12 @@ public class ItemPedidoI {
 		
 		insumo= new Insumo();
 	}
+	
+	public ItemPedidoI(Insumo i) {
+		// TODO Auto-generated constructor stub
+		insumo=i;
+	}
+	
 	public Insumo getInsumo() {
 		return insumo;
 	}

@@ -5,6 +5,7 @@ import org.hibernate.classic.Session;
 
 import entities.OrdenProduccionEntity;
 import hibernate.HibernateUtil;
+import negocio.OrdenProduccion;
 
 public class OrdenProduccionDAO {
 	
@@ -24,5 +25,25 @@ public class OrdenProduccionDAO {
 		s.beginTransaction();
 		s.save(ope);
 		s.getTransaction().commit();
+	}
+	
+	public OrdenProduccion traerOrden(int numero)
+	{
+		try
+		{
+			SessionFactory sf = HibernateUtil.getSessionFactory();
+			Session s = sf.openSession();
+			s.beginTransaction();
+			OrdenProduccionEntity ope = (OrdenProduccionEntity)s.get(OrdenProduccionEntity.class, numero);
+			s.beginTransaction().commit();
+			s.close();
+			OrdenProduccion op = ope.toNegocio();
+			return op;
+		}
+		catch (Exception e)
+		{
+			e.printStackTrace();
+		}
+		return null;
 	}
 }

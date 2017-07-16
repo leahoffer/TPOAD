@@ -77,5 +77,29 @@ public class PedidoInsumo {
 		this.items = items;
 	}
 	
-	
+	public void saveMe() {
+		// TODO Auto-generated method stub
+		PedidoDAO.getInstancia().guardarPedidoInsumo(this.toEntity());
+	}
+
+	public PedidoInsumoEntity toEntity() {
+		// TODO Auto-generated method stub
+		PedidoInsumoEntity pie= new PedidoInsumoEntity();
+		pie.setFechaGen(new java.sql.Date(this.getFechaGen().getTime()));
+		pie.setNumero(this.getNumero());
+		pie.setOpProveniente(this.getOpProveniente().toEntity());
+		List<LoteInsumoEntity> lotes= new ArrayList<LoteInsumoEntity>();
+		List<ItemPedidoIEntity> items= new ArrayList<ItemPedidoIEntity>();
+		for (LoteInsumo li: this.getLotes())
+		{
+			lotes.add(li.toEntity());
+		}
+		for (ItemPedidoI ip: this.getItems())
+		{
+			items.add(ip.toEntity());
+		}
+		pie.setLotes(lotes);
+		pie.setItems(items);
+		return pie;
+	}
 }
