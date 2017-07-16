@@ -6,8 +6,11 @@ import java.util.List;
 import java.util.concurrent.atomic.AtomicInteger;
 
 import daos.OrdenProduccionDAO;
+import daos.PrendaDAO;
 import entities.OrdenProduccionEntity;
 import entities.PrendaEntity;
+import vos.PrendaGenericaVO;
+import vos.PrendaVO;
 
 public class OrdenProduccion {
 
@@ -21,7 +24,6 @@ public class OrdenProduccion {
 	private String estado;
 	
 	
-
 	public List<Prenda> getPrendas() {
 		return prendas;
 	}
@@ -78,9 +80,9 @@ public class OrdenProduccion {
 		this.estado = estado;
 	}
 
-	public void saveMe() {
+	public int saveMe() {
 		// TODO Auto-generated method stub
-		OrdenProduccionDAO.getInstancia().guardarOrden(this.toEntity());
+		return OrdenProduccionDAO.getInstancia().guardarOrden(this.toEntity());
 	}
 
 	public OrdenProduccionEntity toEntity() {
@@ -111,6 +113,17 @@ public class OrdenProduccion {
 	
 	public void validarInsumos() {
 		// TODO Auto-generated method stub
+		List<Prenda> prendasConReceta= new ArrayList<Prenda>();
+		for (Prenda p: this.getPrendas())
+		{
+			PrendaVO prendavo= new PrendaVO();
+			prendavo.setColor(p.getColor().getColor());
+			prendavo.setTalle(p.getTalle().getTalle());
+			prendavo.setPrenda(new PrendaGenericaVO(p.getPrenda().getCodigo()));
+			Prenda prenda=PrendaDAO.getInstancia().traerEspecificaConReceta(prendavo);
+			prendasConReceta.add(prenda);
+		}
+		this.setPrendas(prendasConReceta);
 		List<ItemReceta> items= new ArrayList<ItemReceta>();
 		
 		/*Convierto las prendas en sus items, asi tengo directamente un vector de TODOS los items (insumos repetidos)*/
@@ -157,8 +170,8 @@ public class OrdenProduccion {
 			p.setFechaGen(new Date());
 			p.setItems(insumosSinStock);
 			p.setNumero(10); //cambiar esto por los autogenerados
-			p.setOpProveniente(this);
-			p.saveMe();
+			p.setOpProveniente(OrdenProduccionDAO.getInstancia().traerOrden(this.getNro()));
+			p.setNumero(p.saveMe());
 			
 		}
 		else

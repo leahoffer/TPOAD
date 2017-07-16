@@ -177,9 +177,12 @@ public class PrendaEntity implements Serializable {
 			i.setInsumo(ie.getInsumo().toNegocio());
 			items.add(i);
 		}
+		p.setItemsReceta(items);
+		p.setDetAreas(dets);
+		p.setMovStocks(movs);
 		p.setIdaux(this.id);
 		return p;
-	}
+		}
 	
 	
 	

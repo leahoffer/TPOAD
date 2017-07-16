@@ -83,13 +83,15 @@ public class PedidoDAO {
 	}
 	
 	
-	public void guardarPedidoInsumo(PedidoInsumoEntity entity) {
+	public int guardarPedidoInsumo(PedidoInsumoEntity entity) {
 		// TODO Auto-generated method stub
 		SessionFactory sf=HibernateUtil.getSessionFactory();
 		Session s=sf.getCurrentSession();
 		s.beginTransaction();
 		s.save(entity);
+		int numero=entity.getNumero();
 		s.getTransaction().commit();
+		return numero;
 	}
 
 }

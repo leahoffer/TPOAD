@@ -82,9 +82,9 @@ public class PedidoInsumo {
 		this.items = items;
 	}
 	
-	public void saveMe() {
+	public int saveMe() {
 		// TODO Auto-generated method stub
-		PedidoDAO.getInstancia().guardarPedidoInsumo(this.toEntity());
+		return PedidoDAO.getInstancia().guardarPedidoInsumo(this.toEntity());
 	}
 
 	public PedidoInsumoEntity toEntity() {

@@ -73,7 +73,7 @@ public class UbicacionDAO {
 		Session s= sf.getCurrentSession();
 		s.beginTransaction();
 		float resultado = 0;
-		List<UbicacionInsumoEntity> ube= s.createQuery("from UbicacionInsumoEntity where codigo='"+i.getCodigo()+"'").list();
+		List<UbicacionInsumoEntity> ube= s.createQuery("from UbicacionInsumoEntity u where u.insumo.codigo='"+i.getCodigo()+"'").list();
 		for (UbicacionInsumoEntity u: ube)
 		{
 			resultado=resultado+u.getCantidadNeta();

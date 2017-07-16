@@ -80,5 +80,11 @@ public class RemoteObject extends UnicastRemoteObject implements TDANegocioPubli
 		controlador.validarPedido(selectedValue);
 		
 	}
+
+	@Override
+	public void confirmarPedido(PedidoPrendaVO ppvo) throws RemoteException {
+		// TODO Auto-generated method stub
+		controlador.confirmarPedido(ppvo);
+	}
 	
 }

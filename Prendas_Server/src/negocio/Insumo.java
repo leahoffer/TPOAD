@@ -82,9 +82,9 @@ public class Insumo {
 		for (ItemPedidoI i: itemspedido)
 		{
 			if (i.getInsumo().getCodigo().equals(this.getCodigo()))
-				return true;
+				return false;
 		}
-		return false;
+		return true;
 	}
 	public void agregarA(List<ItemPedidoI> itemspedido, float cantidad) {
 		// TODO Auto-generated method stub

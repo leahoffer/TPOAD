@@ -18,13 +18,15 @@ public class OrdenProduccionDAO {
 		return instancia;
 	}
 
-	public void guardarOrden(OrdenProduccionEntity ope)
+	public int guardarOrden(OrdenProduccionEntity ope)
 	{
 		SessionFactory sf= HibernateUtil.getSessionFactory();
 		Session s= sf.getCurrentSession();
 		s.beginTransaction();
 		s.save(ope);
+		int nro=ope.getNro();
 		s.getTransaction().commit();
+		return nro;
 	}
 	
 	public OrdenProduccion traerOrden(int numero)

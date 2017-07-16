@@ -104,6 +104,13 @@ public class BusinessDelegate implements TDANegocioPublicado {
 		remoteObject.validarPedido(selectedValue);
 		
 	}
+
+
+	@Override
+	public void confirmarPedido(PedidoPrendaVO ppvo) throws RemoteException {
+		// TODO Auto-generated method stub
+		remoteObject.confirmarPedido(ppvo);
+	}
 	
 	
 	

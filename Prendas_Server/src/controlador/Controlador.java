@@ -290,6 +290,11 @@ public class Controlador {
 		
 	}
 	
+	public void confirmarPedido(PedidoPrendaVO ppvo)
+	{
+		this.validarStockPedidoPrenda(ppvo);
+	}
+	
 	private void validarStockPedidoPrenda(PedidoPrendaVO ppvo) {
 		PedidoPrenda pp = PedidoDAO.getInstancia().buscarPedido(ppvo.getNumero());
 		List<Prenda> sinstock = pp.validarStock();
@@ -333,7 +338,7 @@ public class Controlador {
 				}
 				if (!prendasMismaGenerica.isEmpty())
 				{
-					if (prendasMismaGenerica.size()>=3)
+					if (prendasMismaGenerica.size()>3)
 						this.nuevaOPCompleta(prendasMismaGenerica.get(0).getPrenda(), pp);
 					else
 						this.nuevaOPParcial(prendasMismaGenerica, pp);
@@ -351,7 +356,7 @@ public class Controlador {
 		 op.setPedido(pp);
 		 op.setPrendas(prendasMismaGenerica);
 		 op.setTipo("Parcial");
-		 op.saveMe();
+		 op.setNro(op.saveMe());
 		 op.validarInsumos();
 		
 	}

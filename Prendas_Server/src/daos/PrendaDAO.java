@@ -105,4 +105,16 @@ public class PrendaDAO {
 		
 	}
 
+	public Prenda traerEspecificaConReceta(PrendaVO prenda) {
+		// TODO Auto-generated method stub
+		SessionFactory sf=HibernateUtil.getSessionFactory();
+		Session s= sf.getCurrentSession();
+		s.beginTransaction();
+		String hql="from PrendaEntity p left join fetch p.itemsReceta i where p.prenda.codigo='"+prenda.getPrenda().getCodigo()+"' and p.color.color='"+prenda.getColor()+"' and p.talle.talle='"+prenda.getTalle()+"'";
+		System.out.println(hql);
+		List<PrendaEntity> lista= s.createQuery(hql).list();
+		PrendaEntity res= lista.get(0);
+		return res.toNegocio();
+	}
+
 }
