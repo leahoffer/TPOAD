@@ -85,7 +85,7 @@ public class OrdenProduccion {
 		OrdenProduccionDAO.getInstancia().guardarOrden(this.toEntity());
 	}
 
-	private OrdenProduccionEntity toEntity() {
+	public OrdenProduccionEntity toEntity() {
 		// TODO Auto-generated method stub
 		OrdenProduccionEntity ope= new OrdenProduccionEntity();
 		ope.setCantidadAProducir(this.getCantidadAProducir());
