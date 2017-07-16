@@ -230,7 +230,10 @@ public class Prenda {
 		return false;
 	}
 	
-	
+	public void updateMe() {
+		PrendaDAO.getInstancia().updatePrenda(this.toEntity());
+		
+	}
 	
 	
 
