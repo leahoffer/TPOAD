@@ -11,6 +11,7 @@ import entities.PedidoInsumoEntity;
 import entities.PedidoPrendaEntity;
 import entities.PrendaEntity;
 import hibernate.HibernateUtil;
+import negocio.PedidoInsumo;
 import negocio.PedidoPrenda;
 import vos.PrendaVO;
 
@@ -92,6 +93,57 @@ public class PedidoDAO {
 		int numero=entity.getNumero();
 		s.getTransaction().commit();
 		return numero;
+	}
+	
+	public List<PedidoInsumoEntity> traerTodosLosPedidosI()
+	{
+		try
+		{
+			SessionFactory sf = HibernateUtil.getSessionFactory();
+			Session s = sf.getCurrentSession();
+			s.beginTransaction();
+			List<PedidoInsumoEntity> pedidos = (List<PedidoInsumoEntity>) s.createQuery("from PedidoInsumoEntity pie where pie.estado='" + "Pendiente" + "'").list();
+			s.beginTransaction().commit();
+			return pedidos;
+		}
+		catch (Exception e)
+		{
+			e.printStackTrace();
+		}
+		return null;
+	}
+
+	public PedidoInsumo buscarPedidoInsumo(int numero) {
+		try
+		{
+			SessionFactory sf = HibernateUtil.getSessionFactory();
+			Session s = sf.getCurrentSession();
+			s.beginTransaction();
+			PedidoInsumoEntity pie = (PedidoInsumoEntity) s.get(PedidoInsumoEntity.class, numero);
+			s.getTransaction().commit();
+			return pie.toNegocio();
+		}
+		catch (Exception e)
+		{
+			e.printStackTrace();
+		}
+		return null;
+	}
+
+	public void updatePedidoInsumo(PedidoInsumoEntity entity) {
+		try
+		{
+			SessionFactory sf = HibernateUtil.getSessionFactory();
+			Session s = sf.getCurrentSession();
+			s.beginTransaction();
+			s.update(entity);
+			s.getTransaction().commit();
+		}
+		catch(Exception e)
+		{
+			e.printStackTrace();
+		}
+		
 	}
 
 }

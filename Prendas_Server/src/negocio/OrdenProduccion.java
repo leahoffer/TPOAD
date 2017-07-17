@@ -5,6 +5,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicInteger;
 
+import controlador.Controlador;
 import daos.OrdenProduccionDAO;
 import daos.PrendaDAO;
 import entities.OrdenProduccionEntity;
@@ -167,6 +168,7 @@ public class OrdenProduccion {
 		if (!insumosSinStock.isEmpty())
 		{
 			PedidoInsumo p= new PedidoInsumo();
+			p.setEstado("Pendiente");
 			p.setFechaGen(new Date());
 			p.setItems(insumosSinStock);
 			p.setNumero(10); //cambiar esto por los autogenerados
@@ -176,8 +178,10 @@ public class OrdenProduccion {
 		}
 		else
 		{
-			this.setEstado("Completa");
+			//this.setEstado("Completa");
 			//Aca hay que ver que corno pasa cuando completas una orden usea
+			//Entiendo que una clase de negocio PUEDE LLAMAR A UN METODO DEL Controlador no? Digo no se, siendo que tengo la mirada de Claudita juzgandome
+			Controlador.getInstancia().completarOrdenProduccion(this.nro);
 		}
 		
 	}

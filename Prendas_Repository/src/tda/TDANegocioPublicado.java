@@ -7,6 +7,7 @@ import java.util.List;
 import vos.ClienteVO;
 import vos.InsumoVO;
 import vos.ItemRecetaVO;
+import vos.PedidoInsumoVO;
 import vos.PedidoPrendaVO;
 import vos.PrendaGenericaVO;
 import vos.PrendaVO;
@@ -34,5 +35,9 @@ public interface TDANegocioPublicado extends Remote {
 	public void validarPedido(PedidoPrendaVO selectedValue) throws RemoteException;
 	
 	public void confirmarPedido(PedidoPrendaVO ppvo) throws RemoteException;
+	
+	public List<PedidoInsumoVO> traerTodosLosPedidosI() throws RemoteException;
+	
+	public void completarPedidoInsumo(PedidoInsumoVO pivo) throws RemoteException;
 
 }

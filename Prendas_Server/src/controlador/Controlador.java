@@ -9,8 +9,10 @@ import daos.InsumoDAO;
 import daos.OrdenProduccionDAO;
 import daos.PedidoDAO;
 import daos.PrendaDAO;
+import daos.UbicacionDAO;
 import entities.ClienteEntity;
 import entities.InsumoEntity;
+import entities.PedidoInsumoEntity;
 import entities.PedidoPrendaEntity;
 import entities.PrendaEntity;
 import entities.PrendaGenericaEntity;
@@ -22,6 +24,7 @@ import vos.DetalleAreaVO;
 import vos.InsumoVO;
 import vos.ItemPedidoPVO;
 import vos.ItemRecetaVO;
+import vos.PedidoInsumoVO;
 import vos.PedidoPrendaVO;
 import vos.PrendaGenericaVO;
 import vos.PrendaVO;
@@ -396,7 +399,39 @@ public class Controlador {
 			p.updateMe();
 		}
 		Almacen.getInstancia().colocarPrendas(op);
-
 	}
+	
+	
+	public List<PedidoInsumoVO> traerTodosLosPedidosI()
+	{
+		List<PedidoInsumoVO> lista = new ArrayList<PedidoInsumoVO>();
+		List<PedidoInsumoEntity> traer = PedidoDAO.getInstancia().traerTodosLosPedidosI();
+		for(PedidoInsumoEntity pie : traer)
+			lista.add(new PedidoInsumoVO(pie.getNumero(), pie.getFechaGen(), pie.getEstado()));
+		return lista;
+	}
+	public void completarPedidoInsumo(PedidoInsumoVO pivo) {
+		PedidoInsumo pi = PedidoDAO.getInstancia().buscarPedidoInsumo(pivo.getNumero());
+		pi.setEstado("Completa");
+		List<LoteInsumo> lotes = new ArrayList<LoteInsumo>();
+		for(ItemPedidoI ipi : pi.getItems())
+		{
+			LoteInsumo li = new LoteInsumo();
+			li.setCantidad(ipi.getCantidad());
+			li.setInsumo(ipi.getInsumo());
+			UbicacionInsumo ui = Almacen.getInstancia().devolvemeSiguienteUbicacionInsumo();
+			ui.setInsumo(ipi.getInsumo());
+			ui.setCantidad(ipi.getCantidad());
+			UbicacionDAO.getInstancia().guardarUbicacionInsumo(ui.toEntity());
+			li.setUbicacion(ui);
+			lotes.add(li);
+		}
+		pi.setLotes(lotes);
+		pi.getOpProveniente().validarInsumos();
+		pi.updateMe();
+	}
+	
+	
+	
 	
 }

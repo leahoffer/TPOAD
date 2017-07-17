@@ -4,6 +4,8 @@ import java.io.Serializable;
 
 import javax.persistence.*;
 
+import negocio.ItemPedidoI;
+
 @Entity
 @Table(name="Items_Pedido_Insumos")
 public class ItemPedidoIEntity implements Serializable{
@@ -37,6 +39,12 @@ public class ItemPedidoIEntity implements Serializable{
 	}
 	public ItemPedidoIEntity() {
 		// TODO Auto-generated constructor stub
+	}
+	public ItemPedidoI toNegocio() {
+		ItemPedidoI ipi = new ItemPedidoI();
+		ipi.setCantidad(this.cantidad);
+		ipi.setInsumo(this.insumo.toNegocio());
+		return ipi;
 	}
 	
 	

@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import negocio.Insumo;
+import negocio.UbicacionInsumo;
 import negocio.UbicacionPrenda;
 
 import org.hibernate.Session;
@@ -48,7 +49,7 @@ public class UbicacionDAO {
 	}
 	
 	
-	public UbicacionPrenda traerUbicacionMasAlta()
+	public UbicacionPrenda traerUbicacionPMasAlta()
 	{
 		try
 		{
@@ -79,6 +80,40 @@ public class UbicacionDAO {
 			resultado=resultado+u.getCantidadNeta();
 		}
 		return resultado;
+	}
+
+	public UbicacionInsumo traerUbicacionIMasAlta() {
+		try
+		{
+			SessionFactory sf = HibernateUtil.getSessionFactory();
+			Session s = sf.openSession();
+			List<UbicacionInsumoEntity> ubicaciones;
+			String hql = "from UbicacionInsumoEntity uie order by uie.ubicacion desc";
+			ubicaciones = (List<UbicacionInsumoEntity>)s.createQuery(hql).list();
+			UbicacionInsumoEntity resultado = ubicaciones.get(0);
+			return resultado.toNegocio();
+		}
+		catch (Exception e)
+		{
+			e.printStackTrace();
+		}
+		return null;
+	}
+	
+	public void guardarUbicacionInsumo(UbicacionInsumoEntity uie)
+	{
+		try
+		{
+			SessionFactory sf = HibernateUtil.getSessionFactory();
+			Session s = sf.getCurrentSession();
+			s.beginTransaction();
+			s.save(uie);
+			s.beginTransaction().commit();
+		}
+		catch(Exception e)
+		{
+			e.printStackTrace();
+		}
 	}
 	
 	

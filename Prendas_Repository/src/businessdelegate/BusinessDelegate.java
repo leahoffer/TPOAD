@@ -8,6 +8,7 @@ import tda.TDANegocioPublicado;
 import vos.ClienteVO;
 import vos.InsumoVO;
 import vos.ItemRecetaVO;
+import vos.PedidoInsumoVO;
 import vos.PedidoPrendaVO;
 import vos.PrendaGenericaVO;
 import vos.PrendaVO;
@@ -110,6 +111,18 @@ public class BusinessDelegate implements TDANegocioPublicado {
 	public void confirmarPedido(PedidoPrendaVO ppvo) throws RemoteException {
 		// TODO Auto-generated method stub
 		remoteObject.confirmarPedido(ppvo);
+	}
+
+
+	@Override
+	public List<PedidoInsumoVO> traerTodosLosPedidosI() throws RemoteException {
+		return remoteObject.traerTodosLosPedidosI();
+	}
+
+
+	@Override
+	public void completarPedidoInsumo(PedidoInsumoVO pivo) throws RemoteException {
+		remoteObject.completarPedidoInsumo(pivo);
 	}
 	
 	

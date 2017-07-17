@@ -15,6 +15,7 @@ public class PedidoInsumo {
 	private Date fechaGen;
 	private Date fechaProbable;
 	private Date fechaReal;
+	private String estado;
 	private OrdenProduccion opProveniente;
 	private List<LoteInsumo> lotes;
 	private List<ItemPedidoI> items;
@@ -82,6 +83,14 @@ public class PedidoInsumo {
 		this.items = items;
 	}
 	
+	public String getEstado() {
+		return estado;
+	}
+
+	public void setEstado(String estado) {
+		this.estado = estado;
+	}
+
 	public int saveMe() {
 		// TODO Auto-generated method stub
 		return PedidoDAO.getInstancia().guardarPedidoInsumo(this.toEntity());
@@ -93,6 +102,7 @@ public class PedidoInsumo {
 		pie.setFechaGen(new java.sql.Date(this.getFechaGen().getTime()));
 		pie.setNumero(this.getNumero());
 		pie.setOpProveniente(this.getOpProveniente().toEntity());
+		pie.setEstado(this.estado);
 		List<LoteInsumoEntity> lotes= new ArrayList<LoteInsumoEntity>();
 		List<ItemPedidoIEntity> items= new ArrayList<ItemPedidoIEntity>();
 		for (LoteInsumo li: this.getLotes())
@@ -106,5 +116,10 @@ public class PedidoInsumo {
 		pie.setLotes(lotes);
 		pie.setItems(items);
 		return pie;
+	}
+
+	public void updateMe() {
+		PedidoDAO.getInstancia().updatePedidoInsumo(this.toEntity());
+		
 	}
 }

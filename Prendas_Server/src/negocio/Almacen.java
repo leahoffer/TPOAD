@@ -102,7 +102,17 @@ public class Almacen {
 	private void buscarYColocar(UbicacionPrenda ubicacion)
 	{
 		UbicacionPrenda up = new UbicacionPrenda();
-		up = UbicacionDAO.getInstancia().traerUbicacionMasAlta();
+		up = UbicacionDAO.getInstancia().traerUbicacionPMasAlta();
+		if(up==null)
+		{
+			ubicacion.setCalle("A");
+			ubicacion.setBloque(1);
+			ubicacion.setEstanteria(1);
+			ubicacion.setPosicion(1);
+			ubicacion.setUbicacion(ubicacion.obtenerUbicacion());
+			UbicacionDAO.getInstancia().guardarUbicacion(ubicacion.toEntity());
+		}
+		else{
 		if(up.getPosicion()==21)
 		{
 			if(up.getEstanteria()==6)
@@ -166,6 +176,7 @@ public class Almacen {
 				}
 				else
 				{
+					ubicacion.setCalle(up.getCalle());
 					ubicacion.setBloque(up.getBloque()+1);
 					ubicacion.setEstanteria(1);
 					ubicacion.setPosicion(1);
@@ -175,6 +186,8 @@ public class Almacen {
 			}
 			else
 			{
+				ubicacion.setCalle(up.getCalle());
+				ubicacion.setBloque(up.getBloque());
 				ubicacion.setEstanteria(up.getEstanteria()+1);
 				ubicacion.setPosicion(1);
 				ubicacion.setUbicacion(ubicacion.obtenerUbicacion());
@@ -183,16 +196,143 @@ public class Almacen {
 		}
 		else
 		{
+			ubicacion.setCalle(up.getCalle());
+			ubicacion.setBloque(up.getBloque());
+			ubicacion.setEstanteria(up.getEstanteria());
 			ubicacion.setPosicion(up.getPosicion()+1);
 			ubicacion.setUbicacion(ubicacion.obtenerUbicacion());
 			UbicacionDAO.getInstancia().guardarUbicacion(ubicacion.toEntity());
 		}
-		/*ubicacion.setCalle("A");
-		ubicacion.setBloque(1);
-		ubicacion.setEstanteria(1);
-		ubicacion.setPosicion(1);
-		ubicacion.setUbicacion(ubicacion.obtenerUbicacion());
-		UbicacionDAO.getInstancia().guardarUbicacion(ubicacion.toEntity());*/
+		
+	}
+}
+
+	public UbicacionInsumo devolvemeSiguienteUbicacionInsumo() {
+		UbicacionInsumo ui = new UbicacionInsumo();
+		ui = UbicacionDAO.getInstancia().traerUbicacionIMasAlta();
+		UbicacionInsumo resultado = new UbicacionInsumo();
+		if(ui==null)
+		{
+			resultado.setCalle("H");
+			resultado.setBloque(1);
+			resultado.setEstanteria(1);
+			resultado.setPosicion(1);
+			resultado.setUbicacion(resultado.obtenerUbicacion());
+			return resultado;
+		}
+		else
+		{
+			if(ui.getPosicion()==21)
+			{
+				if(ui.getEstanteria()==6)
+				{
+					if(ui.getBloque()==5)
+					{
+						if(ui.getCalle().equals("H"))
+						{
+							resultado.setCalle("I");
+							resultado.setBloque(1);
+							resultado.setEstanteria(1);
+							resultado.setPosicion(1);
+							resultado.setUbicacion(resultado.obtenerUbicacion());
+							return resultado;
+							
+						}
+						else if (ui.getCalle().equals("I"))
+						{
+							resultado.setCalle("J");
+							resultado.setBloque(1);
+							resultado.setEstanteria(1);
+							resultado.setPosicion(1);
+							resultado.setUbicacion(resultado.obtenerUbicacion());
+							return resultado;
+						}
+						else if (ui.getCalle().equals("J"))
+						{
+							resultado.setCalle("K");
+							resultado.setBloque(1);
+							resultado.setEstanteria(1);
+							resultado.setPosicion(1);
+							resultado.setUbicacion(resultado.obtenerUbicacion());
+							return resultado;
+						}
+						else if (ui.getCalle().equals("K"))
+						{
+							resultado.setCalle("L");
+							resultado.setBloque(1);
+							resultado.setEstanteria(1);
+							resultado.setPosicion(1);
+							resultado.setUbicacion(resultado.obtenerUbicacion());
+							return resultado;
+						}
+						else if (ui.getCalle().equals("L"))
+						{
+							resultado.setCalle("M");
+							resultado.setBloque(1);
+							resultado.setEstanteria(1);
+							resultado.setPosicion(1);
+							resultado.setUbicacion(resultado.obtenerUbicacion());
+							return resultado;
+						}
+						else if (ui.getCalle().equals("M"))
+						{
+							resultado.setCalle("N");
+							resultado.setBloque(1);
+							resultado.setEstanteria(1);
+							resultado.setPosicion(1);
+							resultado.setUbicacion(resultado.obtenerUbicacion());
+							return resultado;
+						}
+						else if (ui.getCalle().equals("N"))
+						{
+							resultado.setCalle("O");
+							resultado.setBloque(1);
+							resultado.setEstanteria(1);
+							resultado.setPosicion(1);
+							resultado.setUbicacion(resultado.obtenerUbicacion());
+							return resultado;
+						}
+						else if (ui.getCalle().equals("O"))
+						{
+							resultado.setCalle("P");
+							resultado.setBloque(1);
+							resultado.setEstanteria(1);
+							resultado.setPosicion(1);
+							resultado.setUbicacion(resultado.obtenerUbicacion());
+							return resultado;
+						}
+					}
+					else
+					{
+						resultado.setCalle(ui.getCalle());
+						resultado.setBloque(ui.getBloque()+1);
+						resultado.setEstanteria(1);
+						resultado.setPosicion(1);
+						resultado.setUbicacion(resultado.obtenerUbicacion());
+						return resultado;
+					}
+				}
+				else
+				{
+					resultado.setCalle(ui.getCalle());
+					resultado.setBloque(ui.getBloque());
+					resultado.setEstanteria(ui.getEstanteria()+1);
+					resultado.setPosicion(1);
+					resultado.setUbicacion(resultado.obtenerUbicacion());
+					return resultado;
+				}
+			}
+			else
+			{
+				resultado.setCalle(ui.getCalle());
+				resultado.setBloque(ui.getBloque());
+				resultado.setEstanteria(ui.getEstanteria());
+				resultado.setPosicion(ui.getPosicion()+1);
+				resultado.setUbicacion(resultado.obtenerUbicacion());
+				return resultado;
+			}
+		}
+		return null;
 	}
 	
 	
